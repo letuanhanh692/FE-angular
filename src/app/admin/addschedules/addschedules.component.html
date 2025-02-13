@@ -1,0 +1,60 @@
+<div class="max-w-3xl mx-auto p-4">
+    <div class="bg-white p-6 rounded-lg shadow-md">
+      <div class="flex items-center justify-between mb-4">
+        <h1 class="text-3xl font-bold text-gray-800">Add Schedule</h1>
+      </div>
+
+      <!-- Hiển thị thông báo lỗi nếu có -->
+      <div *ngIf="errorMessage" class="text-red-600 mb-4">
+        {{ errorMessage }}
+      </div>
+
+      <form (ngSubmit)="onSubmit()">
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- Bus -->
+          <div>
+            <label class="block text-gray-600 mb-1">Bus</label>
+            <select name="busId" [(ngModel)]="schedule.busId" class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-400">
+              <option value="0">Select Bus</option>
+              <option *ngFor="let bus of buses" [value]="bus.id">{{ bus.busNumber }}</option>
+            </select>
+          </div>
+        
+          <!-- Route -->
+          <div>
+            <label class="block text-gray-600 mb-1">Route</label>
+            <select name="routeId" [(ngModel)]="schedule.routeId" class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-400">
+              <option value="0">Select Route</option>
+              <option *ngFor="let route of routes" [value]="route.id">{{ route.startingPlace }} - {{ route.destinationPlace }}</option>
+            </select>
+          </div>
+
+          <!-- Departure Time -->
+          <div>
+            <label class="block text-gray-600 mb-1">Departure Time</label>
+            <input type="datetime-local" name="departureTime" [(ngModel)]="schedule.departureTime" class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-400">
+          </div>
+
+          <!-- Arrival Time -->
+          <div>
+            <label class="block text-gray-600 mb-1">Arrival Time</label>
+            <input type="datetime-local" name="arrivalTime" [(ngModel)]="schedule.arrivalTime" class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-400">
+          </div>
+
+          <!-- Schedule Date -->
+          <div>
+            <label class="block text-gray-600 mb-1">Schedule Date</label>
+            <input type="datetime-local" name="date" [(ngModel)]="schedule.date" class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-400">
+          </div>
+
+        </div>
+
+        <div class="flex justify-end mt-6 space-x-2">
+          <button type="button" (click)="onCancel()" class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded">Cancel</button>
+          <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">Save</button>
+        </div>
+      </form>
+      
+    </div>
+</div>

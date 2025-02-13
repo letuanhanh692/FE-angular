@@ -1,0 +1,68 @@
+<div class="max-w-3xl mx-auto p-4">
+    <div class="bg-white p-6 rounded-lg shadow-md">
+      <div class="flex items-center justify-between mb-4">
+        <h1 class="text-3xl font-bold text-gray-800">Schedule Details</h1>
+      </div>
+  
+      <!-- Hiển thị thông báo lỗi nếu có -->
+      <div *ngIf="errorMessage" class="text-red-600 mb-4">
+        {{ errorMessage }}
+      </div>
+  
+      <div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          
+          <!-- Bus -->
+          <div>
+            <label class="block text-gray-600 mb-1">Bus</label>
+            <div class="w-full p-2 border border-gray-300 rounded bg-gray-100">
+              {{ schedule.busNumber }}
+            </div>
+          </div>
+          
+          <!-- Route -->
+          <div>
+            <label class="block text-gray-600 mb-1">Route</label>
+            <div class="w-full p-2 border border-gray-300 rounded bg-gray-100">
+              {{ schedule.startingPlace }} - {{ schedule.destinationPlace }}
+            </div>
+          </div>
+  
+          <!-- Departure Time -->
+          <div>
+            <label class="block text-gray-600 mb-1">Departure Time</label>
+            <div class="w-full p-2 border border-gray-300 rounded bg-gray-100">
+              {{ schedule.departureTime | date: 'yyyy-MM-dd HH:mm' }}
+            </div>
+          </div>
+  
+          <!-- Arrival Time -->
+          <div>
+            <label class="block text-gray-600 mb-1">Arrival Time</label>
+            <div class="w-full p-2 border border-gray-300 rounded bg-gray-100">
+              {{ schedule.arrivalTime | date: 'yyyy-MM-dd HH:mm' }}
+            </div>
+          </div>
+  
+          <div>
+            <label class="block text-gray-600 mb-1">Available Seats</label>
+            <div class="w-full p-2 border border-gray-300 rounded bg-gray-100">
+              {{ schedule.availableSeats  }}
+            </div>
+          </div>
+          <div>
+            <label class="block text-gray-600 mb-1">Price </label>
+            <div class="w-full p-2 border border-gray-300 rounded bg-gray-100">
+              {{ schedule.price  }}
+            </div>
+          </div>
+        </div>
+  
+        <div class="flex justify-end mt-6 space-x-2">
+          <button type="button" (click)="onCancel()" class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded">Back</button>
+        </div>
+      </div>
+  
+    </div>
+  </div>
+  

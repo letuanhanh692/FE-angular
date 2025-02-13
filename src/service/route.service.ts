@@ -1,0 +1,50 @@
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+// Định nghĩa DTO cho Route
+export interface RouteDTO {
+  id: number;
+  startingPlace: string;
+  destinationPlace: string;
+  distance: number;
+  priceRoute: number;
+  staffId: number;
+  staffName: string;
+  staffEmail: string;
+}
+
+@Injectable({
+  providedIn: 'root'
+})
+export class RouteService {
+  private apiUrl = 'https://localhost:44311/api/Route';  // Địa chỉ API backend của bạn
+
+  constructor(private http: HttpClient) {}
+
+  getRoutes(page: number, pageSize: number, searchQuery: string = ''): Observable<any> {
+    const params = new HttpParams()
+      .set('page', page.toString())
+      .set('pageSize', pageSize.toString())
+      .set('searchQuery', searchQuery);
+
+      return this.http.get<any>('https://localhost:44311/api/Route/search', { params });  
+  }
+
+  getRoute(id: number): Observable<RouteDTO> {
+    return this.http.get<RouteDTO>(`${this.apiUrl}/${id}`);
+  }
+  
+
+  createRoute(route: RouteDTO): Observable<void> {
+    return this.http.post<void>(this.apiUrl, route);
+  }
+
+  updateRoute(id: number, route: RouteDTO): Observable<void> {
+    return this.http.put<void>(`${this.apiUrl}/${id}`, route);
+  }
+
+  deleteRoute(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }
+}

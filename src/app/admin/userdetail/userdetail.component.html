@@ -1,0 +1,56 @@
+<div class="max-w-3xl mx-auto p-4">
+  <div class="bg-white p-6 rounded-lg shadow-md">
+    <div class="flex items-center justify-between mb-4">
+      <h1 class="text-3xl font-bold text-gray-800">User Details</h1>
+    </div>
+
+    <!-- Hiển thị thông báo lỗi nếu có -->
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div>
+        <label class="block text-gray-600 mb-1">Full Name</label>
+        <p class="w-full p-2 border border-gray-300 rounded bg-gray-100">{{ user?.username }}</p>
+      </div>
+
+      <div>
+        <label class="block text-gray-600 mb-1">Address</label>
+        <p class="w-full p-2 border border-gray-300 rounded bg-gray-100">{{ user?.address }}</p>
+      </div>
+
+      <div>
+        <label class="block text-gray-600 mb-1">E-mail</label>
+        <p class="w-full p-2 border border-gray-300 rounded bg-gray-100">{{ user?.email }}</p>
+      </div>
+      <div>
+        <label class="block text-gray-600 mb-1">Password</label>
+        <p class="w-full p-2 border border-gray-300 rounded bg-gray-100">{{ user?.password }}</p>
+      </div>
+      <div>
+        <label class="block text-gray-600 mb-1">Contact Number</label>
+        <p class="w-full p-2 border border-gray-300 rounded bg-gray-100">{{ user?.phone }}</p>
+      </div>
+
+      <div>
+        <label class="block text-gray-600 mb-1">BirthDay</label>
+        <p class="w-full p-2 border border-gray-300 rounded bg-gray-100">{{ user?.dateOfBirth }}</p>
+      </div>
+
+      <div>
+        <label class="block text-gray-600 mb-1">CCCD</label>
+        <p class="w-full p-2 border border-gray-300 rounded bg-gray-100">{{ user?.idCard }}</p>
+      </div>
+
+      <div>
+        <label class="block text-gray-600 mb-1">Role</label>
+        <p class="w-full p-2 border border-gray-300 rounded bg-gray-100">{{ user?.roleName || 'Unknown Role' }}</p>
+      </div>
+      
+    </div>
+
+    <!-- Nút Back -->
+    <div class="flex justify-end mt-6 space-x-2">
+      <button type="button" (click)="onCancel()" class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded">Back</button>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,104 @@
+<div class="w-full mx-auto p-4 bg-gray-50 rounded-lg shadow-md">
+  <h1 class="text-3xl font-semibold text-gray-800 mb-4">Danh sách xe</h1>
+
+  <!-- Hiển thị khi đang tải hoặc có lỗi -->
+  <div *ngIf="loading" class="text-center text-blue-500 font-medium">Đang tải...</div>
+  <div *ngIf="errorMessage" class="text-center text-red-500 font-medium">{{ errorMessage }}</div>
+
+  <!-- Tìm kiếm và Thêm xe -->
+  <div class="mb-4 flex justify-between items-center space-x-4">
+    <div class="flex items-center space-x-2">
+      <input 
+        type="text" 
+        [(ngModel)]="searchQuery" 
+        placeholder="Tìm kiếm xe..."
+        class="p-2 w-64 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+      <button 
+        (click)="searchBuses()" 
+        class="px-4 py-2 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm">
+        Tìm kiếm
+      </button>
+    </div>
+    <button 
+      [routerLink]="'/admin/addbus'" 
+      class="px-4 py-2 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm">
+      Thêm xe
+    </button>
+  </div>
+
+  <!-- Bảng danh sách xe -->
+  <div class="overflow-x-auto bg-white rounded-lg shadow-md">
+    <table class="min-w-full table-auto text-sm">
+      <thead>
+        <tr class="bg-gray-100 border-b text-gray-700">
+          <th class="px-4 py-3 text-left">ID</th>
+          <th class="px-4 py-3 text-left">Số xe</th>
+          <th class="px-4 py-3 text-left">Loại xe</th>
+          <th class="px-4 py-3 text-left">Số ghế</th>
+          <th class="px-4 py-3 text-left">Hình ảnh</th>
+          <th class="px-4 py-3 text-left">Hành động</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let bus of buses" class="border-b hover:bg-gray-50">
+          <td class="px-4 py-2">{{ bus.id }}</td>
+          <td class="px-4 py-">{{ bus.busNumber }}</td>
+          <td class="px-4 py-2">{{ bus.busTypeId }}</td>
+          <td class="px-4 py-2">{{ bus.totalSeats }}</td>
+          <td class="px-4 py-2">
+            <img *ngIf="bus.imageBus" [src]="bus.imageBus" alt="Bus Image" class="w-12 h-12 object-cover rounded-md">
+          </td>
+          <td class="px-4 py-2 flex space-x-2">
+            <!-- Nút Xem -->
+            <button 
+              (click)="detailBus(bus.id)" 
+              class="px-4 py-1 bg-blue-500 text-white rounded-lg shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 transition ease-in-out duration-150 text-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span>Xem</span>
+            </button>
+
+            <!-- Nút Sửa -->
+            <button 
+              (click)="updateBus(bus.id)" 
+              class="px-4 py-1 bg-yellow-500 text-white rounded-lg shadow-sm hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 transition ease-in-out duration-150 text-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5h4l5 5v9a2 2 0 01-2 2H6a2 2 0 01-2-2V7a2 2 0 012-2h5z" />
+              </svg>
+              <span>Sửa</span>
+            </button>
+
+            <!-- Nút Xoá -->
+            <button 
+              (click)="deleteBus(bus.id)" 
+              class="px-4 py-1 bg-red-500 text-white rounded-lg shadow-sm hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 transition ease-in-out duration-150 text-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+              <span>Xoá</span>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Phân trang -->
+  <div class="mt-4 flex justify-center space-x-4">
+    <button 
+      (click)="changePage(currentPage - 1)" 
+      [disabled]="currentPage === 1" 
+      class="px-4 py-2 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 disabled:bg-gray-300 text-sm">
+      &lt;
+    </button>
+    <span class="text-lg text-gray-700">Trang {{ currentPage }} / {{ totalPages }}</span>
+    <button 
+      (click)="changePage(currentPage + 1)" 
+      [disabled]="currentPage === totalPages" 
+      class="px-4 py-2 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 disabled:bg-gray-300 text-sm">
+      &gt;
+    </button>
+  </div>
+</div>

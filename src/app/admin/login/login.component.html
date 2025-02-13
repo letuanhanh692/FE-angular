@@ -1,0 +1,25 @@
+<div class="login-page">
+    <div class="login-container">
+        <img src="../../../assets/admin/image/busadmin.jpg" alt="Login Image">
+        <div class="login-form">
+            <h2>Admin</h2>
+            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" formControlName="email" placeholder="email"
+                        required>
+                    <div class="color-p">{{messageMail}}</div>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" formControlName="password"
+                        placeholder="password" required>
+                    <div class="color-p">
+                        <p>{{ message }}</p>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Login</button>
+            </form>
+        </div>
+    </div>
+</div>
