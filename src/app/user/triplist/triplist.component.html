@@ -1,0 +1,38 @@
+<div class="container">
+  <!-- Bộ lọc và sắp xếp bên trái -->
+  <div class="filter-sort-container">
+    <label for="busType">Lọc theo hạng xe:</label>
+    <select id="busType" [(ngModel)]="selectedBusType" (change)="applyFilters()">
+      <option value="">Tất cả</option>
+      <option *ngFor="let type of busTypes" [value]="type.typeName">{{ type.typeName }}</option>
+    </select>
+
+    <label for="sort">Sắp xếp theo:</label>
+    <select id="sort" [(ngModel)]="sortCriteria" (change)="sortTrips()">
+      <option value="timeAsc">Thời gian đi (Sớm → Muộn)</option>
+      <option value="timeDesc">Thời gian đi (Muộn → Sớm)</option>
+      <option value="priceAsc">Giá vé (Thấp → Cao)</option>
+      <option value="priceDesc">Giá vé (Cao → Thấp)</option>
+    </select>
+  </div>
+
+  <!-- Danh sách chuyến đi bên phải -->
+  <div *ngIf="filteredTrips.length > 0; else noTrips" class="trip-container">
+    <div *ngFor="let trip of filteredTrips" class="trip-card">
+      <p><strong>Bus Number:</strong> {{ trip.busNumber }}</p>
+      <p><strong>Bus Type:</strong> {{ trip.busType }}</p>
+      <p><strong>Total Seats:</strong> {{ trip.totalSeats }}</p>
+      <p><strong>Available Seats:</strong> {{ trip.availableSeats }}</p>
+      <p><strong>Departure Time:</strong> {{ trip.departureTime | date:'short' }}</p>
+      <p><strong>Arrival Time:</strong> {{ trip.arrivalTime | date:'short' }}</p>
+      <p><strong>Starting Place:</strong> {{ trip.startingPlace }}</p>
+      <p><strong>Destination Place:</strong> {{ trip.destinationPlace }}</p>
+      <p><strong>Price:</strong> {{ trip.price | currency }}</p>
+      <button (click)="viewTripDetail(trip.id)" class="btn-book">Đặt ngay</button>
+    </div>
+  </div>
+
+  <ng-template #noTrips>
+    <p class="no-trips">Không tìm thấy chuyến đi phù hợp.</p>
+  </ng-template>
+</div>

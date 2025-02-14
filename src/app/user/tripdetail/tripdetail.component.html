@@ -1,0 +1,20 @@
+<div *ngIf="tripDetails; else loading" class="trip-detail-container">
+  <h2>Thông tin chi tiết chuyến đi</h2>
+  <p><strong>Bus Number:</strong> {{ tripDetails.busNumber }}</p>
+  <p><strong>Bus Type:</strong> {{ tripDetails.busType }}</p>
+  <p><strong>Total Seats:</strong> {{ tripDetails.totalSeats }}</p>
+  <p><strong>Available Seats:</strong> {{ tripDetails.availableSeats }}</p>
+  <p><strong>Departure Time:</strong> {{ tripDetails.departureTime | date:'short' }}</p>
+  <p><strong>Arrival Time:</strong> {{ tripDetails.arrivalTime | date:'short' }}</p>
+  <p><strong>Starting Place:</strong> {{ tripDetails.startingPlace }}</p>
+  <p><strong>Destination Place:</strong> {{ tripDetails.destinationPlace }}</p>
+  <p><strong>Price:</strong> {{ tripDetails.price | currency:'' }}</p>
+
+  <!-- Nút Đặt vé -->
+  <button>Đặt vé</button>
+</div>
+
+<!-- Hiển thị khi đang tải thông tin chuyến đi -->
+<ng-template #loading>
+  <p>Đang tải thông tin chuyến đi...</p>
+</ng-template>
