@@ -25,13 +25,18 @@ import { BusdetailComponent } from './admin/busdetail/busdetail.component';
 import { ListbookingComponent } from './admin/listbooking/listbooking.component';
 import { AddbookingComponent } from './admin/addbooking/addbooking.component';
 import { EditbookingComponent } from './admin/editbooking/editbooking.component';
+import { RegisterComponent } from './user/register/register.component';
+import { LoginuserComponent } from './user/loginuser/loginuser.component';
+import { SearchtripComponent } from './user/searchtrip/searchtrip.component';
+import { TripListComponent } from './user/triplist/triplist.component';
+import { TripdetailComponent } from './user/tripdetail/tripdetail.component';
 
 export const routes: Routes = [
     {
-        path: 'admin', 
+        path: 'admin',
         component: LayoutComponent,canActivate:[AuthAdminService],
         children: [
-            { path: '', component: DashboardComponent, pathMatch: 'full' }, 
+            { path: '', component: DashboardComponent, pathMatch: 'full' },
             { path: 'dashboard', component: DashboardComponent },
             {path : 'listuser',component:ListuserComponent},
             {path : 'adduser',component:AdduserComponent},
@@ -57,6 +62,25 @@ export const routes: Routes = [
             {path : 'statistical',component:StatisticalComponent},
 
         ]
-    }, 
-    { path: 'loginadmin', component: LoginComponent }
+    },
+    { path: 'loginadmin', component: LoginComponent },
+
+    {
+
+      path:'user',
+      children:[
+
+        {path: 'register',component:RegisterComponent },
+        {path: 'loginuser',component:LoginuserComponent},
+        {path: 'searchtrip',component:SearchtripComponent},
+        {path: 'triplist',component:TripListComponent},
+        {path: 'tripdetail/:id',component:TripdetailComponent},
+        { path: '', redirectTo: '/trip-list', pathMatch: 'full' }
+
+
+
+
+      ]
+
+    }
 ];

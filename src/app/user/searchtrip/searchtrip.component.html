@@ -1,0 +1,18 @@
+<form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="startingPlace">Starting Place</label>
+    <input id="startingPlace" formControlName="startingPlace" class="form-control" placeholder="Enter starting place">
+  </div>
+
+  <div class="form-group">
+    <label for="destinationPlace">Destination Place</label>
+    <input id="destinationPlace" formControlName="destinationPlace" class="form-control" placeholder="Enter destination place">
+  </div>
+
+  <div class="form-group">
+    <label for="departureDateTime">Departure Date</label>
+    <input id="departureDateTime" formControlName="departureDateTime" type="date" class="form-control">
+  </div>
+
+  <button type="submit" class="btn btn-primary" [disabled]="searchForm.invalid">Search</button>
+</form>

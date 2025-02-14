@@ -1,0 +1,82 @@
+/* Khung chung cho form tìm kiếm */
+.search-form-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Định dạng cho các trường nhập liệu */
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  display: block;
+  margin-bottom: 5px;
+}
+
+input.form-control {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+/* Thay đổi màu viền khi input được focus */
+input.form-control:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Định dạng nút Submit */
+button.btn-primary {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Hiệu ứng khi hover vào nút */
+button.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+/* Disabled button style */
+button.btn-primary:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Responsive - Điều chỉnh giao diện cho màn hình nhỏ */
+@media (max-width: 768px) {
+  .search-form-container {
+    padding: 20px;
+  }
+
+  label {
+    font-size: 14px;
+  }
+
+  input.form-control {
+    padding: 8px;
+    font-size: 13px;
+  }
+
+  button.btn-primary {
+    font-size: 14px;
+  }
+}

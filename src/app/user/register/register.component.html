@@ -1,0 +1,47 @@
+<div class="form-container">
+  <h2>Đăng ký tài khoản</h2>
+  <form (ngSubmit)="onSubmit()" #registerForm="ngForm">
+      <div class="form-group">
+          <label for="username">Tên đăng nhập</label>
+          <input type="text" id="username" name="username" [(ngModel)]="model.username" required />
+      </div>
+
+      <div class="form-group">
+          <label for="password">Mật khẩu</label>
+          <input type="password" id="password" name="password" [(ngModel)]="model.password" required />
+      </div>
+
+      <div class="form-group">
+          <label for="name">Họ và tên</label>
+          <input type="text" id="name" name="name" [(ngModel)]="model.name" required />
+      </div>
+
+      <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" [(ngModel)]="model.email" required />
+      </div>
+
+      <div class="form-group">
+          <label for="phone">Số điện thoại</label>
+          <input type="text" id="phone" name="phone" [(ngModel)]="model.phone" required />
+      </div>
+
+      <div class="form-group">
+          <label for="address">Địa chỉ</label>
+          <input type="text" id="address" name="address" [(ngModel)]="model.address" required />
+      </div>
+
+      <div class="form-group">
+          <label for="idCard">Số chứng minh thư/căn cước</label>
+          <input type="text" id="idCard" name="idCard" [(ngModel)]="model.idCard" required />
+      </div>
+
+      <div class="form-group">
+          <label for="dateOfBirth">Ngày sinh</label>
+          <input type="date" id="dateOfBirth" name="dateOfBirth" [(ngModel)]="model.dateOfBirth" required />
+      </div>
+
+      <button type="submit" [disabled]="!registerForm.form.valid">Đăng ký</button>
+  </form>
+  <p> <a routerLink="/user/loginuser" class="loginuser-link">Đăng nhập ngay</a></p>
+</div>
