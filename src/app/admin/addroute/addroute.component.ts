@@ -49,21 +49,20 @@ export class AddrouteComponent implements OnInit {
   constructor(
     private routeService: RouteService,
     private userService: UserService,
-    private router: Router // Inject Router
+    private router: Router 
   ) {}
 
   ngOnInit(): void {
-    this.loadStaff();  // Gọi loadStaff khi component được khởi tạo
+    this.loadStaff();  
   }
 
   loadStaff(): void {
     this.userService.getUsers().subscribe(
       (users: User[]) => {
-        // Lọc danh sách nhân viên với roleId = 2
         this.staffList = users.filter((user: User) => user.roleId === 2);
       },
       (error: any) => {
-        this.errorMessage = 'Failed to load staff list';  // Nếu có lỗi khi tải danh sách nhân viên
+        this.errorMessage = 'Failed to load staff list'; 
       }
     );
   }
@@ -71,18 +70,17 @@ export class AddrouteComponent implements OnInit {
   onSubmit(): void {
     // Kiểm tra dữ liệu form
     if (!this.route.startingPlace || !this.route.destinationPlace || this.route.distance <= 0 || this.route.priceRoute <= 0) {
-      this.errorMessage = 'Please fill in all fields correctly';  // Hiển thị thông báo lỗi
+      this.errorMessage = 'Please fill in all fields correctly'; 
       return;
     }
 
-    // Gửi request để tạo tuyến đường mới
     this.routeService.createRoute(this.route).subscribe(
       () => {
-        alert('Route added successfully!');  // Thông báo thành công
-        this.router.navigate(['/admin/route']);  // Điều hướng về trang chính (trang quản lý tuyến đường)
+        alert('Route added successfully!');  
+        this.router.navigate(['/admin/route']);  
       },
       (error: any) => {
-        this.errorMessage = 'Failed to add route';  // Thông báo lỗi nếu không thể thêm tuyến đường
+        this.errorMessage = 'Failed to add route';  
       }
     );
   }
@@ -93,6 +91,6 @@ export class AddrouteComponent implements OnInit {
 
   private resetForm(): void {
     this.route = { id: 0, startingPlace: '', destinationPlace: '', distance: 0, priceRoute: 0, staffId: 0, staffName: '', staffEmail: '' };
-    this.errorMessage = '';  // Xóa thông báo lỗi
+    this.errorMessage = '';  
   }
 }

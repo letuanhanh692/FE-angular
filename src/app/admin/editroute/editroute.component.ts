@@ -28,8 +28,8 @@ export class EditrouteComponent implements OnInit {
   errorMessage: string = '';
 
   constructor(
-    private routeService: RouteService,  // Inject RouteService
-    private userService: UserService,  // Inject UserService để lấy danh sách nhân viên
+    private routeService: RouteService,  
+    private userService: UserService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
   ) {}
@@ -37,28 +37,25 @@ export class EditrouteComponent implements OnInit {
   ngOnInit(): void {
     const routeId = this.activatedRoute.snapshot.paramMap.get('id');
     if (routeId) {
-      this.loadRouteDetails(Number(routeId));  // Ép kiểu từ string sang number
-      this.loadStaffList();  // Gọi phương thức tải danh sách nhân viên có roleId = 2
+      this.loadRouteDetails(Number(routeId));  
+      this.loadStaffList();  
     }
   }
 
-  // Phương thức tải thông tin tuyến đường
   loadRouteDetails(id: number): void {
     this.routeService.getRoute(id).subscribe(
       (data: RouteDTO) => {
-        this.route = data;  // Gán dữ liệu tuyến đường vào đối tượng route
+        this.route = data;  
       },
       (error: any) => {
-        this.errorMessage = 'Failed to load route details';  // Hiển thị lỗi nếu có
+        this.errorMessage = 'Failed to load route details';  
       }
     );
   }
 
-  // Phương thức tải danh sách nhân viên có roleId = 2
   loadStaffList(): void {
     this.userService.getUsers().subscribe(
       (users: any[]) => {
-        // Lọc danh sách nhân viên với roleId = 2
         this.staffList = users.filter(user => user.roleId === 2);
       },
       (error: any) => {
@@ -67,7 +64,6 @@ export class EditrouteComponent implements OnInit {
     );
   }
 
-  // Phương thức xử lý khi người dùng nhấn Save
   onSubmit(): void {
     this.routeService.updateRoute(this.route.id, this.route).subscribe(
       (response) => {
@@ -80,8 +76,7 @@ export class EditrouteComponent implements OnInit {
     );
   }
 
-  // Phương thức xử lý khi người dùng nhấn Cancel
   onCancel(): void {
-    this.router.navigate(['/admin/route']);  // Quay lại trang danh sách tuyến đường
+    this.router.navigate(['/admin/route']);  
   }
 }

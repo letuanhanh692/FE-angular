@@ -38,7 +38,7 @@ export class SchedulesComponent implements OnInit {
           this.loading = false;
         },
         (error) => {
-          this.errorMessage = 'Có lỗi xảy ra khi tải dữ liệu';
+          this.errorMessage = 'An error occurred while loading data.';
           this.loading = false;
         }
       );
@@ -53,7 +53,7 @@ export class SchedulesComponent implements OnInit {
           this.totalPages = response.totalPages; 
         },
         (error) => {
-          this.errorMessage = 'Có lỗi xảy ra khi tìm kiếm';  
+          this.errorMessage = 'An error occurred while searching.';  
         }
       );
   }
@@ -73,14 +73,14 @@ export class SchedulesComponent implements OnInit {
   }
 
   deleteSchedule(id: number) {
-    if (confirm('Bạn có chắc muốn xoá lịch trình này?')) {
+    if (confirm('Are you sure you want to delete this schedule?')) {
       this.scheduleService.deleteSchedule(id)
         .subscribe(
           () => {
-            this.loadSchedules(); // Tải lại danh sách sau khi xoá thành công
+            this.loadSchedules(); 
           },
           (error) => {
-            this.errorMessage = 'Có lỗi xảy ra khi xoá lịch trình';
+            this.errorMessage = 'An error occurred while deleting the schedule.';
           }
         );
     }

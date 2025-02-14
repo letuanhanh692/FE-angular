@@ -36,8 +36,8 @@ export class ListuserComponent implements OnInit {
         this.loading = false;
       },
       error: (err) => {
-        console.error('Lỗi khi tải dữ liệu người dùng:', err);
-        this.errorMessage = 'Có lỗi xảy ra khi tải dữ liệu người dùng';
+        console.error('Error loading user data:', err);
+        this.errorMessage = 'An error occurred while loading user data.';
         this.loading = false;
       }
     });
@@ -53,7 +53,7 @@ export class ListuserComponent implements OnInit {
           this.loading = false;
         },
         error: (err) => {
-          console.error('Lỗi khi tìm kiếm người dùng:', err);
+          console.error('Error while searching for user:', err);
           this.loading = false;
         }
       });
@@ -81,13 +81,13 @@ export class ListuserComponent implements OnInit {
 
   // Xóa người dùng
   deleteUser(id: number): void {
-    if (confirm('Bạn có chắc chắn muốn xóa người dùng này?')) {
+    if (confirm('Are you sure you want to delete this user?')) {
       this.userService.deleteUser(id).subscribe({
         next: () => {
           this.loadUsers(); 
         },
         error: (err) => {
-          console.error('Lỗi khi xóa người dùng:', err);
+          console.error('Error while deleting user:', err);
         }
       });
     }

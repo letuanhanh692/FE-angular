@@ -51,7 +51,7 @@ export class EditbusComponent implements OnInit {
           this.bus = data;  
         },
         (error) => {
-          this.errorMessage = 'Không thể tải thông tin bus';
+          this.errorMessage = 'Unable to load bus information';
         }
       );
     }
@@ -67,7 +67,7 @@ export class EditbusComponent implements OnInit {
   onSubmit() {
     // Kiểm tra xem các trường có hợp lệ không
     if (!this.bus.busNumber || !this.bus.totalSeats || this.bus.busTypeId === null || this.bus.busTypeId === 0) {
-      this.errorMessage = 'Vui lòng điền đầy đủ thông tin!';
+      this.errorMessage = 'Please fill in all information!';
       return;
     }
   
@@ -91,7 +91,7 @@ export class EditbusComponent implements OnInit {
           this.router.navigate(['/admin/listbus']);
         },
         (error) => {
-          this.errorMessage = 'Có lỗi xảy ra khi cập nhật bus!';
+          this.errorMessage = 'An error occurred while updating the bus!';
         }
       );
     }

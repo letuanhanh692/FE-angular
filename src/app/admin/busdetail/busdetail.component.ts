@@ -27,18 +27,18 @@ export class BusdetailComponent implements OnInit {
   ngOnInit(): void {
     const busId = this.activatedRoute.snapshot.paramMap.get('id'); // Lấy id từ URL
     if (busId) {
-      this.loadBusDetails(parseInt(busId)); // Gọi phương thức tải chi tiết bus
+      this.loadBusDetails(parseInt(busId)); 
     }
   }
 
   loadBusDetails(id: number): void {
     this.busService.getBus(id).subscribe(
       (data) => {
-        this.bus = data;  // Lưu dữ liệu bus
-        this.loading = false; // Đặt lại trạng thái khi tải xong
+        this.bus = data; 
+        this.loading = false; 
       },
       (error) => {
-        this.errorMessage = 'Không thể tải thông tin xe. Vui lòng thử lại!';
+        this.errorMessage = 'Unable to load vehicle information. Please try again!';
         this.loading = false;
       }
     );

@@ -39,7 +39,7 @@ export class BookingdetailComponent implements OnInit {
     if (bookingId) {
       this.fetchBookingDetails(bookingId);
     } else {
-      this.errorMessage = 'Không tìm thấy thông tin đặt chỗ.';
+      this.errorMessage = 'No booking information found.';
     }
   }
 
@@ -49,7 +49,7 @@ export class BookingdetailComponent implements OnInit {
         this.booking = response;
       },
       (error) => {
-        this.errorMessage = 'Không thể tải thông tin đặt chỗ.';
+        this.errorMessage = 'No booking information found.';
       }
     );
   }

@@ -2,6 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 @Component({
   selector: 'app-layout',
   standalone:true,
@@ -14,7 +15,6 @@ export class LayoutComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    // Đóng dropdown khi click ra ngoài
     window.addEventListener('click', (e) => {
       const adminButton = document.getElementById('adminButton');
       const dropdown = document.getElementById('dropdownMenu');

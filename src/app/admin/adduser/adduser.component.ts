@@ -40,19 +40,19 @@ export class AdduserComponent {
     if (this.user.username && this.user.address && this.user.email && this.user.phone && this.user.dateOfBirth && this.user.idCard && this.user.password && this.user.roleId) {
       this.userService.addUser(this.user).subscribe({
         next: () => {
-          console.log('Người dùng đã được thêm thành công!');
+          console.log('User added successfully!');
           this.onCancel();
           this.router.navigate(['/admin/listuser']);
         },
         error: (err) => {
-          console.error('Lỗi khi thêm người dùng:', err);
+          console.error('Error adding user:', err);
           if (err.status === 400) {
             if (err.error?.message === "Email đã tồn tại.") {
-              this.errorMessage = 'Email đã tồn tại. Vui lòng sử dụng email khác.';
+              this.errorMessage = 'Email already exists. Please use another email.';
             } else if (err.error?.message === "ID Card đã tồn tại.") {
-              this.errorMessage = 'ID Card đã tồn tại. Vui lòng sử dụng ID Card khác.';
+              this.errorMessage = 'ID Card already exists. Please use another ID Card.';
             } else {
-              this.errorMessage = 'Email hoặc ID Card đã tồn tại. Vui lòng sử dụng thông tin khác.';
+              this.errorMessage = 'ID Card already exists. Please use another ID Card.';
             }
           } else {
             this.errorMessage = 'Đã có lỗi xảy ra. Vui lòng thử lại.';
@@ -60,7 +60,7 @@ export class AdduserComponent {
         }
       });
     } else {
-      console.log("Thông tin không đầy đủ.");
+      console.log("Incomplete information.");
     }
   }
 
@@ -79,6 +79,6 @@ export class AdduserComponent {
       avatar: '',
       name: ''
     };
-    console.log("Form đã được reset!");
+    console.log("Form has been reset!");
   }
 }

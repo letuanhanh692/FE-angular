@@ -30,28 +30,26 @@ export class EditschedulesComponent implements OnInit {
   ngOnInit(): void {
     const scheduleId = this.activatedRoute.snapshot.paramMap.get('id');
     if (scheduleId) {
-      this.loadSchedule(Number(scheduleId)); // Chuyển đổi id thành kiểu number
+      this.loadSchedule(Number(scheduleId)); 
     }
 
-    // Lấy danh sách buses
-    this.http.get<any>('https://localhost:44311/api/Buses').subscribe(
+    this.http.get<any>('https://localhost:44311/api/Buses?page=0&pageSize=0').subscribe(
       (response) => {
-        console.log('Buses:', response.buses);  // Kiểm tra dữ liệu trả về
-        this.buses = response.buses;  // Lấy mảng buses từ response
+        console.log('Buses:', response.buses);  
+        this.buses = response.buses;  
       },
       (error) => {
-        this.errorMessage = 'Không thể tải danh sách buses';
+        this.errorMessage = 'Unable to load buses list';
       }
     );
 
-    // Lấy danh sách routes
     this.http.get<any>('https://localhost:44311/api/Routes').subscribe(
       (response) => {
-        console.log('Routes:', response);  // Kiểm tra dữ liệu trả về
-        this.routes = response;  // Giả sử Routes trả về là mảng
+        console.log('Routes:', response);  
+        this.routes = response; 
       },
       (error) => {
-        this.errorMessage = 'Không thể tải danh sách routes';
+        this.errorMessage = 'Unable to load routes list';
       }
     );
   }
@@ -62,7 +60,7 @@ export class EditschedulesComponent implements OnInit {
         this.schedule = response; 
       },
       (error) => {
-        this.errorMessage = 'Không thể tải dữ liệu lịch trình';
+        this.errorMessage = 'Unable to load schedules list';
       }
     );
   }
@@ -70,11 +68,11 @@ export class EditschedulesComponent implements OnInit {
   onSubmit(): void {
     this.http.put<any>(`https://localhost:44311/api/Schedules/${this.schedule.id}`, this.schedule).subscribe(
       (response) => {
-        alert('Lịch trình đã được cập nhật thành công!');
+        alert('Schedule has been updated successfully!');
         this.router.navigate(['/schedules']);
       },
       (error) => {
-        this.errorMessage = 'Có lỗi xảy ra khi cập nhật lịch trình';
+        this.errorMessage = 'An error occurred while updating the schedule.';
       }
     );
   }

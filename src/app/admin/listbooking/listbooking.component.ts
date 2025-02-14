@@ -24,7 +24,7 @@ export class ListbookingComponent implements OnInit {
   ngOnInit(): void {
     this.loadBookings();
   }
-
+  
   loadBookings(): void {
     this.loading = true;
     this.errorMessage = null;
@@ -37,7 +37,7 @@ export class ListbookingComponent implements OnInit {
           this.loading = false;
         },
         (error: any) => {
-          this.errorMessage = 'Có lỗi khi tải dữ liệu.';
+          this.errorMessage = 'There was an error loading data.';
           this.loading = false;
         }
       );
@@ -53,7 +53,7 @@ export class ListbookingComponent implements OnInit {
         this.loading = false;
       },
       (error: any) => {
-        this.errorMessage = 'Tìm kiếm thất bại'; 
+        this.errorMessage = 'Search failed'; 
         this.loading = false;
       }
     );
@@ -76,13 +76,13 @@ export class ListbookingComponent implements OnInit {
   }
 
   deleteBooking(bookingId: number): void {
-    if (confirm('Bạn có chắc chắn muốn xóa đặt vé này?')) {
+    if (confirm('Are you sure you want to delete this booking?')) {
       this.bookingService.deleteBooking(bookingId).subscribe(
         () => {
-          this.loadBookings(); // Tải lại danh sách sau khi xóa
+          this.loadBookings(); 
         },
         (error: any) => {
-          this.errorMessage = 'Có lỗi khi xóa đặt vé.';
+          this.errorMessage = 'There was an error deleting the booking.';
         }
       );
     }

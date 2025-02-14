@@ -1,0 +1,14 @@
+canvas {
+    max-width: 800px;
+    margin: auto;
+  }
+  h1 {
+    color: rgb(34, 0, 255);  
+    margin-left: 460px; 
+  }
+
+  .highlight {
+    color: yellow;
+    background-color: black;  
+    text-align: center;
+  }

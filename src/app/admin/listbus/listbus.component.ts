@@ -80,14 +80,14 @@ export class ListbusComponent implements OnInit {
   }
 
   deleteBus(busId: number): void {
-    if (confirm('Bạn có chắc chắn muốn xoá xe này?')) {
+    if (confirm('Are you sure you want to delete this bus?')) {
       this.busService.deleteBus(busId).subscribe(
         (response) => {
-          this.successMessage = 'Xoá xe thành công'; 
+          this.successMessage = 'Delete bus successfully'; 
           this.loadBuses(); 
         },
         (error) => {
-          this.errorMessage = 'Xoá xe thất bại'; 
+          this.errorMessage = 'Delete bus failed'; 
         }
       );
     }

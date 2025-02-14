@@ -4,7 +4,6 @@
             <h1 class="text-3xl font-bold text-gray-800">Edit Booking</h1>
         </div>
 
-        <!-- Hiển thị thông báo lỗi nếu có -->
         <div *ngIf="errorMessage" class="text-red-600 mb-4">
             {{ errorMessage }}
         </div>
@@ -12,7 +11,6 @@
         <form (ngSubmit)="onSubmit()">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 
-                <!-- User (Hiển thị tên nhưng gửi đi userId) -->
                 <div>
                     <label class="block text-gray-600 mb-1">User</label>
                     <select name="userId" [(ngModel)]="booking.userId" class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-400" [disabled]="!!booking.id">
@@ -21,7 +19,6 @@
                     </select>
                 </div>
 
-                <!-- Schedule (Hiển thị tên nhưng gửi đi scheduleId) -->
                 <div>
                     <label class="block text-gray-600 mb-1">Schedule</label>
                     <select name="scheduleId" [(ngModel)]="booking.scheduleId" class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-400" [disabled]="!!booking.id">

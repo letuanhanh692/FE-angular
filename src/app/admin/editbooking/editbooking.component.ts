@@ -66,7 +66,7 @@ export class EditbookingComponent implements OnInit {
         this.schedulesList = response.schedules;
       },
       (error) => {
-        this.errorMessage = 'Không thể tải danh sách lịch trình';
+        this.errorMessage = 'Unable to load schedule list';
       }
     );
   }
@@ -75,33 +75,32 @@ export class EditbookingComponent implements OnInit {
   loadBookingData(id: string) {
     this.http.get<any>(`https://localhost:44311/api/Bookings/${id}`).subscribe(
       (response) => {
-        this.booking = response;  // Gán thông tin đặt chỗ vào form
+        this.booking = response;  
       },
       (error) => {
-        this.errorMessage = 'Không thể tải thông tin đặt chỗ';
+        this.errorMessage = 'Unable to load booking informations';
       }
     );
   }
 
-  // Xử lý khi người dùng nhấn nút Save hoặc Update
   onSubmit() {
     if (this.isValid()) {
       this.http.put<any>(`https://localhost:44311/api/Bookings/${this.booking.id}`, this.booking).subscribe(
         (response) => {
-          alert('Cập nhật đặt chỗ thành công!');
+          alert('Booking updated successfully!');
           this.router.navigate(['/admin/listbooking']);  // Điều hướng về danh sách đặt chỗ
         },
         (error) => {
-          this.errorMessage = 'Có lỗi xảy ra khi cập nhật đặt chỗ';
+          this.errorMessage = 'An error occurred while updating the reservation.';
         }
       );
     } else {
-      this.errorMessage = 'Vui lòng điền đầy đủ thông tin';
+      this.errorMessage = 'Please fill in all information';
     }
   }
 
   onCancel() {
-    this.router.navigate(['/admin/listbooking']);  // Quay lại trang danh sách đặt chỗ
+    this.router.navigate(['/admin/listbooking']);  
   }
 
   private isValid() {

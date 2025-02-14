@@ -1,1 +1,36 @@
-<p>statistical works!</p>
+<div>
+    <h3>Chart of statistics of number of schedules by route</h3>
+    
+    <!-- Biểu đồ pie -->
+    <div *ngIf="isPieChartDataValid">
+      <canvas baseChart 
+              [data]="pieChartData" 
+              [options]="chartOptions" 
+              [type]="'pie'"></canvas>
+    </div>
+    
+    <!-- Hiển thị thông báo lỗi nếu có -->
+    <div *ngIf="!isPieChartDataValid" class="error-message">
+      Không có dữ liệu để hiển thị biểu đồ.
+    </div>
+  
+    <!-- Bảng thống kê các người dùng -->
+    <div *ngIf="objectKeys(userBookingStats).length > 0">
+      <h4>User statistics and bookings</h4>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>User Name</th>
+            <th>Quantity ordered</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let userName of objectKeys(userBookingStats)">
+            <td>{{ userName }}</td>
+            <td>{{ userBookingStats[userName] }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
