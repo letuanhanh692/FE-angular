@@ -1,1 +1,115 @@
-<p>bookingdetail works!</p>
+<div class="max-w-5xl mx-auto p-4">
+    <div class="bg-white p-3 rounded-lg shadow-md">
+      <div class="flex items-center justify-between mb-4">
+        <h1 class="text-lg font-semibold text-gray-800">Booking Details</h1>
+      </div>
+  
+      <!-- Hiển thị thông báo lỗi nếu có -->
+      <div *ngIf="errorMessage" class="text-red-600 mb-3">
+        {{ errorMessage }}
+      </div>
+  
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <!-- User Name -->
+        <div>
+          <label class="block text-gray-600 text-sm mb-1">User Name</label>
+          <div class="w-full p-1.5 border border-gray-300 rounded bg-gray-100 text-sm">
+            {{ booking.name }}
+          </div>
+        </div>
+  
+        <!-- Phone -->
+        <div>
+          <label class="block text-gray-600 text-sm mb-1">Phone</label>
+          <div class="w-full p-1.5 border border-gray-300 rounded bg-gray-100 text-sm">
+            {{ booking.phone }}
+          </div>
+        </div>
+  
+        <!-- Email -->
+        <div>
+          <label class="block text-gray-600 text-sm mb-1">Email</label>
+          <div class="w-full p-1.5 border border-gray-300 rounded bg-gray-100 text-sm">
+            {{ booking.email }}
+          </div>
+        </div>
+  
+        <!-- Age -->
+        <div>
+          <label class="block text-gray-600 text-sm mb-1">Age</label>
+          <div class="w-full p-1.5 border border-gray-300 rounded bg-gray-100 text-sm">
+            {{ booking.age }}
+          </div>
+        </div>
+  
+        <!-- Seat Number -->
+        <div>
+          <label class="block text-gray-600 text-sm mb-1">Seat Number</label>
+          <div class="w-full p-1.5 border border-gray-300 rounded bg-gray-100 text-sm">
+            {{ booking.seatNumber }}
+          </div>
+        </div>
+  
+        <!-- Booking Date -->
+        <div>
+          <label class="block text-gray-600 text-sm mb-1">Booking Date</label>
+          <div class="w-full p-1.5 border border-gray-300 rounded bg-gray-100 text-sm">
+            {{ booking.bookingDate | date: 'yyyy-MM-dd HH:mm' }}
+          </div>
+        </div>
+  
+        <!-- Status -->
+        <div>
+          <label class="block text-gray-600 text-sm mb-1">Status</label>
+          <div class="w-full p-1.5 border border-gray-300 rounded bg-gray-100 text-sm">
+            {{ booking.status }}
+          </div>
+        </div>
+  
+        <!-- Total Amount -->
+        <div>
+          <label class="block text-gray-600 text-sm mb-1">Total Amount</label>
+          <div class="w-full p-1.5 border border-gray-300 rounded bg-gray-100 text-sm">
+            {{ booking.totalAmount | currency }}
+          </div>
+        </div>
+  
+        <!-- Bus Number -->
+        <div>
+          <label class="block text-gray-600 text-sm mb-1">Bus</label>
+          <div class="w-full p-1.5 border border-gray-300 rounded bg-gray-100 text-sm">
+            {{ booking.busNumber }}
+          </div>
+        </div>
+  
+        <!-- Route -->
+        <div>
+          <label class="block text-gray-600 text-sm mb-1">Route</label>
+          <div class="w-full p-1.5 border border-gray-300 rounded bg-gray-100 text-sm">
+            {{ booking.startingPlace }} - {{ booking.destinationPlace }}
+          </div>
+        </div>
+  
+        <!-- Departure Time -->
+        <div>
+          <label class="block text-gray-600 text-sm mb-1">Departure Time</label>
+          <div class="w-full p-1.5 border border-gray-300 rounded bg-gray-100 text-sm">
+            {{ booking.departTime | date: 'yyyy-MM-dd HH:mm' }}
+          </div>
+        </div>
+  
+        <!-- Arrival Time -->
+        <div>
+          <label class="block text-gray-600 text-sm mb-1">Arrival Time</label>
+          <div class="w-full p-1.5 border border-gray-300 rounded bg-gray-100 text-sm">
+            {{ booking.arrivalTime | date: 'yyyy-MM-dd HH:mm' }}
+          </div>
+        </div>
+      </div>
+  
+      <div class="flex justify-end mt-4 space-x-2">
+        <button type="button" (click)="onCancel()" class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-1 rounded text-sm">Back</button>
+      </div>
+    </div>
+  </div>
+  

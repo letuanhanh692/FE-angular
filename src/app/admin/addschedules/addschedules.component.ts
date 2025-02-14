@@ -27,10 +27,10 @@ export class AddschedulesComponent implements OnInit {
   constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit(): void {
-    this.http.get<any>('https://localhost:44311/api/Buses').subscribe(
+    this.http.get<any>('https://localhost:44311/api/Buses?page=0&pageSize=0').subscribe(
       (response) => {
-        console.log('Buses:', response.buses);  // Kiểm tra dữ liệu trả về
-        this.buses = response.buses;  // Lấy mảng buses từ response
+        console.log('Buses:', response.buses);  
+        this.buses = response.buses;
       },
       (error) => {
         this.errorMessage = 'Không thể tải danh sách buses';
@@ -40,7 +40,7 @@ export class AddschedulesComponent implements OnInit {
     this.http.get<any>('https://localhost:44311/api/Routes').subscribe(
       (response) => {
         console.log('Routes:', response);  // Kiểm tra dữ liệu trả về
-        this.routes = response;  // Giả sử Routes trả về là mảng
+        this.routes = response;  
       },
       (error) => {
         this.errorMessage = 'Không thể tải danh sách routes';

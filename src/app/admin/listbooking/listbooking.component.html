@@ -43,7 +43,7 @@
         </thead>
         <tbody>
           <tr *ngFor="let booking of bookings" class="border-b hover:bg-gray-50">
-            <td class="px-6 py-4 text-sm">{{ booking.id }}</td>
+            <td class="px-6 py-4 text-sm">{{ booking.bookingId }}</td>
             <td class="px-6 py-4 text-sm">{{ booking.name }}</td>
             <td class="px-6 py-4 text-sm">{{ booking.seatNumber }}</td>
             <td class="px-6 py-4 text-sm">{{ booking.bookingDate | date: 'shortDate' }}</td>
