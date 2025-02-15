@@ -60,6 +60,7 @@ export class TripdetailComponent implements OnInit {
     );
   }
   // day them
+  // duong them
 
   // ✅ Cập nhật hàm đặt vé để tự động lấy userId
   bookTrip(): void {
