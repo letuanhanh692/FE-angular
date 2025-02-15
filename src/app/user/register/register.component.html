@@ -2,8 +2,8 @@
   <h2>Đăng ký tài khoản</h2>
   <form (ngSubmit)="onSubmit()" #registerForm="ngForm">
       <div class="form-group">
-          <label for="username">Tên đăng nhập</label>
-          <input type="text" id="username" name="username" [(ngModel)]="model.username" required />
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" [(ngModel)]="model.email" required />
       </div>
 
       <div class="form-group">
@@ -16,10 +16,7 @@
           <input type="text" id="name" name="name" [(ngModel)]="model.name" required />
       </div>
 
-      <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" [(ngModel)]="model.email" required />
-      </div>
+
 
       <div class="form-group">
           <label for="phone">Số điện thoại</label>

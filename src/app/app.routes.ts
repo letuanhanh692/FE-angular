@@ -30,6 +30,12 @@ import { LoginuserComponent } from './user/loginuser/loginuser.component';
 import { SearchtripComponent } from './user/searchtrip/searchtrip.component';
 import { TripListComponent } from './user/triplist/triplist.component';
 import { TripdetailComponent } from './user/tripdetail/tripdetail.component';
+import { ConfirmationComponent } from './user/confirmation/confirmation.component';
+
+
+
+
+
 
 export const routes: Routes = [
     {
@@ -67,16 +73,15 @@ export const routes: Routes = [
     {
 
       path:'user',
-      children:[
 
+      children:[
         {path: 'register',component:RegisterComponent },
         {path: 'loginuser',component:LoginuserComponent},
         {path: 'searchtrip',component:SearchtripComponent},
         {path: 'triplist',component:TripListComponent},
         {path: 'tripdetail/:id',component:TripdetailComponent},
-        { path: '', redirectTo: '/trip-list', pathMatch: 'full' }
-
-
+        {path: 'confirmation',component:ConfirmationComponent},
+        {path: '', redirectTo: '/trip-list', pathMatch: 'full' },
 
 
       ]

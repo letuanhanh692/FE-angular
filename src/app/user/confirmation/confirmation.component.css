@@ -1,0 +1,18 @@
+/* confirmation.component.css */
+h2 {
+  text-align: center;
+  color: #007bff;
+}
+
+h3 {
+  color: #333;
+}
+
+p {
+  font-size: 1.2rem;
+}
+
+.error-message {
+  color: red;
+  text-align: center;
+}

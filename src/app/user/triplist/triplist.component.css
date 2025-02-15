@@ -1,64 +1,90 @@
 .container {
   display: flex;
-  gap: 20px;
+  flex-direction: row;
   align-items: flex-start;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
 }
 
-/* Bộ lọc và sắp xếp bên trái */
-.filter-sort-container {
-  width: 250px;
-  padding: 15px;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.filter-sort-container label {
-  font-weight: bold;
-  display: block;
-  margin: 10px 0 5px;
-}
-
-.filter-sort-container select {
-  width: 100%;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-/* Danh sách chuyến đi bên phải */
-.trip-container {
-  flex-grow: 1;
+/* Danh sách chuyến đi bên trái */
+.trip-list-container {
+  flex: 3;
   display: flex;
   flex-direction: column;
   gap: 15px;
 }
 
+/* Card chuyến đi */
 .trip-card {
-  padding: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   border: 1px solid #ddd;
   border-radius: 8px;
+  padding: 15px;
   background-color: #fff;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
+.trip-info {
+  flex: 2;
+  padding-right: 20px;
+}
+
+.trip-image {
+  flex: 1;
+}
+
+.bus-image {
+  width: 180px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+/* Bộ lọc và sắp xếp bên phải */
+.filter-sort-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  max-width: 250px;
+}
+
+.filter-sort-container label {
+  font-weight: 600;
+}
+
+.filter-sort-container select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  background-color: #fff;
+}
+
+/* Nút đặt vé */
 .btn-book {
   background-color: #007bff;
   color: white;
   border: none;
-  padding: 10px 15px;
+  padding: 8px 12px;
   border-radius: 5px;
   cursor: pointer;
-  transition: background 0.3s;
 }
 
 .btn-book:hover {
   background-color: #0056b3;
 }
 
-/* Không có chuyến đi */
 .no-trips {
-  font-size: 18px;
-  color: #888;
   text-align: center;
+  font-size: 18px;
+  color: #777;
 }

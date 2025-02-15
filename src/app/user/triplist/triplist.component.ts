@@ -1,6 +1,6 @@
+import { TripService } from './../../../service/trip.service';
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { TripService } from '../../../service/trip.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
@@ -26,7 +26,7 @@ export class TripListComponent {
   sortCriteria: string = 'timeAsc';
 
   constructor(
-    private tripService: TripService,
+    private TripService: TripService,
     private route: ActivatedRoute,
     private router: Router
   ) {}
@@ -40,11 +40,14 @@ export class TripListComponent {
 
   loadTrips() {
     if (this.searchData.startingPlace && this.searchData.destinationPlace) {
-      this.tripService.searchTrips(this.searchData).subscribe(
+      this.TripService.searchTrips(this.searchData).subscribe(
         (response) => {
           console.log('Dữ liệu chuyến đi:', response);
           if (Array.isArray(response) && response.length > 0) {
-            this.trips = response;
+            this.trips = response.map(trip => ({
+              ...trip,
+              imageBus: trip.imageBus || 'assets/default-bus.jpg' // Ảnh mặc định nếu không có
+            }));
             this.filteredTrips = [...this.trips];
             this.applyFilters();
           } else {
