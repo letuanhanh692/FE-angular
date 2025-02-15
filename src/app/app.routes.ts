@@ -64,7 +64,6 @@ export const routes: Routes = [
         ]
     },
     { path: 'loginadmin', component: LoginComponent },
-
     {
 
       path:'user',
