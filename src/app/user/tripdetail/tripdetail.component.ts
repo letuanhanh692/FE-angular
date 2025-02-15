@@ -1,46 +1,92 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, RouterModule } from '@angular/router';
-import { TripService } from '../../../service/trip.service';  // Đảm bảo sử dụng TripService
+import { ActivatedRoute, Router } from '@angular/router';
+import { TripService } from '../../../service/trip.service';
+import { BookingService } from '../../../service/booking.service';
+import { AuthService } from '../../../service/auth.service';  // ✅ Thêm AuthService
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
-import { switchMap } from 'rxjs/operators';  // Thêm để sử dụng switchMap
+import { ReactiveFormsModule, FormGroup, FormBuilder, Validators, FormsModule } from '@angular/forms';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-tripdetail',
   standalone: true,
-  imports: [CommonModule, RouterModule, ReactiveFormsModule],  // Thêm các module cần thiết nếu có (ví dụ: CommonModule)
+  imports: [CommonModule, ReactiveFormsModule, FormsModule],
   templateUrl: './tripdetail.component.html',
   styleUrls: ['./tripdetail.component.css']
 })
 export class TripdetailComponent implements OnInit {
-  tripDetails: any = {};  // Chi tiết chuyến đi
-  tripId: number = 0;  // ID chuyến đi từ URL
-  loading: boolean = false;  // Biến kiểm tra trạng thái tải dữ liệu
-  error: string = '';  // Biến lưu lỗi nếu có
+  tripDetails: any = {};
+  tripId: number = 0;
+  price: number = 0;
+  loading: boolean = false;
+  error: string = '';
+
+  customerForm: FormGroup;
 
   constructor(
-    private route: ActivatedRoute,  // Để nhận id từ URL
-    private tripService: TripService // Dùng TripService để lấy thông tin chuyến đi
-  ) {}
+    private route: ActivatedRoute,
+    private tripService: TripService,
+    private bookingService: BookingService,
+    private authService: AuthService, // ✅ Inject AuthService
+    private router: Router,
+    private fb: FormBuilder
+  ) {
+    this.customerForm = this.fb.group({
+      name: ['', Validators.required],
+      age: [0, [Validators.required, Validators.min(0)]],
+      email: ['', [Validators.required, Validators.email]],
+      phone: ['', Validators.required],
+      seatNumber: [1, [Validators.required, Validators.min(1)]]
+    });
+  }
 
   ngOnInit(): void {
-    // Sử dụng switchMap để gọi API khi thay đổi id trong URL
     this.route.params.pipe(
       switchMap(params => {
-        this.tripId = +params['id'];  // Chuyển id thành số
-        this.loading = true;  // Đánh dấu trạng thái là đang tải
-        this.error = '';  // Xóa lỗi cũ khi thực hiện lại việc tải
-        return this.tripService.getTripDetails(this.tripId);  // Gọi API lấy thông tin chi tiết chuyến đi
+        this.tripId = +params['id'];
+        this.loading = true;
+        return this.tripService.getTripDetails(this.tripId);
       })
     ).subscribe(
       (response) => {
-        this.loading = false;  // Đánh dấu tải xong
-        this.tripDetails = response;  // Lưu chi tiết chuyến đi vào tripDetails
+        this.loading = false;
+        this.tripDetails = response;
+        this.price = this.tripDetails?.price || 0;
       },
       (error) => {
-        this.loading = false;  // Đánh dấu tải xong
-        this.error = 'Không thể tải thông tin chuyến đi.';  // Lưu lỗi nếu có
-        console.error('Error fetching trip details', error);
+        this.loading = false;
+        this.error = 'Không thể tải thông tin chuyến đi.';
+      }
+    );
+  }
+
+  // ✅ Cập nhật hàm đặt vé để tự động lấy userId
+  bookTrip(): void {
+    if (this.customerForm.invalid) {
+      alert('Vui lòng điền đầy đủ thông tin!');
+      return;
+    }
+
+    const userId = this.authService.getUserId(); // ✅ Lấy userId từ token
+    if (!userId) {
+      alert('Bạn chưa đăng nhập! Vui lòng đăng nhập để đặt vé.');
+      this.router.navigate(['/user/loginuser']);
+      return;
+    }
+
+    const bookingData = {
+      userId,  // ✅ Thêm userId vào bookingData
+      scheduleId: this.tripId,
+      ...this.customerForm.value
+    };
+
+    this.bookingService.createBooking(bookingData).subscribe(
+      (response) => {
+        this.router.navigate(['/user/confirmation'], { state: response });
+      },
+      (error) => {
+        alert('Có lỗi xảy ra khi tạo booking');
+        console.error(error);
       }
     );
   }

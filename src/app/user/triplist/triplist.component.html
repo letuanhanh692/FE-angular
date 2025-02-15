@@ -1,5 +1,38 @@
 <div class="container">
-  <!-- Bộ lọc và sắp xếp bên trái -->
+  <!-- Danh sách chuyến đi bên trái -->
+  <div class="trip-list-container">
+    <div *ngIf="filteredTrips.length > 0; else noTrips" class="trip-container">
+      <div *ngFor="let trip of filteredTrips" class="trip-card">
+        <!-- Thông tin chuyến xe bên trái -->
+        <div class="trip-info">
+          <p><strong>Bus Number:</strong> {{ trip.busNumber }}</p>
+          <p><strong>Bus Type:</strong> {{ trip.busType }}</p>
+          <p><strong>Total Seats:</strong> {{ trip.totalSeats }}</p>
+          <p><strong>Available Seats:</strong> {{ trip.availableSeats }}</p>
+          <p><strong>Departure Time:</strong> {{ trip.departureTime | date:'short' }}</p>
+          <p><strong>Arrival Time:</strong> {{ trip.arrivalTime | date:'short' }}</p>
+          <p><strong>Starting Place:</strong> {{ trip.startingPlace }}</p>
+          <p><strong>Destination Place:</strong> {{ trip.destinationPlace }}</p>
+          <p><strong>Price:</strong> {{ trip.price | currency }}</p>
+          <button (click)="viewTripDetail(trip.id)" class="btn-book">Đặt ngay</button>
+        </div>
+
+        <!-- Hình ảnh bên phải -->
+        <div class="trip-image">
+          <img [src]="trip.imageBus" alt="Bus Image" class="bus-image" *ngIf="trip.imageBus; else defaultImage">
+          <ng-template #defaultImage>
+            <img src="assets/default-bus.jpg" alt="Default Bus" class="bus-image">
+          </ng-template>
+        </div>
+      </div>
+    </div>
+
+    <ng-template #noTrips>
+      <p class="no-trips">Không tìm thấy chuyến đi phù hợp.</p>
+    </ng-template>
+  </div>
+
+  <!-- Bộ lọc & sắp xếp bên phải -->
   <div class="filter-sort-container">
     <label for="busType">Lọc theo hạng xe:</label>
     <select id="busType" [(ngModel)]="selectedBusType" (change)="applyFilters()">
@@ -15,24 +48,4 @@
       <option value="priceDesc">Giá vé (Cao → Thấp)</option>
     </select>
   </div>
-
-  <!-- Danh sách chuyến đi bên phải -->
-  <div *ngIf="filteredTrips.length > 0; else noTrips" class="trip-container">
-    <div *ngFor="let trip of filteredTrips" class="trip-card">
-      <p><strong>Bus Number:</strong> {{ trip.busNumber }}</p>
-      <p><strong>Bus Type:</strong> {{ trip.busType }}</p>
-      <p><strong>Total Seats:</strong> {{ trip.totalSeats }}</p>
-      <p><strong>Available Seats:</strong> {{ trip.availableSeats }}</p>
-      <p><strong>Departure Time:</strong> {{ trip.departureTime | date:'short' }}</p>
-      <p><strong>Arrival Time:</strong> {{ trip.arrivalTime | date:'short' }}</p>
-      <p><strong>Starting Place:</strong> {{ trip.startingPlace }}</p>
-      <p><strong>Destination Place:</strong> {{ trip.destinationPlace }}</p>
-      <p><strong>Price:</strong> {{ trip.price | currency }}</p>
-      <button (click)="viewTripDetail(trip.id)" class="btn-book">Đặt ngay</button>
-    </div>
-  </div>
-
-  <ng-template #noTrips>
-    <p class="no-trips">Không tìm thấy chuyến đi phù hợp.</p>
-  </ng-template>
 </div>

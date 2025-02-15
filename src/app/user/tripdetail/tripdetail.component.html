@@ -1,20 +1,62 @@
-<div *ngIf="tripDetails; else loading" class="trip-detail-container">
-  <h2>Thông tin chi tiết chuyến đi</h2>
-  <p><strong>Bus Number:</strong> {{ tripDetails.busNumber }}</p>
-  <p><strong>Bus Type:</strong> {{ tripDetails.busType }}</p>
-  <p><strong>Total Seats:</strong> {{ tripDetails.totalSeats }}</p>
-  <p><strong>Available Seats:</strong> {{ tripDetails.availableSeats }}</p>
-  <p><strong>Departure Time:</strong> {{ tripDetails.departureTime | date:'short' }}</p>
-  <p><strong>Arrival Time:</strong> {{ tripDetails.arrivalTime | date:'short' }}</p>
-  <p><strong>Starting Place:</strong> {{ tripDetails.startingPlace }}</p>
-  <p><strong>Destination Place:</strong> {{ tripDetails.destinationPlace }}</p>
-  <p><strong>Price:</strong> {{ tripDetails.price | currency:'' }}</p>
+<div class="trip-container">
+  <!-- Thông tin chuyến đi -->
+  <div class="trip-details">
+    <h2>Chi tiết chuyến đi</h2>
+    <p><strong>Bus Number:</strong> {{ tripDetails.busNumber }}</p>
+    <p><strong>Bus Type:</strong> {{ tripDetails.busType }}</p>
+    <p><strong>Departure Time:</strong> {{ tripDetails.departureTime | date: 'short' }}</p>
+    <p><strong>Arrival Time:</strong> {{ tripDetails.arrivalTime | date: 'short' }}</p>
+    <p><strong>Starting Place:</strong> {{ tripDetails.startingPlace }}</p>
+    <p><strong>Destination Place:</strong> {{ tripDetails.destinationPlace }}</p>
+    <p><strong>Distance:</strong> {{ tripDetails.distance }} km</p>
+    <p><strong>Giá vé 1 ghế:</strong> {{ price | currency: 'VND' }}</p>
+  </div>
 
-  <!-- Nút Đặt vé -->
-  <button>Đặt vé</button>
+  <!-- Form nhập thông tin -->
+  <div class="booking-form">
+    <h3>Đặt Vé</h3>
+    <form [formGroup]="customerForm" (ngSubmit)="bookTrip()">
+      <div>
+        <label for="name">Tên:</label>
+        <input id="name" formControlName="name" type="text" required />
+        <div *ngIf="customerForm.get('name')?.invalid && customerForm.get('name')?.touched">
+          <small class="error">Tên là bắt buộc.</small>
+        </div>
+      </div>
+
+      <div>
+        <label for="age">Tuổi:</label>
+        <input id="age" formControlName="age" type="number" required min="0" />
+        <div *ngIf="customerForm.get('age')?.invalid && customerForm.get('age')?.touched">
+          <small class="error">Tuổi phải là số dương.</small>
+        </div>
+      </div>
+
+      <div>
+        <label for="email">Email:</label>
+        <input id="email" formControlName="email" type="email" required />
+        <div *ngIf="customerForm.get('email')?.invalid && customerForm.get('email')?.touched">
+          <small class="error">Email không hợp lệ.</small>
+        </div>
+      </div>
+
+      <div>
+        <label for="phone">Số điện thoại:</label>
+        <input id="phone" formControlName="phone" type="text" required />
+        <div *ngIf="customerForm.get('phone')?.invalid && customerForm.get('phone')?.touched">
+          <small class="error">Số điện thoại là bắt buộc.</small>
+        </div>
+      </div>
+
+      <div>
+        <label for="seatNumber">Số lượng ghế:</label>
+        <input id="seatNumber" formControlName="seatNumber" type="number" required min="1" />
+        <div *ngIf="customerForm.get('seatNumber')?.invalid && customerForm.get('seatNumber')?.touched">
+          <small class="error">Số ghế phải là số dương và lớn hơn 0.</small>
+        </div>
+      </div>
+
+      <button type="submit" [disabled]="customerForm.invalid">Đặt Vé</button>
+    </form>
+  </div>
 </div>
-
-<!-- Hiển thị khi đang tải thông tin chuyến đi -->
-<ng-template #loading>
-  <p>Đang tải thông tin chuyến đi...</p>
-</ng-template>

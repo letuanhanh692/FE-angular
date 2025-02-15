@@ -17,7 +17,7 @@ export class LoginuserComponent {
 
   constructor(private fb: FormBuilder, private http: HttpClient, private router: Router) {
     this.loginForm = this.fb.group({
-      username: ['', [Validators.required]],
+      email: ['', [Validators.required]],
       password: ['', [Validators.required]],
     });
   }
@@ -28,9 +28,9 @@ export class LoginuserComponent {
       return;
     }
 
-    const { username, password } = this.loginForm.value;
+    const { email, password } = this.loginForm.value;
 
-    this.http.post<any>('https://localhost:44311/api/Auth/login', { username, password })
+    this.http.post<any>('https://localhost:44311/api/Auth/login', { email, password })
       .subscribe({
         next: (response) => {
           console.log("Phản hồi từ API:", response);

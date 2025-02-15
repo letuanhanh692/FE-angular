@@ -1,78 +1,56 @@
-/* Khung chung cho trang chi tiết chuyến đi */
-.trip-detail-container {
-  max-width: 1200px;
-  margin: 0 auto;
+.trip-container {
+  display: flex;
+  justify-content: space-between; /* Căn cách hai bên */
+  align-items: flex-start; /* Căn top */
+  gap: 20px; /* Khoảng cách giữa hai khối */
+  max-width: 900px;
+  margin: 20px auto;
+}
+
+.trip-details {
+  flex: 1; /* Chiếm 50% chiều rộng */
   padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
   background-color: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Tiêu đề thông tin chi tiết chuyến đi */
-h2 {
-  font-size: 24px;
+.booking-form {
+  flex: 1; /* Chiếm 50% chiều rộng */
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.booking-form form div {
+  margin-bottom: 15px;
+}
+
+.booking-form label {
+  display: block;
   font-weight: bold;
-  color: #333;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
 }
 
-/* Định dạng cho các dòng thông tin */
-.trip-detail-container p {
-  font-size: 16px;
-  color: #555;
-  margin-bottom: 12px;
+.booking-form input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
-strong {
-  font-weight: bold;
-  color: #333;
-}
-
-/* Hiệu ứng cho các nút */
 button {
-  background-color: #28a745;
+  background-color: #007bff;
   color: white;
-  padding: 12px 20px;
+  padding: 10px;
   border: none;
   border-radius: 5px;
-  font-size: 16px;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-  margin-top: 20px;
 }
 
-button:hover {
-  background-color: #218838;
-  transform: scale(1.05); /* Khi hover vào nút, nó sẽ phóng to nhẹ */
-}
-
-button:active {
-  background-color: #1e7e34; /* Khi bấm vào nút, màu sẽ tối lại */
-}
-
-/* Phần loading */
-.ng-template p {
-  text-align: center;
-  font-size: 18px;
-  color: #888;
-  margin-top: 50px;
-}
-
-/* Responsive - Điều chỉnh giao diện cho màn hình nhỏ */
-@media (max-width: 768px) {
-  .trip-detail-container {
-    padding: 15px;
-  }
-
-  h2 {
-    font-size: 20px;
-  }
-
-  p {
-    font-size: 14px;
-  }
-
-  button {
-    width: 100%; /* Nút sẽ chiếm hết chiều rộng */
-  }
+button:disabled {
+  background-color: #aaa;
+  cursor: not-allowed;
 }
