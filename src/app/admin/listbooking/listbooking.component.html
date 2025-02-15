@@ -48,7 +48,14 @@
           <td class="px-6 py-3 text-sm text-center">{{ booking.seatNumber }}</td>
           <td class="px-6 py-3 text-sm">{{ booking.bookingDate | date: 'YYYY/MM/dd'  }}</td>
           <td class="px-6 py-3 text-sm">{{ booking.totalAmount | currency }}</td>
-          <td class="px-6 py-3 text-sm">{{ booking.status }}</td>
+          <td class="px-6 py-3 text-sm" [ngClass]="{
+            'text-blue-500': booking.status === 'Booked',
+            'text-red-500': booking.status === 'Cancelled',
+            'text-green-500': booking.status === 'Completed'
+          }">
+            {{ booking.status }}
+          </td>
+          
           <td class="px-6 py-3 text-sm flex space-x-2">
             <!-- Nút Xem -->
             <button 

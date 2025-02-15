@@ -3,6 +3,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
+import { BusService } from '../../../service/bus.service';
 @Component({
   selector: 'app-addbus',
   standalone: true,
@@ -19,7 +20,9 @@ export class AddbusComponent {
   };
 
   errorMessage: string = '';
-   constructor( private router: Router) { }
+
+  constructor(private busService: BusService, private router: Router) { }
+
   onFileChange(event: any) {
     const file = event.target.files[0];
     if (file) {
@@ -29,21 +32,26 @@ export class AddbusComponent {
 
   onSubmit() {
     if (!this.bus.busNumber || !this.bus.totalSeats || !this.bus.busImage || this.bus.busTypeId === null) {
-      this.errorMessage = 'Vui lòng điền đầy đủ thông tin!';
+      this.errorMessage = 'Please fill in all information!';
       return;
     }
 
-    console.log('Form Submitted:', this.bus);
+    const formData = new FormData();
+    formData.append('busNumber', this.bus.busNumber);
+    formData.append('busTypeId', this.bus.busTypeId);
+    formData.append('totalSeats', this.bus.totalSeats);
+    formData.append('File', this.bus.busImage);
 
-    this.bus = {
-      busNumber: '',
-      busTypeId: null,
-      totalSeats: null,
-      busImage: null
-    };
-
-    alert('Bus added successfully!');
-    this.router.navigate(['/admin/listbus']); 
+    this.busService.postBus(formData).subscribe({
+      next: (response) => {
+        alert('Bus added successfully!');
+        this.router.navigate(['/admin/listbus']);
+      },
+      error: (error) => {
+        console.error('Error:', error);
+        this.errorMessage = 'An error occurred while adding the bus!';
+      }
+    });
   }
 
   onCancel() {
