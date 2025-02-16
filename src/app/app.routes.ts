@@ -31,8 +31,14 @@ import { SearchtripComponent } from './user/searchtrip/searchtrip.component';
 import { TripListComponent } from './user/triplist/triplist.component';
 import { TripdetailComponent } from './user/tripdetail/tripdetail.component';
 import { ConfirmationComponent } from './user/confirmation/confirmation.component';
+<<<<<<< HEAD
 import { LayoutuserComponent } from './user/layoutuser/layoutuser.component';
 import { AuthService } from '../service/auth.service';
+=======
+import { LayoutstaffComponent } from './staff/layoutstaff/layoutstaff.component';
+import { StaffService } from '../service/staff.service';
+import { ListmanagentComponent } from './staff/listmanagent/listmanagent.component';
+>>>>>>> main
 
 
 
@@ -72,6 +78,15 @@ export const routes: Routes = [
         ]
     },
     { path: 'loginadmin', component: LoginComponent },
+
+
+    {
+      path: 'staff',
+      component: LayoutstaffComponent,canActivate:[StaffService],
+      children: [
+        { path: '', component: ListmanagentComponent, pathMatch: 'full' },
+      ]
+    },
     {
       path: 'user',
       component: LayoutuserComponent,

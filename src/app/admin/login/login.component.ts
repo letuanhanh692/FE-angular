@@ -1,11 +1,13 @@
+import { CommonModule } from '@angular/common';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
-  standalone: true,  // Thêm thuộc tính standalone: true
-  imports: [ReactiveFormsModule], 
+  standalone: true,  
+  imports: [ReactiveFormsModule,FormsModule,CommonModule], 
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
@@ -14,10 +16,22 @@ export class LoginComponent {
   message: string = '';
   messageMail: string = '';
 
-  constructor(private fb: FormBuilder, private router: Router) { 
+  private apiUrl = 'https://localhost:44311/api/Auth/login-admin';
+
+  constructor(
+    private fb: FormBuilder, 
+    private router: Router, 
+    private http: HttpClient
+  ) { 
     this.form = this.fb.group({
-      email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', [Validators.required])
+      email: new FormControl('', [
+        Validators.required,
+        Validators.email
+      ]),
+      password: new FormControl('', [
+        Validators.required,
+        Validators.minLength(6)   
+      ])
     });
   }
 
@@ -28,8 +42,6 @@ export class LoginComponent {
   get password() {
     return this.form.get('password');
   }
-
-  // Kiểm tra email hợp lệ
   checkEmailValid(): void {
     const emailControl = this.form.get('email');
     if (emailControl && emailControl.invalid && emailControl.touched) {
@@ -38,28 +50,34 @@ export class LoginComponent {
       this.messageMail = '';
     }
   }
+  
 
-  // Xử lý đăng nhập
   onSubmit() {
     if (this.form.valid) {
       const { email, password } = this.form.value;
 
-      // Kiểm tra thông tin đăng nhập
-      if (email === 'admin@gmail.com' && password === '123456') {
-        localStorage.setItem('authToken', 'yourToken');
-        this.form.reset();
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json'
+      });
 
-        this.router.navigate(['./admin/dashboard']);  
-       
-      } else {
-        this.message = 'Email or password is incorrect!';
-      }
+      this.http.post(this.apiUrl, { email, password }, { headers }).subscribe(
+        (res: any) => {
+          if (res.token) {
+            localStorage.setItem('authToken', res.token);
+            this.form.reset();
+            this.router.navigate(['./admin/dashboard']);
+          } else {
+            this.message = 'Login failed!';
+          }
+        },
+        (err) => {
+          this.message = 'Incorrect email or password!';
+        }
+      );
     } else {
       this.message = 'Please enter correct email and password!';
     }
-  }
 
-  ngOnChanges() {
-    this.checkEmailValid();
+    
   }
 }

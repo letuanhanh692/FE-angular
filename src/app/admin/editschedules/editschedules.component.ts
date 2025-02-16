@@ -22,7 +22,7 @@ export class EditschedulesComponent implements OnInit {
 
   constructor(
     private http: HttpClient,
-    private scheduleService: ScheduleService,
+       private scheduleService: ScheduleService,
       private activatedRoute: ActivatedRoute,
       private router: Router
   ) {}
@@ -66,10 +66,11 @@ export class EditschedulesComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.http.put<any>(`https://localhost:44311/api/Schedules/${this.schedule.id}`, this.schedule).subscribe(
+    this.scheduleService.updateSchedule(this.schedule.id, this.schedule).subscribe(
+
       (response) => {
         alert('Schedule has been updated successfully!');
-        this.router.navigate(['/schedules']);
+        this.router.navigate(['/admin/schedules']);
       },
       (error) => {
         this.errorMessage = 'An error occurred while updating the schedule.';

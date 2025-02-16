@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RouteDTO, RouteService } from '../../../service/route.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../../../service/user.service';  // Import UserService để lấy nhân viên
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
@@ -32,6 +32,7 @@ export class EditrouteComponent implements OnInit {
     private userService: UserService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
+  private http : HttpClient
   ) {}
 
   ngOnInit(): void {
@@ -54,15 +55,17 @@ export class EditrouteComponent implements OnInit {
   }
 
   loadStaffList(): void {
-    this.userService.getUsers().subscribe(
-      (users: any[]) => {
-        this.staffList = users.filter(user => user.roleId === 2);
+    this.http.get<any>('https://localhost:44311/api/UserDTO?page=0&limit=0').subscribe(
+      (response) => {
+        console.log(response);  
+        this.staffList = response.filter((user: any) => user.roleId === 2);
       },
-      (error: any) => {
-        this.errorMessage = 'Failed to load staff list';  // Hiển thị lỗi nếu có
+      (error) => {
+        this.errorMessage = 'Failed to load staff list';
       }
     );
   }
+  
 
   onSubmit(): void {
     this.routeService.updateRoute(this.route.id, this.route).subscribe(

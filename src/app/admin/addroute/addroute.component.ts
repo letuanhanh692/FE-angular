@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RouteService } from '../../../service/route.service';
 import { UserService } from '../../../service/user.service';
 import { Router } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -33,23 +33,24 @@ interface RouteDTO {
 })
 export class AddrouteComponent implements OnInit {
   route: RouteDTO = {
-    id: 0,  // Thêm id nếu cần thiết
+    id: 0,  
     startingPlace: '',
     destinationPlace: '',
     distance: 0,
     priceRoute: 0,
     staffId: 0,
-    staffName: '', // Thêm staffName
-    staffEmail: '' // Thêm staffEmail
+    staffName: '', 
+    staffEmail: '' 
   };
 
-  staffList: User[] = []; // Danh sách nhân viên có roleId = 2
-  errorMessage = '';  // Biến lưu thông báo lỗi
+  staffList: User[] = [];
+  errorMessage = '';  
 
   constructor(
     private routeService: RouteService,
     private userService: UserService,
-    private router: Router 
+    private router: Router ,
+    private http : HttpClient
   ) {}
 
   ngOnInit(): void {
@@ -57,32 +58,41 @@ export class AddrouteComponent implements OnInit {
   }
 
   loadStaff(): void {
-    this.userService.getUsers().subscribe(
-      (users: User[]) => {
-        this.staffList = users.filter((user: User) => user.roleId === 2);
+    this.http.get<any>('https://localhost:44311/api/UserDTO?page=0&limit=0').subscribe(
+      (response) => {
+        console.log('Response:', response);  // Kiểm tra dữ liệu trả về
+  
+        if (Array.isArray(response)) {
+          this.staffList = response.filter((user: User) => user.roleId === 2);
+        } 
+        else if (response.items && Array.isArray(response.items)) {
+          this.staffList = response.items.filter((user: User) => user.roleId === 2);
+        }
       },
-      (error: any) => {
-        this.errorMessage = 'Failed to load staff list'; 
+      (error) => {
+        console.error('Error:', error);
+        this.errorMessage = 'Không thể tải danh sách người dùng';
       }
     );
   }
+  
 
   onSubmit(): void {
-    // Kiểm tra dữ liệu form
     if (!this.route.startingPlace || !this.route.destinationPlace || this.route.distance <= 0 || this.route.priceRoute <= 0) {
       this.errorMessage = 'Please fill in all fields correctly'; 
       return;
     }
 
-    this.routeService.createRoute(this.route).subscribe(
-      () => {
-        alert('Route added successfully!');  
-        this.router.navigate(['/admin/route']);  
-      },
-      (error: any) => {
-        this.errorMessage = 'Failed to add route';  
-      }
-    );
+    this.http.post('https://localhost:44311/api/Route', this.route)
+      .subscribe(
+        () => {
+          alert('Route added successfully!');  
+          this.router.navigate(['/admin/route']);  
+        },
+        (error: any) => {
+          this.errorMessage = 'Failed to add route';  
+        }
+      );
   }
 
   onCancel(): void {
