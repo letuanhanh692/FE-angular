@@ -1,0 +1,30 @@
+<nav>
+  <svg width="80" height="48" viewBox="0 0 200 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M20 90 Q20 40 50 30 Q100 10 150 30 Q180 40 180 90 Z" stroke="#c82333" stroke-width="8" fill="none"/>
+    <circle cx="50" cy="90" r="15" fill="#c82333" stroke="#c82333" stroke-width="8"/>
+    <circle cx="150" cy="90" r="15" fill="#c82333" stroke="#c82333" stroke-width="8"/>
+  </svg>
+
+  <ul>
+    <li><a routerLink="searchtrip" routerLinkActive="active">Home</a></li>
+    <li><a routerLink="/today" routerLinkActive="active">Today</a></li>
+    <li><a routerLink="/contact" routerLinkActive="active">Contact</a></li>
+
+    <!-- User Dropdown -->
+    <li class="dropdown">
+      <a href="#">User</a>
+      <div class="dropdown-content" *ngIf="!(isLoggedIn$ | async)">
+        <a routerLink="/user/register">Đăng ký</a>
+        <a routerLink="/user/loginuser">Đăng nhập</a>
+      </div>
+      <div class="dropdown-content" *ngIf="isLoggedIn$ | async">
+        <a routerLink="/profile">Thông tin tài khoản</a>
+        <a href="#" (click)="logout()">Đăng xuất</a>
+      </div>
+    </li>
+  </ul>
+</nav>
+
+<div class="content">
+  <router-outlet></router-outlet>
+</div>

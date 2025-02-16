@@ -1,51 +1,81 @@
 <div class="container">
-  <!-- Danh sách chuyến đi bên trái -->
-  <div class="trip-list-container">
-    <div *ngIf="filteredTrips.length > 0; else noTrips" class="trip-container">
-      <div *ngFor="let trip of filteredTrips" class="trip-card">
-        <!-- Thông tin chuyến xe bên trái -->
-        <div class="trip-info">
-          <p><strong>Bus Number:</strong> {{ trip.busNumber }}</p>
-          <p><strong>Bus Type:</strong> {{ trip.busType }}</p>
-          <p><strong>Total Seats:</strong> {{ trip.totalSeats }}</p>
-          <p><strong>Available Seats:</strong> {{ trip.availableSeats }}</p>
-          <p><strong>Departure Time:</strong> {{ trip.departureTime | date:'short' }}</p>
-          <p><strong>Arrival Time:</strong> {{ trip.arrivalTime | date:'short' }}</p>
-          <p><strong>Starting Place:</strong> {{ trip.startingPlace }}</p>
-          <p><strong>Destination Place:</strong> {{ trip.destinationPlace }}</p>
-          <p><strong>Price:</strong> {{ trip.price | currency }}</p>
-          <button (click)="viewTripDetail(trip.id)" class="btn-book">Đặt ngay</button>
-        </div>
-
-        <!-- Hình ảnh bên phải -->
-        <div class="trip-image">
-          <img [src]="trip.imageBus" alt="Bus Image" class="bus-image" *ngIf="trip.imageBus; else defaultImage">
-          <ng-template #defaultImage>
-            <img src="assets/default-bus.jpg" alt="Default Bus" class="bus-image">
-          </ng-template>
-        </div>
+  <!-- Bộ lọc & Sắp xếp bên trái -->
+  <div class="filter-sort-container">
+    <div class="filter-section">
+      <h3>Filter</h3>
+      <p>Type:</p>
+      <div class="filter-options">
+        <label>
+          <input type="radio" name="busType" value="" [(ngModel)]="selectedBusType" (change)="applyFilters()">
+          Tất cả
+        </label>
+        <label *ngFor="let type of busTypes">
+          <input type="radio" name="busType" [value]="type.typeName" [(ngModel)]="selectedBusType" (change)="applyFilters()">
+          {{ type.typeName }}
+        </label>
       </div>
     </div>
 
-    <ng-template #noTrips>
-      <p class="no-trips">Không tìm thấy chuyến đi phù hợp.</p>
-    </ng-template>
+    <div class="sort-section">
+      <h3>Arrange</h3>
+      <p>Sort By:</p>
+      <div class="sort-options">
+        <label>
+          <input type="radio" name="sort" value="default" [(ngModel)]="sortCriteria" (change)="sortTrips()">
+          default
+        </label>
+        <label>
+          <input type="radio" name="sort" value="timeAsc" [(ngModel)]="sortCriteria" (change)="sortTrips()">
+          earliest departure
+        </label>
+        <label>
+          <input type="radio" name="sort" value="timeDesc" [(ngModel)]="sortCriteria" (change)="sortTrips()">
+          latest departure
+        </label>
+        <label>
+          <input type="radio" name="sort" value="priceAsc" [(ngModel)]="sortCriteria" (change)="sortTrips()">
+          price increase
+        </label>
+        <label>
+          <input type="radio" name="sort" value="priceDesc" [(ngModel)]="sortCriteria" (change)="sortTrips()">
+          price decrease
+        </label>
+      </div>
+    </div>
   </div>
 
-  <!-- Bộ lọc & sắp xếp bên phải -->
-  <div class="filter-sort-container">
-    <label for="busType">Lọc theo hạng xe:</label>
-    <select id="busType" [(ngModel)]="selectedBusType" (change)="applyFilters()">
-      <option value="">Tất cả</option>
-      <option *ngFor="let type of busTypes" [value]="type.typeName">{{ type.typeName }}</option>
-    </select>
+  <!-- Danh sách chuyến đi bên phải -->
+  <div class="trip-list-container">
+    <div class="trip-count">
+      <p>{{ filteredTrips.length }} Trip Found</p>
+    </div>
 
-    <label for="sort">Sắp xếp theo:</label>
-    <select id="sort" [(ngModel)]="sortCriteria" (change)="sortTrips()">
-      <option value="timeAsc">Thời gian đi (Sớm → Muộn)</option>
-      <option value="timeDesc">Thời gian đi (Muộn → Sớm)</option>
-      <option value="priceAsc">Giá vé (Thấp → Cao)</option>
-      <option value="priceDesc">Giá vé (Cao → Thấp)</option>
-    </select>
+    <div *ngFor="let trip of filteredTrips" class="trip-card">
+      <div class="trip-image">
+        <img [src]="trip.imageBus || 'assets/default-bus.jpg'" alt="Bus Image" class="bus-image">
+      </div>
+
+      <div class="trip-info">
+        <p class="trip-title">{{ trip.busNumber }} ({{ trip.busType }})</p>
+        <div class="trip-meta">
+          <p><strong>🕒 {{ trip.departureTime | date:'shortTime' }}</strong> {{ trip.startingPlace }}</p>
+          <p><strong>⏳ {{ trip.duration }}</strong></p>
+          <p><strong>📍 {{ trip.arrivalTime | date:'shortTime' }}</strong> {{ trip.destinationPlace }}</p>
+        </div>
+        <br>
+        <div>
+          <p class="trip-totalseat"> Total Seats:{{ trip.totalSeats }}  </p>
+          <p class="trip-seats">Available: {{ trip.availableSeats }} </p>
+        </div>
+      </div>
+
+      <div class="trip-actions">
+        <p class="trip-price">{{ trip.price | currency }}</p>
+        <p class="trip-discount" *ngIf="trip.oldPrice">
+          {{ trip.oldPrice | currency }} <span class="discount-label">-{{ trip.discountPercent }}%</span>
+        </p>
+        <button class="btn-book" (click)="viewTripDetail(trip.id)">Select</button>
+      </div>
+    </div>
   </div>
 </div>

@@ -59,9 +59,7 @@ export class TripdetailComponent implements OnInit {
       }
     );
   }
-  // day them
-  // tuan anh them
-  // duong them
+
 
   // ✅ Cập nhật hàm đặt vé để tự động lấy userId
   bookTrip(): void {
@@ -70,15 +68,18 @@ export class TripdetailComponent implements OnInit {
       return;
     }
 
-    const userId = this.authService.getUserId(); // ✅ Lấy userId từ token
+    const userId = this.authService.getUserId();
     if (!userId) {
-      alert('Bạn chưa đăng nhập! Vui lòng đăng nhập để đặt vé.');
+      alert('Bạn chưa đăng nhập! Vui lòng đăng nhập để tiếp tục.');
+
+      // ✅ Lưu lại ID chuyến đi trước khi chuyển hướng đến trang đăng nhập
+      localStorage.setItem('redirectAfterLogin', this.tripId.toString());
       this.router.navigate(['/user/loginuser']);
       return;
     }
 
     const bookingData = {
-      userId,  // ✅ Thêm userId vào bookingData
+      userId,
       scheduleId: this.tripId,
       ...this.customerForm.value
     };
@@ -88,9 +89,10 @@ export class TripdetailComponent implements OnInit {
         this.router.navigate(['/user/confirmation'], { state: response });
       },
       (error) => {
-        alert('Có lỗi xảy ra khi tạo booking');
+        alert('Có lỗi xảy ra khi đặt vé. Vui lòng thử lại.');
         console.error(error);
       }
     );
   }
+
 }

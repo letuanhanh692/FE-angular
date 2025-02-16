@@ -1,0 +1,109 @@
+/* Reset mặc định của trình duyệt */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* Thanh điều hướng */
+nav {
+  background-color: white;
+  padding: 10px 5%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed; /* Giữ navbar cố định khi cuộn */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+/* Logo SVG */
+nav svg {
+  flex-shrink: 0; /* Giữ logo không bị co */
+}
+
+/* Danh sách menu */
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+  margin: 0;
+  padding: 0;
+}
+
+/* Menu items */
+nav ul li {
+  position: relative;
+}
+
+/* Link menu */
+nav ul li a {
+  text-decoration: none;
+  color: #c82333;
+  font-size: 16px;
+  padding: 12px 18px;
+  border-radius: 5px;
+  transition: all 0.3s ease-in-out;
+  display: block;
+  font-weight: bold;
+}
+
+/* Hiệu ứng hover */
+nav ul li a:hover {
+  background-color: #c82333;
+  color: white;
+}
+
+/* Đánh dấu trang active */
+nav ul li a.active {
+  background-color: #c82333;
+  color: white;
+  font-weight: bold;
+}
+
+/* Dropdown menu */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: white;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  min-width: 180px;
+  border-radius: 5px;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Dropdown menu items */
+.dropdown-content a {
+  display: block;
+  padding: 12px 15px;
+  text-decoration: none;
+  color: black;
+  transition: background 0.3s;
+}
+
+/* Hiệu ứng hover dropdown */
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+/* Hiển thị dropdown khi hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Căn giữa nội dung trang */
+.content {
+  padding: 100px 20px 20px; /* Dưới thanh navbar */
+  text-align: center;
+}

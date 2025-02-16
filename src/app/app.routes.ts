@@ -31,6 +31,8 @@ import { SearchtripComponent } from './user/searchtrip/searchtrip.component';
 import { TripListComponent } from './user/triplist/triplist.component';
 import { TripdetailComponent } from './user/tripdetail/tripdetail.component';
 import { ConfirmationComponent } from './user/confirmation/confirmation.component';
+import { LayoutuserComponent } from './user/layoutuser/layoutuser.component';
+import { AuthService } from '../service/auth.service';
 
 
 
@@ -71,20 +73,16 @@ export const routes: Routes = [
     },
     { path: 'loginadmin', component: LoginComponent },
     {
-
-      path:'user',
-
-      children:[
-        {path: 'register',component:RegisterComponent },
-        {path: 'loginuser',component:LoginuserComponent},
-        {path: 'searchtrip',component:SearchtripComponent},
-        {path: 'triplist',component:TripListComponent},
-        {path: 'tripdetail/:id',component:TripdetailComponent},
-        {path: 'confirmation',component:ConfirmationComponent},
-        {path: '', redirectTo: '/trip-list', pathMatch: 'full' },
-
-
+      path: 'user',
+      component: LayoutuserComponent,
+      children: [
+        { path: 'register', component: RegisterComponent },
+        { path: 'loginuser', component: LoginuserComponent },
+        { path: 'searchtrip', component: SearchtripComponent },
+        { path: 'triplist', component: TripListComponent },
+        { path: 'tripdetail/:id', component: TripdetailComponent },
+        { path: 'confirmation', component: ConfirmationComponent},
+        { path: '', redirectTo: 'searchtrip', pathMatch: 'full' }
       ]
-
     }
 ];
