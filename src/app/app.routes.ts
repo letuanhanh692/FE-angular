@@ -34,6 +34,8 @@ import { ConfirmationComponent } from './user/confirmation/confirmation.componen
 import { LayoutstaffComponent } from './staff/layoutstaff/layoutstaff.component';
 import { StaffService } from '../service/staff.service';
 import { ListmanagentComponent } from './staff/listmanagent/listmanagent.component';
+import { LayoutuserComponent } from './user/layoutuser/layoutuser.component';
+import { AuthService } from '../service/auth.service';
 
 
 
@@ -83,20 +85,16 @@ export const routes: Routes = [
       ]
     },
     {
-
-      path:'user',
-
-      children:[
-        {path: 'register',component:RegisterComponent },
-        {path: 'loginuser',component:LoginuserComponent},
-        {path: 'searchtrip',component:SearchtripComponent},
-        {path: 'triplist',component:TripListComponent},
-        {path: 'tripdetail/:id',component:TripdetailComponent},
-        {path: 'confirmation',component:ConfirmationComponent},
-        {path: '', redirectTo: '/trip-list', pathMatch: 'full' },
-
-
+      path: 'user',
+      component: LayoutuserComponent,
+      children: [
+        { path: 'register', component: RegisterComponent },
+        { path: 'loginuser', component: LoginuserComponent },
+        { path: 'searchtrip', component: SearchtripComponent },
+        { path: 'triplist', component: TripListComponent },
+        { path: 'tripdetail/:id', component: TripdetailComponent },
+        { path: 'confirmation', component: ConfirmationComponent},
+        { path: '', redirectTo: 'searchtrip', pathMatch: 'full' }
       ]
-
     }
 ];
