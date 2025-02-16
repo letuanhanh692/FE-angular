@@ -31,6 +31,9 @@ import { SearchtripComponent } from './user/searchtrip/searchtrip.component';
 import { TripListComponent } from './user/triplist/triplist.component';
 import { TripdetailComponent } from './user/tripdetail/tripdetail.component';
 import { ConfirmationComponent } from './user/confirmation/confirmation.component';
+import { LayoutstaffComponent } from './staff/layoutstaff/layoutstaff.component';
+import { StaffService } from '../service/staff.service';
+import { ListmanagentComponent } from './staff/listmanagent/listmanagent.component';
 
 
 
@@ -70,6 +73,15 @@ export const routes: Routes = [
         ]
     },
     { path: 'loginadmin', component: LoginComponent },
+
+
+    {
+      path: 'staff',
+      component: LayoutstaffComponent,canActivate:[StaffService],
+      children: [
+        { path: '', component: ListmanagentComponent, pathMatch: 'full' },
+      ]
+    },
     {
 
       path:'user',

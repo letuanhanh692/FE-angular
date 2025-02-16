@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-// Định nghĩa DTO cho Route
 export interface RouteDTO {
   id: number;
   startingPlace: string;
@@ -13,12 +12,17 @@ export interface RouteDTO {
   staffName: string;
   staffEmail: string;
 }
+interface User {
+  id: number;
+  name: string;
+  roleId: number;
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class RouteService {
-  private apiUrl = 'https://localhost:44311/api/Route';  // Địa chỉ API backend của bạn
+  private apiUrl = 'https://localhost:44311/api/Route'; 
 
   constructor(private http: HttpClient) {}
 

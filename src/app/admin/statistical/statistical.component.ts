@@ -77,13 +77,11 @@ export class StatisticalComponent implements OnInit {
     this.http.get<any>('https://localhost:44311/api/Bookings?page=0&pageSize=0').subscribe(bookingResponse => {
       this.bookingData = bookingResponse.bookings || [];
 
-      // Thống kê số lượng đặt ghế của từng người dùng
-      // Thống kê số lượng đặt ghế của từng người dùng
-this.userBookingStats = this.bookingData.reduce((stats: Record<string, number>, booking: any) => {
-  const userName = booking.name;
-  stats[userName] = (stats[userName] || 0) + 1;
-  return stats;
-}, {});
+     this.userBookingStats = this.bookingData.reduce((stats: Record<string, number>, booking: any) => {
+      const userName = booking.name;
+     stats[userName] = (stats[userName] || 0) + 1;
+     return stats;
+      }, {});
 
 this.userBookingStats = Object.entries(this.userBookingStats)
   .sort((a, b) => b[1] - a[1]) // Sắp xếp giảm dần theo số lượng ghế đặt

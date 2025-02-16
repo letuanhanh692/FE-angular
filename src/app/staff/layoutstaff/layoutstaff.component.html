@@ -1,0 +1,46 @@
+<div class="flex h-screen">
+    <!-- Sidebar -->
+    <div class="w-64 bg-white shadow-md">
+      <div class="p-4 flex items-center">
+        <img alt="Bus icon" class="mr-2" height="40" src="../../../assets/admin/image/logoadmin.jpg" width="40" />
+        <span class="text-xl font-bold">My Bus</span>
+      </div>
+      <div class="p-4">
+        <div class="bg-purple-500 text-white p-2 rounded flex items-center">
+          <a href="/admin/dashboard" class="bg-purple-500 text-white p-2 rounded flex items-center">
+            <i class="fas fa-home mr-2"></i>
+            <span>Home</span>
+          </a>
+  
+        </div>
+     
+  
+  
+      </div>
+    </div>
+  
+    <!-- Main Content -->
+    <div class="flex-1 p-6 bg-gradient-to-r from-gray-100 to-white">
+  
+      <div class="flex justify-between items-center mb-6">
+        <h1 class="text-2xl font-bold">Bus management system</h1>
+  
+        <!-- Phần hiển thị avatar và tên Admin -->
+        <div class="relative inline-block text-left">
+          <div class="flex items-center cursor-pointer" id="adminButton" (click)="toggleDropdown()">
+            <img alt="Admin avatar" class="rounded-full mr-2" height="40"
+              src="../../../assets/admin/image/avataradmin.jpg" width="40" />
+            <span>Admin</span>
+          </div>
+  
+          <!-- Dropdown menu -->
+          <div id="dropdownMenu" class="hidden absolute right-0 mt-2 w-40 bg-white border rounded-lg shadow-lg">
+  
+            <a href="/loginadmin" class="block px-4 py-2 text-red-600 hover:bg-red-100">Log Out</a>
+          </div>
+        </div>
+      </div>
+  
+      <router-outlet></router-outlet>
+    </div>
+  </div>
