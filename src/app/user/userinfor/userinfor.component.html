@@ -1,0 +1,35 @@
+<div class="card">
+  <h2>Thông tin cá nhân</h2>
+
+  <div *ngIf="!isEditing">
+    <p><strong>Email:</strong> {{ userForm.get('email')?.value }}</p>
+    <p><strong>Họ và Tên:</strong> {{ userForm.get('name')?.value }}</p>
+    <p><strong>Số điện thoại:</strong> {{ userForm.get('phone')?.value }}</p>
+    <p><strong>Địa chỉ:</strong> {{ userForm.get('address')?.value }}</p>
+    <p><strong>ID Card:</strong> {{ userForm.get('idCard')?.value }}</p>
+    <p><strong>Ngày sinh:</strong> {{ userForm.get('dateOfBirth')?.value }}</p>
+    <button (click)="enableEditing()">Chỉnh sửa</button>
+  </div>
+
+  <form *ngIf="isEditing" [formGroup]="userForm">
+    <label>Email:</label>
+    <input formControlName="email" />
+
+    <label>Họ và Tên:</label>
+    <input formControlName="name" />
+
+    <label>Số điện thoại:</label>
+    <input formControlName="phone" />
+
+    <label>Địa chỉ:</label>
+    <input formControlName="address" />
+
+    <label>ID Card:</label>
+    <input formControlName="idCard" />
+
+    <label>Ngày sinh:</label>
+    <input type="date" formControlName="dateOfBirth" />
+
+    <button (click)="saveChanges()">Lưu thay đổi</button>
+  </form>
+</div>

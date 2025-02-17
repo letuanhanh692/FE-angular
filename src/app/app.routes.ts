@@ -31,14 +31,16 @@ import { SearchtripComponent } from './user/searchtrip/searchtrip.component';
 import { TripListComponent } from './user/triplist/triplist.component';
 import { TripdetailComponent } from './user/tripdetail/tripdetail.component';
 import { ConfirmationComponent } from './user/confirmation/confirmation.component';
-<<<<<<< HEAD
-import { LayoutuserComponent } from './user/layoutuser/layoutuser.component';
-import { AuthService } from '../service/auth.service';
-=======
+
 import { LayoutstaffComponent } from './staff/layoutstaff/layoutstaff.component';
 import { StaffService } from '../service/staff.service';
 import { ListmanagentComponent } from './staff/listmanagent/listmanagent.component';
->>>>>>> main
+import { LayoutuserComponent } from './user/layoutuser/layoutuser.component';
+import { AuthService } from '../service/auth.service';
+import { userInfo } from 'os';
+import { UserinforComponent } from './user/userinfor/userinfor.component';
+import { TripTodayComponent } from './user/triptoday/triptoday.component';
+
 
 
 
@@ -97,6 +99,8 @@ export const routes: Routes = [
         { path: 'triplist', component: TripListComponent },
         { path: 'tripdetail/:id', component: TripdetailComponent },
         { path: 'confirmation', component: ConfirmationComponent},
+        {path:  'userinfor', component: UserinforComponent},
+        {path:  'triptoday', component: TripTodayComponent},
         { path: '', redirectTo: 'searchtrip', pathMatch: 'full' }
       ]
     }

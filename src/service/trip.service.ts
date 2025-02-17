@@ -24,5 +24,7 @@ export class TripService {
   getTripDetails(id: number) {
     return this.http.get(`https://localhost:44311/api/Schedules/${id}`);  // Đảm bảo URL API chính xác
   }
-
+  getTripForToday(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/today`);
+  }
 }
