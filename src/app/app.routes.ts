@@ -36,6 +36,9 @@ import { StaffService } from '../service/staff.service';
 import { ListmanagentComponent } from './staff/listmanagent/listmanagent.component';
 import { LayoutuserComponent } from './user/layoutuser/layoutuser.component';
 import { AuthService } from '../service/auth.service';
+import { CancelComponent } from './admin/cancel/cancel.component';
+import { EditcancelComponent } from './admin/editcancel/editcancel.component';
+import { CanceldetailComponent } from './admin/canceldetail/canceldetail.component';
 
 
 
@@ -70,6 +73,9 @@ export const routes: Routes = [
             {path :'addbooking',component:AddbookingComponent},
             {path :'editbooking/:id',component:EditbookingComponent},
             {path :'bookingdetail/:id',component:BookingdetailComponent},
+            {path :'cancel',component:CancelComponent},
+            {path :'editcancel/:id',component:EditcancelComponent},
+            {path :'canceldetail/:id',component:CanceldetailComponent},
             {path : 'statistical',component:StatisticalComponent},
 
         ]
@@ -84,6 +90,7 @@ export const routes: Routes = [
         { path: '', component: ListmanagentComponent, pathMatch: 'full' },
       ]
     },
+    
     {
       path: 'user',
       component: LayoutuserComponent,

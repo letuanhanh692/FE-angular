@@ -12,6 +12,7 @@ export interface RouteDTO {
   staffName: string;
   staffEmail: string;
 }
+
 interface User {
   id: number;
   name: string;
@@ -26,20 +27,28 @@ export class RouteService {
 
   constructor(private http: HttpClient) {}
 
-  getRoutes(page: number, pageSize: number, searchQuery: string = ''): Observable<any> {
+  // Hàm lấy danh sách route có phân trang
+  getRoutes(page: number, pageSize: number): Observable<any> {
+    const params = new HttpParams()
+      .set('page', page.toString())
+      .set('pageSize', pageSize.toString());
+
+    return this.http.get<any>(this.apiUrl, { params });  
+  }
+
+  searchRoutes(searchQuery: string, page: number, pageSize: number): Observable<any> {
     const params = new HttpParams()
       .set('page', page.toString())
       .set('pageSize', pageSize.toString())
       .set('searchQuery', searchQuery);
 
-      return this.http.get<any>('https://localhost:44311/api/Route/search', { params });  
+    return this.http.get<any>(`https://localhost:44311/api/Route/search`, { params });  
   }
 
   getRoute(id: number): Observable<RouteDTO> {
     return this.http.get<RouteDTO>(`${this.apiUrl}/${id}`);
   }
   
-
   createRoute(route: RouteDTO): Observable<void> {
     return this.http.post<void>(this.apiUrl, route);
   }
@@ -48,6 +57,7 @@ export class RouteService {
     return this.http.put<void>(`${this.apiUrl}/${id}`, route);
   }
 
+  // Hàm xoá route theo id
   deleteRoute(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }

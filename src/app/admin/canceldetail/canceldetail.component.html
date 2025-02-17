@@ -1,0 +1,114 @@
+<div class="max-w-3xl mx-auto p-2">
+    <div class="bg-white p-4 rounded-lg shadow-md">
+      <div class="flex items-center justify-between mb-2">
+        <h1 class="text-xl font-semibold text-gray-800">Cancellation Details</h1>
+      </div>
+  
+      <form>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+          <div class="col-span-1">
+            <label class="block text-sm text-gray-600 mb-1">Starting Place</label>
+            <input type="text" name="startingPlace" [(ngModel)]="cancelDetails.startingPlace" 
+                   class="w-full p-1 text-sm border border-gray-300 rounded focus:ring-2 focus:ring-blue-400" 
+                   [readonly]="true">
+          </div>
+  
+          <div class="col-span-1">
+            <label class="block text-sm text-gray-600 mb-1">Destination Place</label>
+            <input type="text" name="destinationPlace" [(ngModel)]="cancelDetails.destinationPlace" 
+                   class="w-full p-1 text-sm border border-gray-300 rounded focus:ring-2 focus:ring-blue-400" 
+                   [readonly]="true">
+          </div>
+  
+          <div class="col-span-1">
+            <label class="block text-sm text-gray-600 mb-1">Cancellation Date</label>
+            <input type="text" name="cancellationDate" [(ngModel)]="cancelDetails.cancellationDate" 
+                   class="w-full p-1 text-sm border border-gray-300 rounded focus:ring-2 focus:ring-blue-400" 
+                   [readonly]="true">
+          </div>
+  
+          <div class="col-span-1">
+            <label class="block text-sm text-gray-600 mb-1">Refund Amount</label>
+            <input type="number" name="refundAmount" [(ngModel)]="cancelDetails.refundAmount" 
+                   class="w-full p-1 text-sm border border-gray-300 rounded focus:ring-2 focus:ring-blue-400" 
+                   [readonly]="true">
+          </div>
+  
+          <div class="col-span-1">
+            <label class="block text-sm text-gray-600 mb-1">Customer Name</label>
+            <input type="text" name="name" [(ngModel)]="cancelDetails.name" 
+                   class="w-full p-1 text-sm border border-gray-300 rounded focus:ring-2 focus:ring-blue-400" 
+                   [readonly]="true">
+          </div>
+  
+          <div class="col-span-1">
+            <label class="block text-sm text-gray-600 mb-1">Customer Age</label>
+            <input type="number" name="age" [(ngModel)]="cancelDetails.age" 
+                   class="w-full p-1 text-sm border border-gray-300 rounded focus:ring-2 focus:ring-blue-400" 
+                   [readonly]="true">
+          </div>
+  
+          <div class="col-span-1">
+            <label class="block text-sm text-gray-600 mb-1">Customer Email</label>
+            <input type="email" name="email" [(ngModel)]="cancelDetails.email" 
+                   class="w-full p-1 text-sm border border-gray-300 rounded focus:ring-2 focus:ring-blue-400" 
+                   [readonly]="true">
+          </div>
+  
+          <div class="col-span-1">
+            <label class="block text-sm text-gray-600 mb-1">Seat Number</label>
+            <input type="number" name="seatNumber" [(ngModel)]="cancelDetails.seatNumber" 
+                   class="w-full p-1 text-sm border border-gray-300 rounded focus:ring-2 focus:ring-blue-400" 
+                   [readonly]="true">
+          </div>
+  
+          <div class="col-span-1">
+            <label class="block text-sm text-gray-600 mb-1">Booking Date</label>
+            <input type="text" name="bookingDate" [(ngModel)]="cancelDetails.bookingDate" 
+                   class="w-full p-1 text-sm border border-gray-300 rounded focus:ring-2 focus:ring-blue-400" 
+                   [readonly]="true">
+          </div>
+  
+          <div class="col-span-1">
+            <label class="block text-sm text-gray-600 mb-1">Total Amount</label>
+            <input type="number" name="totalAmount" [(ngModel)]="cancelDetails.totalAmount" 
+                   class="w-full p-1 text-sm border border-gray-300 rounded focus:ring-2 focus:ring-blue-400" 
+                   [readonly]="true">
+          </div>
+  
+          <div class="col-span-1">
+            <label class="block text-sm text-gray-600 mb-1">Status</label>
+            <input type="text" name="status" [(ngModel)]="cancelDetails.status" 
+                   class="w-full p-1 text-sm border border-gray-300 rounded focus:ring-2 focus:ring-blue-400" 
+                   [readonly]="true">
+          </div>
+  
+          <div class="col-span-1">
+            <label class="block text-sm text-gray-600 mb-1">Bus Type</label>
+            <input type="text" name="busType" [(ngModel)]="cancelDetails.busType" 
+                   class="w-full p-1 text-sm border border-gray-300 rounded focus:ring-2 focus:ring-blue-400" 
+                   [readonly]="true">
+          </div>
+  
+          <div class="col-span-1">
+            <label class="block text-sm text-gray-600 mb-1">Depart Time</label>
+            <input type="text" name="departTime" [(ngModel)]="cancelDetails.departTime" 
+                   class="w-full p-1 text-sm border border-gray-300 rounded focus:ring-2 focus:ring-blue-400" 
+                   [readonly]="true">
+          </div>
+  
+          <div class="col-span-1">
+            <label class="block text-sm text-gray-600 mb-1">Arrival Time</label>
+            <input type="text" name="arrivalTime" [(ngModel)]="cancelDetails.arrivalTime" 
+                   class="w-full p-1 text-sm border border-gray-300 rounded focus:ring-2 focus:ring-blue-400" 
+                   [readonly]="true">
+          </div>
+        </div>
+  
+        <div class="flex justify-end mt-4 space-x-2">
+          <button type="button" (click)="onCancel()" class="bg-gray-500 hover:bg-gray-600 text-white px-3 py-1 text-sm rounded">Back</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  

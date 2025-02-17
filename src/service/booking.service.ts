@@ -42,7 +42,7 @@ export class BookingService {
     return this.http.delete<any>(`${this.apiUrl}/${bookingId}`, { headers: this.getAuthHeaders() });
   }
 
-  searchBookings(searchQuery: string, page: number = 1, pageSize: number = 4): Observable<any> {
+  searchBookings(searchQuery: string, page: number , pageSize: number ): Observable<any> {
     let params = new HttpParams()
       .set('searchQuery', searchQuery)
       .set('page', page.toString())
