@@ -34,7 +34,6 @@ export class ListbusComponent implements OnInit {
     this.busService.getBuses(this.currentPage, this.searchQuery).subscribe(
       (response: any) => {
         this.buses = response.buses;
-        console.log(response);
         this.totalPages = response.totalPages;
         this.loading = false;
       },

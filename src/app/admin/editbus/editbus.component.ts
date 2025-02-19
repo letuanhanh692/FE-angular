@@ -37,9 +37,9 @@ export class EditbusComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
-      this.busId = params.get('id');  // Lấy id từ URL
+      this.busId = params.get('id');  
       if (this.busId) {
-        this.getBusDetails();  // Lấy chi tiết bus nếu có ID
+        this.getBusDetails();  
       }
     });
   }

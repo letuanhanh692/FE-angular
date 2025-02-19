@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { Router } from '@angular/router'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-route',
@@ -28,53 +28,41 @@ export class RouteComponent implements OnInit {
   selectedRoute: RouteDTO | null = null;
   searchQuery: string = '';
   currentPage: number = 1;
-  totalPages: number = 10; 
+  totalPages: number = 10;
   pageSize: number = 4;
 
-  loading: boolean = false;  
-  errorMessage: string = ''; 
+  loading: boolean = false;
+  errorMessage: string = '';
 
-  constructor(private routeService: RouteService , private router:Router) {}
-
+  constructor(private routeService: RouteService, private router: Router) {}
 
   ngOnInit(): void {
     this.loadRoutes();
   }
 
   loadRoutes(): void {
-    this.loading = true; 
-    this.routeService.getRoutes(this.currentPage, this.pageSize, this.searchQuery).subscribe(
+    this.loading = true;
+    this.routeService.getRoutes(this.currentPage, this.pageSize).subscribe(
       (data) => {
-        this.routes = data.routes;  
-        this.totalPages = Math.ceil(data.totalItems / this.pageSize); 
-        this.loading = false; 
+        this.routes = data.routes;
+        this.totalPages = Math.ceil(data.totalItems / this.pageSize);
+        this.loading = false;
       },
       (error) => {
-        this.errorMessage = 'Failed to load routes. Please try again later.';  
+        this.errorMessage = 'Failed to load routes. Please try again later.';
+        this.loading = false;
       }
     );
   }
 
   viewRoute(id: number): void {
-    this.routeService.getRoute(id).subscribe((data) => {
-      this.selectedRoute = data;
-      this.router.navigate(['/admin/routedetail', id]);
-    });
+    this.router.navigate(['/admin/routedetail', id]);
   }
 
   createRoute(): void {
     this.routeService.createRoute(this.newRoute).subscribe(() => {
-      this.loadRoutes();  
-      this.newRoute = {
-        id: 0,
-        startingPlace: '',
-        destinationPlace: '',
-        distance: 0,
-        priceRoute: 0,
-        staffId: 0,
-        staffName: '',
-        staffEmail: ''
-      }; 
+      this.loadRoutes();
+      this.resetNewRoute();
     });
   }
 
@@ -89,27 +77,61 @@ export class RouteComponent implements OnInit {
 
   deleteRoute(id: number): void {
     this.routeService.deleteRoute(id).subscribe(() => {
-      this.loadRoutes();  
+      this.loadRoutes();
     });
   }
 
   editRoute(route: RouteDTO): void {
-    this.selectedRoute = { ...route }; 
+    this.selectedRoute = { ...route };
     this.router.navigate(['/admin/editroute', route.id]);
   }
 
   searchRoutes(): void {
-    this.currentPage = 1;  
-    this.loadRoutes();     
+    this.loading = true;
+    this.errorMessage = '';
+  
+    this.routeService.searchRoutes(this.searchQuery, this.currentPage, this.pageSize)
+      .subscribe({
+        next: (response) => {
+          this.routes = response.routes;
+          
+          this.totalPages = response.totalPages;
+          this.loading = false;
+        },
+        error: () => {
+          console.error('Error fetching routes');
+          this.errorMessage = 'Không thể tải dữ liệu tuyến đường. Vui lòng thử lại sau.';
+          this.loading = false;
+        },
+        complete: () => {
+          console.log('Route search completed');
+        }
+      });
   }
   
+  
+  
+
   changePage(page: number): void {
     if (page < 1 || page > this.totalPages) return;
     this.currentPage = page;
-    this.loadRoutes();  // Tải lại danh sách tuyến đường cho trang mới
+    this.loadRoutes();
   }
 
   detailRoute(id: number): void {
-    this.viewRoute(id); 
+    this.viewRoute(id);
+  }
+
+  resetNewRoute(): void {
+    this.newRoute = {
+      id: 0,
+      startingPlace: '',
+      destinationPlace: '',
+      distance: 0,
+      priceRoute: 0,
+      staffId: 0,
+      staffName: '',
+      staffEmail: ''
+    };
   }
 }

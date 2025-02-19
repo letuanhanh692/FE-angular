@@ -35,8 +35,8 @@
         <tr *ngFor="let schedule of schedules" class="border-b hover:bg-gray-50">
           <td class="px-4 py-3 text-sm">#{{ schedule.id }}</td>
           <td class="px-4 py-3 text-sm text-center">{{ schedule.routeId }}</td>
-          <td class="px-4 py-3 text-sm">{{ schedule.departureTime | date:'short' }}</td>
-          <td class="px-4 py-3 text-sm">{{ schedule.arrivalTime | date:'short' }}</td>
+          <td class="px-4 py-3 text-sm">{{ schedule.departureTime | date: 'YYYY/MM/dd' }}</td>
+          <td class="px-4 py-3 text-sm">{{ schedule.arrivalTime | date: 'YYYY/MM/dd' }}</td>
           <td class="px-4 py-3 text-sm text-center">{{ schedule.availableSeats }}</td>
           <td class="px-4 py-3 text-sm flex space-x-2">
             <button (click)="detailSchedule(schedule.id)"

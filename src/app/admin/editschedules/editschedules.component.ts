@@ -67,7 +67,6 @@ export class EditschedulesComponent implements OnInit {
 
   onSubmit(): void {
     this.scheduleService.updateSchedule(this.schedule.id, this.schedule).subscribe(
-
       (response) => {
         alert('Schedule has been updated successfully!');
         this.router.navigate(['/admin/schedules']);

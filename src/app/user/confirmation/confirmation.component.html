@@ -5,23 +5,32 @@
 <div *ngIf="!error">
   <h2>Xác Nhận Đặt Vé</h2>
 
-  <h3>Thông Tin Khách Hàng:</h3>
-  <p><strong>Tên:</strong> {{ bookingData.name }}</p>
-  <p><strong>Tuổi:</strong> {{ bookingData.age }}</p>
-  <p><strong>Email:</strong> {{ bookingData.email }}</p>
-  <p><strong>Số Điện Thoại:</strong> {{ bookingData.phone }}</p>
+  <div class="flex-container">
+    <div class="flex-left">
+      <h3>Thông Tin Chuyến Đi:</h3>
+      <p><strong>Bus Number:</strong> {{ bookingData.busNumber }}</p>
+      <p><strong>Bus Type:</strong> {{ bookingData.busType }}</p>
+      <p><strong>Departure Time:</strong> {{ bookingData.departureTime | date: 'short' }}</p>
+      <p><strong>Arrival Time:</strong> {{ bookingData.arrivalTime | date: 'short' }}</p>
+      <p><strong>Starting Place:</strong> {{ bookingData.startingPlace }}</p>
+      <p><strong>Destination Place:</strong> {{ bookingData.destinationPlace }}</p>
+      <p><strong>Distance:</strong> {{ bookingData.distance }} km</p>
+    </div>
 
-  <h3>Thông Tin Chuyến Đi:</h3>
-  <p><strong>Bus Number:</strong> {{ bookingData.busNumber }}</p>
-  <p><strong>Bus Type:</strong> {{ bookingData.busType }}</p>
-  <p><strong>Departure Time:</strong> {{ bookingData.departureTime | date: 'short' }}</p>
-  <p><strong>Arrival Time:</strong> {{ bookingData.arrivalTime | date: 'short' }}</p>
-  <p><strong>Starting Place:</strong> {{ bookingData.startingPlace }}</p>
-  <p><strong>Destination Place:</strong> {{ bookingData.destinationPlace }}</p>
-  <p><strong>Distance:</strong> {{ bookingData.distance }} km</p>
+    <div class="flex-right">
+      <h3>Thông Tin Khách Hàng:</h3>
+      <p><strong>Tên:</strong> {{ bookingData.name }}</p>
+      <p><strong>Tuổi:</strong> {{ bookingData.age }}</p>
+      <p><strong>Email:</strong> {{ bookingData.email }}</p>
+      <p><strong>Số Điện Thoại:</strong> {{ bookingData.phone }}</p>
+      <p><strong>Số ghế:</strong> {{ bookingData.seatNumber }}</p>
+    </div>
+  </div>
 
-  <h3>Tổng Số Tiền Cần Trả:</h3>
-  <p><strong>{{ bookingData.totalAmount | currency }}</strong></p>
-
+  <div class="total-amount">
+    <h3>Tổng Số Tiền Cần Trả:</h3>
+    <p class="currency">{{ bookingData.totalAmount | currency }}</p>
+  </div>
+  <button (click)="goBack()">Quay lại</button>
 
 </div>

@@ -27,10 +27,13 @@
             <select name="scheduleId" [(ngModel)]="booking.scheduleId" class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-400">
               <option value="0">Select Schedule</option>
               <option *ngFor="let schedule of schedulesList" [value]="schedule.id">
-                {{ schedule.departureTime | date:'shortTime' }} to {{ schedule.arrivalTime | date:'shortTime' }} -{{ schedule.date | date: 'dd/MM/yyyy' }}
+                {{ schedule.routeName || 'Unknown Route' }} - 
+                {{ schedule.departureTime | date:'shortTime' }} to {{ schedule.arrivalTime | date:'shortTime' }} 
+                {{ schedule.date | date: 'dd/MM/yyyy' }}
               </option>
             </select>
           </div>
+          
           
   
           <!-- Name -->

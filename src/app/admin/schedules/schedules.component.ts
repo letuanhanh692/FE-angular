@@ -46,7 +46,7 @@ export class SchedulesComponent implements OnInit {
 
   searchSchedules(): void {
     this.currentPage = 1;  
-    this.scheduleService.searchSchedules(this.searchQuery, this.currentPage)
+    this.scheduleService.searchSchedules(this.searchQuery, this.currentPage,this.totalPages)
       .subscribe(
         (response: any) => {
           this.schedules = response.schedules; 

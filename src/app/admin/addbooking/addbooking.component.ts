@@ -45,6 +45,32 @@ export class AddbookingComponent {
       (response) => {
         console.log('Schedules:', response);  
         this.schedulesList = response.schedules;  
+  
+        const routeIds = this.schedulesList.map((schedule: any) => schedule.routeId);
+  
+        const uniqueRouteIds = Array.from(new Set(routeIds));
+  
+        const routeDetails: any = {};
+  
+        uniqueRouteIds.forEach((routeId: number) => {
+          this.http.get<any>(`https://localhost:44311/api/Routes/${routeId}`).subscribe(
+            (route) => {
+              routeDetails[routeId] = {
+                startingPlace: route.startingPlace,
+                destinationPlace: route.destinationPlace
+              };
+  
+              this.schedulesList.forEach((schedule: any) => {
+                if (schedule.routeId === routeId) {
+                  schedule.routeName = `${route.startingPlace} - ${route.destinationPlace}`;
+                }
+              });
+            },
+            (error) => {
+              console.error('Không thể tải thông tin Route', error);
+            }
+          );
+        });
       },
       (error) => {
         this.errorMessage = 'Không thể tải danh sách lịch trình';
@@ -56,7 +82,7 @@ export class AddbookingComponent {
     if (this.isValid()) {
       this.http.post<any>('https://localhost:44311/api/Bookings', this.booking).subscribe(
         (response) => {
-          alert('Đặt chỗ thành công!');
+          alert('Reservation successful!');
           this.router.navigate(['/admin/listbooking']); 
         },
         (error) => {

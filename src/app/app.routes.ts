@@ -1,3 +1,4 @@
+
 import { BookingdetailComponent } from './admin/bookingdetail/bookingdetail.component';
 import { AddbusComponent } from './admin/addbus/addbus.component';
 import { ListbusComponent } from './admin/listbus/listbus.component';
@@ -39,6 +40,11 @@ import { LayoutuserComponent } from './user/layoutuser/layoutuser.component';
 import { AuthService } from '../service/auth.service';
 import { userInfo } from 'os';
 import { UserinforComponent } from './user/userinfor/userinfor.component';
+
+import { CancelComponent } from './admin/cancel/cancel.component';
+import { EditcancelComponent } from './admin/editcancel/editcancel.component';
+import { CanceldetailComponent } from './admin/canceldetail/canceldetail.component';
+import { ContactComponent } from './user/contact/contact.component';
 import { TripTodayComponent } from './user/triptoday/triptoday.component';
 
 
@@ -75,6 +81,9 @@ export const routes: Routes = [
             {path :'addbooking',component:AddbookingComponent},
             {path :'editbooking/:id',component:EditbookingComponent},
             {path :'bookingdetail/:id',component:BookingdetailComponent},
+            {path :'cancel',component:CancelComponent},
+            {path :'editcancel/:id',component:EditcancelComponent},
+            {path :'canceldetail/:id',component:CanceldetailComponent},
             {path : 'statistical',component:StatisticalComponent},
 
         ]
@@ -89,6 +98,7 @@ export const routes: Routes = [
         { path: '', component: ListmanagentComponent, pathMatch: 'full' },
       ]
     },
+
     {
       path: 'user',
       component: LayoutuserComponent,
@@ -100,7 +110,8 @@ export const routes: Routes = [
         { path: 'tripdetail/:id', component: TripdetailComponent },
         { path: 'confirmation', component: ConfirmationComponent},
         {path:  'userinfor', component: UserinforComponent},
-        {path:  'triptoday', component: TripTodayComponent},
+        {path:  'triptoday',component: TripTodayComponent},
+        {path:  'contact', component: ContactComponent},
         { path: '', redirectTo: 'searchtrip', pathMatch: 'full' }
       ]
     }

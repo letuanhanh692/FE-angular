@@ -31,7 +31,7 @@ export class ScheduleService {
     return this.http.delete<any>(`${this.apiUrl}/${id}`);
   }
 
-  searchSchedules(searchQuery: string, page: number = 1, pageSize: number = 4): Observable<any> {
+  searchSchedules(searchQuery: string, page: number , pageSize: number ): Observable<any> {
     const params = new HttpParams()
       .set('searchQuery', searchQuery)
       .set('page', page.toString())

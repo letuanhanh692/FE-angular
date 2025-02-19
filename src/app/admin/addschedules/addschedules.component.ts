@@ -53,10 +53,10 @@ export class AddschedulesComponent implements OnInit {
     this.http.post<any>('https://localhost:44311/api/Schedules', this.schedule).subscribe(
       (response) => {
         alert('Shedules added successfully!');
-        this.router.navigate(['/schedules']); 
+        this.router.navigate(['/admin/schedules']); 
       },
       (error) => {
-        this.errorMessage = 'Có lỗi xảy ra khi thêm lịch trình';
+        this.errorMessage = 'An error occurred while adding the calendar.';
       }
     );
   }

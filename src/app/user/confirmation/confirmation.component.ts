@@ -29,4 +29,10 @@ export class ConfirmationComponent implements OnInit {
       }
     }
   }
+  goBack(): void {
+    this.router.navigate(['/user/tripdetail', this.bookingData.scheduleId], {
+      state: this.bookingData
+    });
+  }
+
 }
