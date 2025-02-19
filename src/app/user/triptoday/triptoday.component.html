@@ -1,0 +1,32 @@
+<div *ngIf="trips.length > 0; else noTrips">
+  <div class="trip-list-container">
+    <div *ngFor="let trip of trips" class="trip-card">
+      <div class="trip-image">
+        <img [src]="trip.BusImage || 'assets/default-bus.jpg'" alt="Bus Image" class="bus-image">
+      </div>
+
+      <div class="trip-info">
+        <p class="trip-title">{{ trip.BusNumber }} ({{ trip.BusType }})</p>
+        <div class="trip-meta">
+          <p><strong>🕒 {{ trip.DepartureTime | date:'shortTime' }}</strong> {{ trip.StartingPlace }}</p>
+          <p><strong>⏳ {{ trip.Duration }}</strong></p>
+          <p><strong>📍 {{ trip.ArrivalTime | date:'shortTime' }}</strong> {{ trip.DestinationPlace }}</p>
+        </div>
+        <br>
+        <div>
+          <p class="trip-totalseat"> Total Seats: {{ trip.TotalSeats }} </p>
+          <p class="trip-seats">Available: {{ trip.AvailableSeats }} </p>
+        </div>
+      </div>
+
+      <div class="trip-actions">
+        <p class="trip-price">{{ trip.Price | currency }}</p>
+        <button class="btn-book" (click)="viewTripDetail(trip.Id)">Select</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #noTrips>
+  <p>No trips available for today.</p>
+</ng-template>

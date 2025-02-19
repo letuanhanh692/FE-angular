@@ -6,20 +6,20 @@
   </svg>
 
   <ul>
-    <li><a routerLink="searchtrip" routerLinkActive="active">Home</a></li>
-    <li><a routerLink="/today" routerLinkActive="active">Today</a></li>
-    <li><a routerLink="/contact" routerLinkActive="active">Contact</a></li>
+    <li><a routerLink="/user/searchtrip" routerLinkActive="active">Home</a></li>
+    <li><a routerLink="/user/triptoday" routerLinkActive="active">Today</a></li>
+    <li><a routerLink="/user/contact" routerLinkActive="active">Contact</a></li>
 
     <!-- User Dropdown -->
     <li class="dropdown">
-      <a href="#">User</a>
+      <a href="user/userinfor">User</a>
       <div class="dropdown-content" *ngIf="!(isLoggedIn$ | async)">
         <a routerLink="/user/register">Đăng ký</a>
         <a routerLink="/user/loginuser">Đăng nhập</a>
       </div>
       <div class="dropdown-content" *ngIf="isLoggedIn$ | async">
-        <a routerLink="/profile">Thông tin tài khoản</a>
-        <a href="#" (click)="logout()">Đăng xuất</a>
+        <a routerLink="/user/userinfor">Thông tin tài khoản</a>
+        <a href="/user/loginuser" (click)="logout()">Đăng xuất</a>
       </div>
     </li>
   </ul>

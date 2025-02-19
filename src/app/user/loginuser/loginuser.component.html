@@ -1,24 +1,37 @@
-<div class="login-container">
-  <h2>Đăng Nhập</h2>
-  <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
-    <div class="input-group">
-      <label for="email">Email </label>
-      <input type="text" id="email" formControlName="email">
+
+<body>
+  <div class="modal active" id="loginModal">
+    <div class="login-container">
+      <div class="login-img"></div>
+      <div class="login-form">
+        <h2>Sign In</h2>
+        <div class="social-login">
+          <a href="#" title="Login with Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" title="Login with Twitter"><i class="fab fa-twitter"></i></a>
+        </div>
+        <form id="loginFormContent" [formGroup]="loginForm" (ngSubmit)="onLogin()">
+          <div class="input-group">
+            <label for="email">USERNAME</label>
+            <input type="text" id="email" formControlName="email" required />
+          </div>
+          <div class="input-group">
+            <label for="password">PASSWORD</label>
+            <input type="password" id="password" formControlName="password" required />
+          </div>
+          <div class="options">
+            <label>
+              <input type="checkbox" name="remember" /> Remember Me
+            </label>
+
+          </div>
+          <button type="submit" class="btn-login">Sign In</button>
+          <div class="signup-link">
+            <p> <a routerLink="/user/register">Register</a></p>
+          </div>
+        </form>
+      </div>
     </div>
+  </div>
 
-    <div class="input-group">
-      <label for="password">Mật khẩu</label>
-      <input type="password" id="password" formControlName="password">
-    </div>
-
-    <button type="submit">Đăng nhập</button>
-
-    <!-- Hiển thị thông báo lỗi -->
-    <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
-
-
-
-    <!-- Thêm nút chuyển đến trang đăng ký -->
-    <p>Bạn chưa có tài khoản? <a routerLink="/user/register">Đăng ký ngay</a></p>
-  </form>
-</div>
+  <script src="js/login.js"></script>
+</body>

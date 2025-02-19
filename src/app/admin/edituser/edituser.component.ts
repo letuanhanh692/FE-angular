@@ -55,10 +55,8 @@ export class EdituserComponent implements OnInit {
     this.userService.updateUser(this.user.id, this.user).subscribe(
       (data) => {
         this.loading = false;
-        this.successMessage = 'User updated successfully!';
-        setTimeout(() => {
-          this.router.navigate(['/admin/listuser']); // Điều hướng lại trang danh sách sau khi cập nhật
-        }, 2000);
+        alert('Users updated successfully!');
+          this.router.navigate(['/admin/listuser']); 
       },
       (error) => {
         this.loading = false;

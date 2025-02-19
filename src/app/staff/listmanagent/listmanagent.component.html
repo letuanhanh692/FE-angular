@@ -1,1 +1,48 @@
-<p>listmanagent works!</p>
+<div class="staff-routes-container">
+  <h2>Danh sách chuyến xe</h2>
+
+  <!-- Hiển thị lỗi nếu có -->
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
+
+  <!-- Hiển thị khi không có chuyến xe -->
+  <div *ngIf="staffRoutes.length === 0" class="alert alert-info">
+    Không có chuyến xe nào để hiển thị.
+  </div>
+
+  <!-- Hiển thị danh sách chuyến xe khi có dữ liệu -->
+  <div *ngIf="staffRoutes.length > 0">
+    <div *ngFor="let route of staffRoutes" class="route-card">
+      <!-- Thông tin chuyến xe -->
+      <div class="route-header">
+        <h3>{{ route.startingPlace }} → {{ route.destinationPlace }}</h3>
+        <p><strong>Khoảng cách:</strong> {{ route.distance }} km</p>
+      </div>
+
+      <!-- Lịch trình cho từng chuyến xe -->
+      <div *ngFor="let schedule of route.schedules" class="schedule-card">
+        <div class="schedule-header">
+          <h4>Lịch trình: {{ schedule.departureTime | date:'short' }} → {{ schedule.arrivalTime | date:'short' }}</h4>
+          <p><strong>Ngày chạy:</strong> {{ schedule.date | date:'shortDate' }}</p>
+          <p><strong>Số ghế còn lại:</strong> {{ schedule.availableSeats }}</p>
+          <p><strong>Giá vé:</strong> {{ schedule.price | currency }}</p>
+        </div>
+
+        <!-- Danh sách vé đã đặt cho từng lịch trình -->
+        <div class="bookings-list">
+          <h5>Danh sách đặt vé:</h5>
+          <ul>
+            <li *ngFor="let booking of schedule.bookings">
+              <strong>{{ booking.userName }}</strong> ({{ booking.userEmail }}) - 
+              <strong>Số ghế:</strong> {{ booking.seatNumber }} - 
+              <strong>Tuổi:</strong> {{ booking.age }} - 
+              <strong>Ngày đặt vé:</strong> {{ booking.bookingDate | date:'short' }} - 
+              <strong>Tổng tiền:</strong> {{ booking.totalAmount | currency }}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -31,14 +31,18 @@ import { SearchtripComponent } from './user/searchtrip/searchtrip.component';
 import { TripListComponent } from './user/triplist/triplist.component';
 import { TripdetailComponent } from './user/tripdetail/tripdetail.component';
 import { ConfirmationComponent } from './user/confirmation/confirmation.component';
+
 import { LayoutstaffComponent } from './staff/layoutstaff/layoutstaff.component';
-import { StaffService } from '../service/staff.service';
 import { ListmanagentComponent } from './staff/listmanagent/listmanagent.component';
 import { LayoutuserComponent } from './user/layoutuser/layoutuser.component';
 import { AuthService } from '../service/auth.service';
 import { CancelComponent } from './admin/cancel/cancel.component';
 import { EditcancelComponent } from './admin/editcancel/editcancel.component';
 import { CanceldetailComponent } from './admin/canceldetail/canceldetail.component';
+import { UserinforComponent } from './user/userinfor/userinfor.component';
+import { TripTodayComponent } from './user/triptoday/triptoday.component';
+import { LoginstaffComponent } from './staff/loginstaff/loginstaff.component';
+import { AuthGuard } from '../service/authguard.service';
 
 
 
@@ -85,12 +89,17 @@ export const routes: Routes = [
 
     {
       path: 'staff',
-      component: LayoutstaffComponent,canActivate:[StaffService],
+      component: LayoutstaffComponent,
+      canActivate: [AuthGuard],  // Kiểm tra xem token có hợp lệ không
       children: [
-        { path: '', component: ListmanagentComponent, pathMatch: 'full' },
+        { path: '', redirectTo: 'listmanagent', pathMatch: 'full' },
+        { path: 'listmanagent', component: ListmanagentComponent },
       ]
     },
-    
+    { path: 'loginstaff', component: LoginstaffComponent },
+  
+  
+    { path: 'loginstaff', component: LoginstaffComponent },
     {
       path: 'user',
       component: LayoutuserComponent,
@@ -101,6 +110,8 @@ export const routes: Routes = [
         { path: 'triplist', component: TripListComponent },
         { path: 'tripdetail/:id', component: TripdetailComponent },
         { path: 'confirmation', component: ConfirmationComponent},
+        {path:  'userinfor', component: UserinforComponent},
+        {path:  'triptoday', component: TripTodayComponent},
         { path: '', redirectTo: 'searchtrip', pathMatch: 'full' }
       ]
     }

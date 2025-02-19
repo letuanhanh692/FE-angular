@@ -1,1 +1,46 @@
-<p>loginstaff works!</p>
+<div class="login-page">
+  <div class="login-container">
+    <img src="../../../assets/admin/image/busadmin.jpg" alt="Login Image" class="login-image">
+    <div class="login-form">
+      <h2>Login Staff</h2>
+      <form (ngSubmit)="login()" #loginForm="ngForm">
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input 
+            type="email" 
+            id="email" 
+            class="form-control" 
+            [(ngModel)]="email"
+            name="email" 
+            placeholder="Email" 
+            required
+            (blur)="checkEmailValid()">
+          <div class="text-danger" *ngIf="errorMessage?.email">
+            <small>{{ errorMessage?.email }}</small>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input 
+            type="password" 
+            id="password" 
+            class="form-control" 
+            [(ngModel)]="password"
+            name="password" 
+            placeholder="Password" 
+            required>
+          <div class="text-danger" *ngIf="errorMessage?.password">
+            <small>{{ errorMessage?.password }}</small>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">Login</button>
+
+        <div *ngIf="errorMessage?.general" class="text-danger mt-2">
+          <p>{{ errorMessage?.general }}</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
