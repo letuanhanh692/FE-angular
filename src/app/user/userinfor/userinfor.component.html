@@ -1,35 +1,62 @@
 <div class="card">
-  <h2>Thông tin cá nhân</h2>
-
-  <div *ngIf="!isEditing">
-    <p><strong>Email:</strong> {{ userForm.get('email')?.value }}</p>
-    <p><strong>Họ và Tên:</strong> {{ userForm.get('name')?.value }}</p>
-    <p><strong>Số điện thoại:</strong> {{ userForm.get('phone')?.value }}</p>
-    <p><strong>Địa chỉ:</strong> {{ userForm.get('address')?.value }}</p>
-    <p><strong>ID Card:</strong> {{ userForm.get('idCard')?.value }}</p>
-    <p><strong>Ngày sinh:</strong> {{ userForm.get('dateOfBirth')?.value }}</p>
-    <button (click)="enableEditing()">Chỉnh sửa</button>
+  <div class="user-greeting">
+    <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="User Icon" class="user-icon" />
+    <span class="greeting-text">Hi ! {{ userForm.get('name')?.value }}</span>
+  </div>
+  <div *ngIf="successMessage" class="alert alert-success">
+    {{ successMessage }}
   </div>
 
-  <form *ngIf="isEditing" [formGroup]="userForm">
-    <label>Email:</label>
-    <input formControlName="email" />
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
 
-    <label>Họ và Tên:</label>
-    <input formControlName="name" />
 
-    <label>Số điện thoại:</label>
-    <input formControlName="phone" />
+  <h2>Information</h2>
 
-    <label>Địa chỉ:</label>
-    <input formControlName="address" />
+  <div *ngIf="!isEditing" class="info-view">
+    <div class="row">
+      <div class="column">
+        <p class="info-box"><strong>Email:</strong> {{ userForm.get('email')?.value }}</p>
+        <p class="info-box"><strong>Full Name:</strong> {{ userForm.get('name')?.value }}</p>
+        <p class="info-box"><strong>PhoneNumber:</strong> {{ userForm.get('phone')?.value }}</p>
+      </div>
+      <div class="column">
+        <p class="info-box"><strong>Address:</strong> {{ userForm.get('address')?.value }}</p>
+        <p class="info-box"><strong>ID Card:</strong> {{ userForm.get('idCard')?.value }}</p>
+        <p class="info-box"><strong>Birth Of Date:</strong> {{ userForm.get('dateOfBirth')?.value }}</p>
+      </div>
+    </div>
+    <button class="save-btn" (click)="enableEditing()">Edit</button>
+  </div>
 
-    <label>ID Card:</label>
-    <input formControlName="idCard" />
+  <form *ngIf="isEditing" [formGroup]="userForm" class="edit-form">
+    <div class="row">
+      <div class="column">
+        <label>Email:</label>
+        <input formControlName="email" class="input-field"  />
 
-    <label>Ngày sinh:</label>
-    <input type="date" formControlName="dateOfBirth" />
+        <label>Full Name:</label>
+        <input formControlName="name" class="input-field" />
 
-    <button (click)="saveChanges()">Lưu thay đổi</button>
+        <label>PhoneNumber:</label>
+        <input formControlName="phone" class="input-field" />
+
+        <label>Password:</label>
+      <input formControlName="password" type="password" class="input-field" />
+      </div>
+      <div class="column">
+        <label>Address:</label>
+        <input formControlName="address" class="input-field" />
+
+        <label>ID Card:</label>
+        <input formControlName="idCard" class="input-field" />
+
+        <label>Birth Of Date:</label>
+        <input type="date" formControlName="dateOfBirth" class="input-field" />
+      </div>
+    </div>
+    <button class="save-btn" (click)="saveChanges()">Save Change</button>
+    <button class="cancel-btn" (click)="cancelEditing()">Cancel</button>
   </form>
 </div>

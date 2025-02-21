@@ -1,4 +1,4 @@
-<div class="form-container">
+<!-- <div class="form-container">
   <h2>Đăng ký tài khoản</h2>
   <form (ngSubmit)="onSubmit()" #registerForm="ngForm">
       <div class="form-group">
@@ -41,4 +41,83 @@
       <button type="submit" [disabled]="!registerForm.form.valid">Đăng ký</button>
   </form>
   <p> <a routerLink="/user/loginuser" class="loginuser-link">Đăng nhập ngay</a></p>
-</div>
+</div> -->
+
+
+
+
+<body>
+  <div class="modal active" id="loginModal">
+    <div class="login-container" style="margin-top: 5%;">
+      <div class="login-img"></div>
+      <div class="login-form">
+        <!-- Đổi tiêu đề thành "Sign Up" -->
+        <h2>Sign Up</h2>
+
+        <!-- Social Login (giữ nguyên hoặc tùy chỉnh) -->
+        <div class="social-login">
+          <a href="#" title="Login with Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" title="Login with Twitter"><i class="fab fa-twitter"></i></a>
+        </div>
+
+        <!-- Form đăng ký -->
+        <form id="loginFormContent" (ngSubmit)="onSubmit()" #registerForm="ngForm">
+          <!-- Email -->
+          <div class="input-group">
+            <label for="email">Email</label>
+          <input type="email" id="email" name="email" [(ngModel)]="model.email" required />
+          </div>
+
+          <!-- Mật khẩu -->
+          <div class="input-group">
+            <label for="password">Password</label>
+          <input type="password" id="password" name="password" [(ngModel)]="model.password" required />
+          </div>
+
+          <!-- Họ và Tên -->
+          <div class="input-group">
+            <label for="name">Name</label>
+          <input type="text" id="name" name="name" [(ngModel)]="model.name" required />
+          </div>
+
+          <!-- Số điện thoại -->
+          <div class="input-group">
+            <label for="phone">Phone Number</label>
+            <input type="text" id="phone" name="phone" [(ngModel)]="model.phone" required />
+          </div>
+
+          <!-- Địa chỉ -->
+          <div class="input-group">
+            <label for="address">Address</label>
+          <input type="text" id="address" name="address" [(ngModel)]="model.address" required />
+          </div>
+
+          <!-- Số căn cước (CCCD) -->
+          <div class="input-group">
+            <label for="idCard">ID Card</label>
+            <input type="text" id="idCard" name="idCard" [(ngModel)]="model.idCard" required />
+          </div>
+
+          <!-- Ngày sinh -->
+          <div class="input-group">
+            <label for="dateOfBirth">Birth Of Date</label>
+          <input type="date" id="dateOfBirth" name="dateOfBirth" [(ngModel)]="model.dateOfBirth" required />
+          </div>
+
+
+
+
+          <!-- Nút Submit -->
+          <button type="submit" class='btn-login' [disabled]="!registerForm.form.valid">Đăng ký</button>
+
+          <!-- Link sang trang đăng nhập (nếu có) -->
+          <div class="signup-link">
+            Already a member? <a routerLink="/user/loginuser" class="loginuser-link">Đăng nhập ngay</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/login.js"></script>
+</body>

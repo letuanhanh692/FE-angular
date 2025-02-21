@@ -1,70 +1,98 @@
 .card {
-  max-width: 500px;
-  margin: 40px auto;
+  width: 50%;
+  margin: auto;
   padding: 20px;
-  background: #ffffff;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background: white;
   border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   text-align: center;
+  margin-top: 5%;
+  margin-bottom: 5%;
+
 }
 
-h2 {
-  color: #333;
-  margin-bottom: 20px;
-}
-
-form {
+.user-greeting {
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: left;
+  margin-bottom: 15px;
+
 }
 
-label {
-  font-weight: 600;
-  margin-top: 10px;
+.user-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.greeting-text {
+  font-size: 20px;
+  font-weight: bold;
+
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.column {
+  width: 48%;
   text-align: left;
-  color: #444;
 }
 
-input {
-  padding: 10px;
-  margin-top: 5px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 16px;
+.input-field, .info-box {
   width: 100%;
-  transition: all 0.3s ease-in-out;
-}
-
-input:focus {
-  border-color: #007bff;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-  outline: none;
-}
-
-button {
-  margin-top: 15px;
   padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-size: 16px;
+  background: #f9f9f9;
+  display: block;
+}
+
+.info-box {
+  padding: 15px;
+  background: #f1f1f1;
+}
+
+.save-btn {
+  background: #c82333;
+  color: white;
+  padding: 10px 20px;
   border: none;
-  border-radius: 8px;
+  border-radius: 5px;
   font-size: 16px;
   cursor: pointer;
-  transition: all 0.3s ease-in-out;
+  margin-top: 10px;
+  transition: background 0.3s ease, transform 0.3s ease; /* Thêm hiệu ứng chuyển đổi */
 }
 
-button:first-of-type {
-  background: #007bff;
+.cancel-btn {
+  background: #c82333;
   color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+  margin-left: 15px;
+  transition: background 0.3s ease, transform 0.3s ease; /* Thêm hiệu ứng chuyển đổi */
 }
 
-button:first-of-type:hover {
-  background: #0056b3;
+.save-btn:hover {
+  background: rgb(206, 22, 22);
+  transform: scale(1.05); /* Tăng kích thước nút một chút khi hover */
 }
 
-button:last-of-type {
-  background: #28a745;
-  color: white;
+.cancel-btn:hover {
+  background: rgb(206, 22, 22);
+  transform: scale(1.05); /* Tăng kích thước nút một chút khi hover */
 }
 
-button:last-of-type:hover {
-  background: #218838;
+.save-btn:active, .cancel-btn:active {
+  transform: scale(1); /* Trả về kích thước ban đầu khi nhấn */
 }

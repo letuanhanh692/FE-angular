@@ -1,141 +1,101 @@
-/* Container chung cho chuyến đi */
-.container {
-  display: flex;
-  max-width: 1200px;
-  margin: auto;
-  padding: 20px;
-  gap: 20px;
-  align-items: flex-start; /* Căn lề trên cùng */
-}
-
-/* Danh sách chuyến đi */
+/* Container tổng */
 .trip-list-container {
-  flex: 3;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+  width: 90%;
+  margin: 0 auto;
+  padding: 40px;
 }
 
-/* Hiển thị số lượng kết quả */
-.trip-count {
-  font-size: 16px;
-  font-weight: bold;
-  color: #333;
-  padding: 10px;
-  border-bottom: 1px solid #ddd;
-  margin-bottom: 15px;
-}
-
-/* Card chuyến đi */
-.trip-card {
+/* Form tìm kiếm */
+.search-container {
   display: flex;
+  justify-content: center;
   align-items: center;
-  justify-content: space-between;
-  border: 1px solid #ddd;
-  border-radius: 8px;
+  gap: 10px;
+  margin-top: 5%;
   padding: 15px;
-  background-color: #fff;
-  transition: box-shadow 0.2s ease-in-out;
-  position: relative;
-  gap: 15px;
+  background: #f8f8f8;
+  border-radius: 10px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Ô input */
+.search-container input {
+  padding: 10px;
+  width: 250px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+}
+
+.search-container input:focus {
+  border-color: #ec4c4c;
+}
+
+/* Nút tìm kiếm */
+.search-container button {
+  padding: 10px 15px;
+  background-color: #d54747;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.search-container button:hover {
+  background-color: #b60707;
+}
+
+/* Header danh sách chuyến đi */
+.trip-header {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 10px;
+  background-color: #ffffff;
+  padding: 10px;
+  font-weight: bold;
+  border-radius: 10px;
+  text-align: center;
+}
+
+/* Mỗi thẻ chuyến đi */
+.trip-card {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  background-color: white;
+  transition: transform 0.2s ease-in-out;
 }
 
 .trip-card:hover {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Hình ảnh xe */
-.trip-image {
-  flex: 1;
-  display: flex;
-  align-items: center;
-}
-
-.bus-image {
-  width: 140px;
-  height: 90px;
-  object-fit: cover;
-  border-radius: 5px;
+  transform: scale(1.02);
 }
 
 /* Thông tin chuyến đi */
 .trip-info {
-  flex: 3;
-  text-align: left;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 10px;
+  padding: 10px;
+  text-align: center;
+  background-color: white;
+  border-bottom: 1px solid #eee;
 }
 
-.trip-title {
-  font-weight: bold;
-  font-size: 16px;
-}
-
-.trip-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
-  font-size: 16px;
-}
-
-.trip-meta p {
-  margin: 0;
-}
-
-.trip-meta p strong {
-  font-size: 18px;
-  font-weight: bold;
-}
-
-.trip-totalseat,
-.trip-seats {
-  font-size: 14px;
-  font-weight: bold;
-  color: #555;
-}
-
-/* Giá & đặt vé */
-.trip-actions {
-  flex: 1;
-  text-align: right;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 5px;
-}
-
-.trip-price {
-  font-size: 18px;
-  font-weight: bold;
-  color: #c82333;
-}
-
-.trip-discount {
-  font-size: 14px;
-  color: #777;
-  text-decoration: line-through;
-}
-
-.discount-label {
-  background-color: #de3b4b;
-  color: white;
-  font-size: 12px;
-  padding: 3px 6px;
-  border-radius: 3px;
-}
-
-/* Nút chọn chuyến */
+/* Nút đặt vé */
 .btn-book {
-  background-color: #de3b4b;
+  background-color: #e45b5b;
   color: white;
   border: none;
   padding: 8px 12px;
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
-  font-weight: bold;
+  font-size: 14px;
+  transition: 0.3s;
 }
 
 .btn-book:hover {
-  background-color: #c82333;
+  background-color: #b60707;
 }

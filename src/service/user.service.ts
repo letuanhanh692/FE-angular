@@ -7,7 +7,7 @@ import { UserDTO } from '../app/admin/listuser/user.model';
   providedIn: 'root'
 })
 export class UserService {
-  private apiUrl = 'https://localhost:44311/api/UserDTO'; 
+  private apiUrl = 'https://localhost:44311/api/UserDTO';
 
   constructor(private http: HttpClient) { }
 
@@ -35,5 +35,11 @@ export class UserService {
   deleteUser(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
-  
+  getCurrentUser(): Observable<UserDTO> {
+    return this.http.get<UserDTO>(`${this.apiUrl}/current`);
+  }
+  checkEmailExists(email: string): Observable<boolean> {
+    return this.http.get<boolean>(`${this.apiUrl}/check-email?email=${email}`);
+  }
+
 }

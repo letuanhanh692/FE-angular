@@ -1,20 +1,88 @@
+<section class="bg-cover bg-center w-full h-[80vh] text-center flex items-center justify-center mt-16"
+         style="background-image: url('https://s3.rdbuz.com/web/images/vnm/vnmBannerNew.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat; margin: 0; padding: 0;">
+    <div class="bg-white bg-opacity-75 p-8 rounded-lg max-w-3xl">
+      <h1 class="text-4xl font-bold text-gray-800 mb-2">
+        Welcome to <span class="text-blue-600">My Bus</span>
+      </h1>
+      <p class="text-gray-700 mb-4">
+        Đi để khám phá bản thân, đi để tìm thấy câu trả lời hạnh phúc thật sự
+      </p>
+      <div class="space-x-4">
+        <button class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Khám Phá</button>
+        <button class="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300">Watch Video</button>
+      </div>
+    </div>
+</section>
+
+
+
 <form [formGroup]="searchForm" (ngSubmit)="onSubmit()" class="search-form">
   <div class="form-group">
-    <label for="startingPlace">Nơi đi</label>
-    <input id="startingPlace" formControlName="startingPlace" class="form-control" placeholder="Nhập nơi đi">
+    <label for="startingPlace">Departure</label>
+    <input id="startingPlace" formControlName="startingPlace" class="form-control" placeholder="Enter departure point">
   </div>
 
   <div class="form-group">
-    <label for="destinationPlace">Nơi đến</label>
-    <input id="destinationPlace" formControlName="destinationPlace" class="form-control" placeholder="Nhập nơi đến">
+    <label for="destinationPlace">destination </label>
+    <input id="destinationPlace" formControlName="destinationPlace" class="form-control" placeholder="Enter destination point">
   </div>
 
   <div class="form-group">
-    <label for="departureDateTime">Ngày đi</label>
+    <label for="departureDateTime">departure date</label>
     <input id="departureDateTime" formControlName="departureDateTime" type="date" class="form-control">
   </div>
 
   <button type="submit" class="btn btn-danger" [disabled]="searchForm.invalid">
-    Tìm kiếm xe khách
+    Search
   </button>
 </form>
+<div class="header">
+  <h1 >MY BUS - CHẤT LƯỢNG LÀ DANH DỰ</h1>
+  <p>Được khách hàng tin tưởng và lựa chọn</p>
+</div>
+
+<!-- Features cũ -->
+<div class="section features">
+  <div class="feature">
+    <h3>Tiện Lợi</h3>
+    <p>Mua vé xe mọi lúc, mọi nơi mà không còn tốn nhiều thời gian đến nhà xe hoặc văn phòng đại lý. Giúp bạn mua vé thoải mái.</p>
+  </div>
+  <div class="feature">
+    <h3>Hỗ Trợ 24/7</h3>
+    <p>Luôn hỗ trợ khi bạn cần.</p>
+  </div>
+  <div class="feature">
+    <h3>Thông tin đầy đủ</h3>
+    <p>Chi tiết về chuyến đi.</p>
+  </div>
+  <div class="feature">
+    <h3>Thanh toán dễ dàng</h3>
+    <p>Đơn giản và tiện lợi.</p>
+  </div>
+</div>
+
+<div class="section">
+  <h2>TUYẾN PHỔ BIẾN</h2>
+  <div class="routes">
+      <a href="datve.html?route=CanTho-SaiGon" class="route-card">
+          <img src="https://media.vneconomy.vn/w900/images/upload/2021/04/19/vinbus-10-16178592995771634838613.jpg" alt="Cần Thơ - Sài Gòn">
+          <p>Cần Thơ → Sài Gòn</p>
+          <p>150,000đ</p>
+      </a>
+      <a href="datve.html?route=SaiGon-CanTho" class="route-card">
+          <img src="https://laodongthudo.vn/stores/news_dataimages/khanhly/122016/18/08/4114_images1846872_2.jpg" alt="Sài Gòn - Cần Thơ">
+          <p>Sài Gòn → Cần Thơ</p>
+          <p>150,000đ</p>
+      </a>
+      <a href="datve.html?route=CanTho-CaMau" class="route-card">
+          <img src="https://www.hatuba.com.vn/wp-content/uploads/2019/12/4-5.jpg" alt="Cần Thơ - Cà Mau">
+          <p>Cần Thơ → Cà Mau</p>
+          <p>140,000đ</p>
+      </a>
+      <a href="datve.html?route=SaiGon-KienGiang" class="route-card">
+          <img src="https://nld.mediacdn.vn/291774122806476800/2021/4/8/dsc6499-16178612360861251827594.jpg" alt="Sài Gòn - Kiên Giang">
+          <p>Sài Gòn → Kiên Giang</p>
+          <p>130,000đ</p>
+      </a>
+  </div>
+</div>
