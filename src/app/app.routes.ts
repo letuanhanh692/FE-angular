@@ -38,6 +38,7 @@ import { LayoutstaffComponent } from './staff/layoutstaff/layoutstaff.component'
 import { ListmanagentComponent } from './staff/listmanagent/listmanagent.component';
 import { LayoutuserComponent } from './user/layoutuser/layoutuser.component';
 import { AuthService } from '../service/auth.service';
+<<<<<<< HEAD
 
 import { userInfo } from 'os';
 import { UserinforComponent } from './user/userinfor/userinfor.component';
@@ -55,6 +56,19 @@ import { LoginstaffComponent } from './staff/loginstaff/loginstaff.component';
 
 
 
+=======
+import { CancelComponent } from './admin/cancel/cancel.component';
+import { EditcancelComponent } from './admin/editcancel/editcancel.component';
+import { CanceldetailComponent } from './admin/canceldetail/canceldetail.component';
+import { UserinforComponent } from './user/userinfor/userinfor.component';
+import { TripTodayComponent } from './user/triptoday/triptoday.component';
+import { LoginstaffComponent } from './staff/loginstaff/loginstaff.component';
+import { AuthGuard } from '../service/authguard.service';
+import { ContactComponent } from './user/contact/contact.component';
+import { userInfo } from 'os';
+import { RouteschedulesComponent } from './staff/routeschedules/routeschedules.component';
+import { SchedulebookingsComponent } from './staff/schedulebookings/schedulebookings.component';
+>>>>>>> main
 
 
 export const routes: Routes = [
@@ -98,12 +112,15 @@ export const routes: Routes = [
     {
       path: 'staff',
       component: LayoutstaffComponent,
-      canActivate: [AuthGuard],  // Kiểm tra xem token có hợp lệ không
+      canActivate: [AuthGuard],  
       children: [
-        { path: '', redirectTo: 'listmanagent', pathMatch: 'full' },
+        { path: '', component: ListmanagentComponent, pathMatch: 'full' },
         { path: 'listmanagent', component: ListmanagentComponent },
+        { path: 'schedules/:routeId', component: RouteschedulesComponent },
+        { path: 'schedules/bookings/:scheduleId', component: SchedulebookingsComponent },
       ]
     },
+<<<<<<< HEAD
 
 
 
@@ -112,6 +129,11 @@ export const routes: Routes = [
 
 
 
+=======
+    { path: 'loginstaff', component: LoginstaffComponent },
+  
+  
+>>>>>>> main
     {
       path: 'user',
       component: LayoutuserComponent,

@@ -1,111 +1,18 @@
-/* Bố cục chính */
-div {
-  display: flex;
-  flex-direction: column;
-  margin: 20px;
-  padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.error-message {
-  background-color: #f8d7da;
-  color: #721c24;
-  border: 1px solid #f5c6cb;
-  padding: 10px;
-  border-radius: 5px;
-  margin-bottom: 20px;
-  font-size: 14px;
-}
-
-.error-message p {
-  margin: 0;
-}
-
+/* confirmation.component.css */
 h2 {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 15px;
-  color: #333;
+  text-align: center;
+  color: #007bff;
 }
 
 h3 {
-  font-size: 20px;
-  font-weight: bold;
-  margin-top: 20px;
-  color: #555;
-}
-
-p {
-  font-size: 16px;
-  margin: 5px 0;
-  color: #444;
-}
-
-strong {
   color: #333;
 }
 
-/* Bố cục 2 cột cho thông tin */
-.flex-container {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
+p {
+  font-size: 1.2rem;
 }
 
-.flex-left, .flex-right {
-  flex: 1;
-}
-
-.flex-left {
-  margin-right: 20px;
-}
-
-.flex-right {
-  margin-left: 20px;
-}
-
-/* Phần hiển thị tổng số tiền */
-.total-amount {
-  margin-top: 20px;
-  font-size: 18px;
-  font-weight: bold;
-  color: #28a745;
+.error-message {
+  color: red;
   text-align: center;
-}
-
-.currency {
-  font-size: 20px;
-  font-weight: bold;
-  color: #28a745;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  div {
-    padding: 15px;
-  }
-
-  h2 {
-    font-size: 20px;
-  }
-
-  h3 {
-    font-size: 18px;
-  }
-
-  p {
-    font-size: 14px;
-  }
-
-  .flex-container {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .flex-left, .flex-right {
-    margin-right: 0;
-    margin-left: 0;
-  }
 }

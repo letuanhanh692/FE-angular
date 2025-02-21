@@ -1,0 +1,109 @@
+.bookings-container {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 15px; /* Giảm padding */
+    border-radius: 12px;
+    background: #ffffff;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-height: 90vh; /* Giới hạn chiều cao */
+    overflow-y: auto; /* Cho phép cuộn nếu quá dài */
+}
+
+/* Danh sách vé */
+.booking-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Giảm khoảng cách giữa các vé */
+}
+
+/* Card của mỗi vé */
+.booking-card {
+    padding: 10px; /* Giảm padding */
+    border-radius: 8px;
+    background: #f8f9fa;
+    border: 1px solid #ddd;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: left;
+    position: relative;
+}
+
+.booking-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Thông tin trong từng vé */
+.booking-field {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Hiển thị 2 cột để tiết kiệm không gian */
+    font-size: 14px; /* Giảm kích thước chữ */
+    padding: 4px 8px; /* Giảm padding */
+    border-bottom: 1px dashed #ddd;
+}
+
+.booking-field label {
+    font-weight: bold;
+    color: #555;
+}
+/* Phân trang */
+.pagination-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px; /* Tạo khoảng cách với phần trên */
+    gap: 30px; /* Tạo khoảng cách giữa các phần tử bên trong */
+}
+
+/* Nút phân trang */
+.pagination-controls button {
+    background: #5a9bd5;
+    color: white;
+    padding: 10px 14px;
+    border: none;
+    border-radius: 5px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.pagination-controls button:hover {
+    background: #488ac7;
+    transform: scale(1.03);
+}
+
+
+ /* Chỉ số trang */
+ .pagination-controls span {
+    font-size: 16px;
+    font-weight: 500;
+    color: #666; /* Giảm độ đậm */
+  }
+  .cancel-btn {
+    margin-top: 15px;
+    padding: 10px 15px;
+    background: #6c757d; /* Màu xám nhạt */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+  }
+  
+  .cancel-btn:hover {
+    background: #5a6268; /* Xám tối hơn khi hover */
+    transform: scale(1.05);
+  }
+  .text-blue {
+    color: #007bff; /* Màu xanh nước biển */
+}
+
+.text-red {
+    color: #dc3545; /* Màu đỏ */
+}
+
+.text-green {
+    color: #28a745; /* Màu xanh lá cây */
+}

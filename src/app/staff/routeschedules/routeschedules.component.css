@@ -1,0 +1,124 @@
+/* Container tổng thể */
+.schedule-container {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 20px;
+    border-radius: 12px;
+    background: #fefefe; /* Nhẹ hơn */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); /* Giảm độ đậm */
+    text-align: center;
+  }
+  
+  /* Danh sách lịch trình */
+  .schedule-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px; /* Giảm khoảng cách */
+  }
+  
+  /* Card lịch trình */
+  .schedule-card {
+    width: 100%;
+    padding: 14px;
+    border-radius: 8px; /* Bớt bo cong */
+    background: #f5f5f5; /* Nhạt hơn */
+    border: 1px solid #ddd;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: left;
+  }
+  
+  .schedule-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15); /* Nhẹ hơn */
+  }
+  
+  .schedule-card h3 {
+    font-size: 18px;
+    margin-bottom: 6px;
+    color: #444; /* Giảm độ đậm */
+  }
+  
+  /* Thông tin lịch trình */
+  .schedule-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 15px;
+    margin-bottom: 4px;
+  }
+  
+  .schedule-info p {
+    margin: 0;
+    color: #555; /* Nhạt hơn */
+  }
+  
+  /* Nút "Xem chi tiết" */
+  .schedule-card button {
+    display: block;
+    width: 100%;
+    background: #5cb85c; /* Nhạt hơn */
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+    margin-top: 10px;
+  }
+  
+  .schedule-card button:hover {
+    background: #4cae4c; /* Nhẹ hơn */
+    transform: scale(1.03);
+  }
+  
+  /* Phân trang */
+  .pagination-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+    gap: 15px;
+  }
+  
+  /* Nút phân trang */
+  .pagination-controls button {
+    background: #5a9bd5; /* Nhẹ hơn */
+    color: white;
+    padding: 10px 14px;
+    border: none;
+    border-radius: 5px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+  }
+  
+  .pagination-controls button:hover {
+    background: #488ac7; /* Nhẹ hơn */
+    transform: scale(1.03);
+  }
+  
+  /* Chỉ số trang */
+  .pagination-controls span {
+    font-size: 16px;
+    font-weight: 500;
+    color: #666; /* Giảm độ đậm */
+  }
+  .cancel-btn {
+    margin-top: 15px;
+    padding: 10px 15px;
+    background: #6c757d; /* Màu xám nhạt */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+  }
+  
+  .cancel-btn:hover {
+    background: #5a6268; /* Xám tối hơn khi hover */
+    transform: scale(1.05);
+  }
+  
