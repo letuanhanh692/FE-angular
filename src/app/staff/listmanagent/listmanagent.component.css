@@ -1,89 +1,117 @@
+/* Container chính */
 .staff-routes-container {
-    font-family: Arial, sans-serif;
-    margin: 20px;
-    padding: 10px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-  }
-  
-  .route-card {
-    background-color: #ffffff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    padding: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .route-header {
-    border-bottom: 2px solid #eee;
-    padding-bottom: 15px;
-    margin-bottom: 15px;
-  }
-  
-  .route-title {
-    font-size: 1.5em;
-    color: #007bff;
-  }
-  
-  .route-distance {
-    font-size: 1.1em;
-    color: #555;
-  }
-  
-  .schedule-card {
-    background-color: #f8f8f8;
-    padding: 15px;
-    border-radius: 6px;
-    margin-top: 15px;
-  }
-  
-  .schedule-header {
-    margin-bottom: 10px;
-  }
-  
-  .schedule-header h4 {
-    font-size: 1.3em;
-    margin-bottom: 5px;
-  }
-  
-  .schedule-header p {
-    font-size: 1.1em;
-    color: #555;
-  }
-  
-  .bookings-list {
-    margin-top: 15px;
-  }
-  
-  .booking-item {
-    padding: 10px;
-    background-color: #f1f1f1;
-    border-radius: 5px;
-    margin-bottom: 10px;
-  }
-  
-  .booking-item strong {
-    color: #333;
-  }
-  
-  .booking-item span {
-    color: #666;
-  }
-  
-  .alert {
-    padding: 15px;
-    border-radius: 5px;
-    margin-bottom: 20px;
-  }
-  
-  .alert-info {
-    background-color: #d1ecf1;
-    color: #0c5460;
-  }
-  
-  .alert-danger {
-    background-color: #f8d7da;
-    color: #721c24;
-  }
-  
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 20px;
+  background: #fafafa; /* Nền sáng dịu nhẹ */
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Đổ bóng mềm mại */
+  transition: box-shadow 0.3s ease;
+}
+
+.staff-routes-container:hover {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12); /* Hiệu ứng nổi khi hover */
+}
+
+/* Tiêu đề chính */
+h2 {
+  text-align: center;
+  color: #4a4a4a; /* Màu xám trung tính */
+  font-size: 28px;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+/* Thông báo khi không có dữ liệu */
+.alert-info {
+  text-align: center;
+  padding: 10px;
+  background: #eaf6ff; /* Màu xanh nhạt */
+  color: #3178c6; /* Xanh dịu nhẹ */
+  border-radius: 8px;
+}
+
+/* Mỗi card chuyến xe */
+.route-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white; /* Nền trắng tinh tế */
+  padding: 15px 20px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hiệu ứng nổi khi hover vào card */
+.route-card:hover {
+  transform: translateY(-4px); /* Di chuyển nhẹ lên trên */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Thông tin chuyến xe */
+.route-info h3 {
+  margin: 0;
+  font-size: 20px;
+  color: #2c3e50; /* Xanh đen */
+  font-weight: 600;
+}
+
+.route-details {
+  font-size: 14px;
+  color: #7f8c8d; /* Màu xám nhạt */
+  margin: 5px 0;
+}
+
+/* Nút Xem lịch trình */
+.view-schedule-btn {
+  padding: 8px 16px;
+  background: #5cb85c; /* Màu xanh lá dịu */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.view-schedule-btn:hover {
+  background: #4cae4c; /* Đậm hơn khi hover */
+}
+
+/* Điều khiển phân trang */
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 25px;
+}
+
+/* Nút phân trang */
+.pagination-btn {
+  padding: 8px 16px;
+  margin: 0 10px;
+  background: #3498db; /* Màu xanh dịu */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+/* Hiệu ứng hover cho nút phân trang */
+.pagination-btn:hover {
+  background: #2980b9; /* Xanh đậm hơn khi hover */
+}
+
+/* Nút bị vô hiệu hóa */
+.pagination-btn:disabled {
+  background: #bdc3c7; /* Xám nhạt */
+  cursor: not-allowed; /* Không thể nhấn */
+}
+
+/* Hiển thị số trang */
+.page-info {
+  font-size: 16px;
+  color: #555; /* Màu chữ tối nhẹ */
+}

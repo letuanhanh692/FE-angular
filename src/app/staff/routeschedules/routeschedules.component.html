@@ -1,0 +1,39 @@
+<div class="schedule-container">
+    <h2>List of Schedules</h2>
+
+    <div *ngIf="errorMessage" class="alert alert-danger">
+      {{ errorMessage }}
+    </div>
+
+    <div *ngIf="schedules.length === 0" class="alert alert-info">
+        There are no schedules for this schedules.
+    </div>
+
+    <div *ngIf="schedules.length > 0" class="schedule-list">
+      <div *ngFor="let schedule of paginatedSchedules" class="schedule-card">
+        <h3>
+            Day: {{ schedule.date }}</h3>
+        
+        <div class="schedule-info">
+          <p><strong>Departure time:</strong> {{ schedule.departureTime | date: 'yyyy-MM-dd HH:mm' }}</p>
+          <p><strong>Arrival time:</strong> {{ schedule.arrivalTime | date: 'yyyy-MM-dd HH:mm'}}</p>
+        </div>
+
+        <div class="schedule-info">
+          <p><strong>SvailableSeats:</strong> {{ schedule.availableSeats }}</p>
+          <p><strong>Price:</strong> {{ schedule.price }} VND</p>
+        </div>
+
+        <button (click)="goToBookings(schedule.scheduleId)">
+            List of Ticket Bookers</button>
+      </div>
+    </div>
+
+    <div class="pagination-controls">
+      <button (click)="prevPage()" [disabled]="currentPage === 1">← Before</button>
+      <span>Page {{ currentPage }}</span>
+      <button (click)="nextPage()" [disabled]="currentPage * pageSize >= schedules.length">After →</button>
+    </div>
+
+    <button class="cancel-btn" (click)="goBack()">Cancel</button>
+</div>

@@ -1,0 +1,56 @@
+<div class="bookings-container">
+    <h2>List of Booking</h2>
+
+    <div *ngIf="errorMessage" class="alert alert-danger">
+        {{ errorMessage }}
+    </div>
+
+    <div *ngIf="bookings.length === 0" class="alert alert-info">
+        No tickets have been booked for this itinerary.
+    </div>
+
+    <div *ngIf="bookings.length > 0" class="booking-list">
+        <div *ngFor="let booking of paginatedBookings" class="booking-card">
+            <div class="booking-field">
+                <label>Name:</label>
+                <span>{{ booking.userName }}</span>
+            </div>
+            <div class="booking-field">
+                <label>Email:</label>
+                <span>{{ booking.userEmail }}</span>
+            </div>
+            <div class="booking-field">
+                <label>Seat Number:</label>
+                <span>{{ booking.seatNumber }}</span>
+            </div>
+            <div class="booking-field">
+                <label>Booking Date:</label>
+                <span>{{ booking.bookingDate | date: 'yyyy-MM-dd HH:mm' }}</span>
+            </div>
+            <div class="booking-field">
+                <label>Trạng thái:</label>
+                <span [ngClass]="{
+                    'text-blue': booking.status === 'Booked',
+                    'text-red': booking.status === 'Cancelled',
+                    'text-green': booking.status === 'Completed'
+                }">
+                    {{ booking.status }}
+                </span>
+            </div>
+            
+            
+            <div class="booking-field">
+                <label>Total Amount:</label>
+                <span>{{ booking.totalAmount }} VND</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Phân trang -->
+    <div class="pagination-controls">
+        <button (click)="prevPage()" [disabled]="currentPage === 1">← Before</button>
+        <span>Page {{ currentPage }}</span>
+        <button (click)="nextPage()" [disabled]="currentPage * pageSize >= bookings.length">After →</button>
+    </div>
+    <button class="cancel-btn" (click)="goBack()">Cancel</button>
+</div>
