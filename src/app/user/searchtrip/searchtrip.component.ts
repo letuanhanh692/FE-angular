@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { TripService } from '../../../service/trip.service';  // Sử dụng TripService thay vì SchedulesService
+import { TripService } from '../../../service/trip.service';
 
 @Component({
   selector: 'app-searchtrip',
   standalone: true,
-  imports: [FormsModule,ReactiveFormsModule],  // Thêm các module cần thiết tại đây
+  imports: [FormsModule, ReactiveFormsModule],
   templateUrl: './searchtrip.component.html',
   styleUrls: ['./searchtrip.component.css']
 })
@@ -15,10 +15,9 @@ export class SearchtripComponent {
 
   constructor(
     private fb: FormBuilder,
-    private tripService: TripService,  // Thay thế SchedulesService bằng TripService
+    private tripService: TripService,
     private router: Router
   ) {
-    // Khởi tạo form tìm kiếm với các trường cần thiết
     this.searchForm = this.fb.group({
       startingPlace: ['', Validators.required],
       destinationPlace: ['', Validators.required],
@@ -26,13 +25,27 @@ export class SearchtripComponent {
     });
   }
 
-  // Xử lý sự kiện khi người dùng nhấn nút tìm kiếm
+  // Hàm chuẩn hóa dữ liệu: bỏ dấu, chữ thường và bỏ khoảng trắng thừa
+  normalizeText(text: string): string {
+    return text.normalize('NFD') // Tách dấu
+      .replace(/[\u0300-\u036f]/g, '') // Xóa dấu
+      .replace(/đ/g, 'd').replace(/Đ/g, 'D') // Thay đ -> d
+      .replace(/\s+/g, ' ') // Bỏ khoảng trắng thừa
+      .trim()
+      .toLowerCase(); // Chữ thường
+  }
+
+  // Xử lý khi nhấn nút tìm kiếm
   onSubmit() {
     if (this.searchForm.valid) {
-      const searchData = this.searchForm.value;
+      const searchData = {
+        startingPlace: this.normalizeText(this.searchForm.value.startingPlace),
+        destinationPlace: this.normalizeText(this.searchForm.value.destinationPlace),
+        departureDateTime: this.searchForm.value.departureDateTime
+      };
+
       this.tripService.searchTrips(searchData).subscribe(
         (response) => {
-          // Chuyển sang trang danh sách chuyến đi sau khi tìm kiếm
           this.router.navigate(['user/triplist'], { queryParams: searchData });
         },
         (error) => {

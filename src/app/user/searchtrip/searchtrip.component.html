@@ -17,25 +17,46 @@
 
 
 <form [formGroup]="searchForm" (ngSubmit)="onSubmit()" class="search-form">
-  <div class="form-group">
-    <label for="startingPlace">Departure</label>
-    <input id="startingPlace" formControlName="startingPlace" class="form-control" placeholder="Enter departure point">
+  <!-- Nơi đi -->
+  <div class="form-group full-height">
+
+    <div class="input-group">
+      <span class="input-group-text">
+        <i class="fa-solid fa-right-to-bracket"></i>
+      </span>
+      <input id="startingPlace" formControlName="startingPlace" class="form-control" placeholder="Starting">
+    </div>
   </div>
 
-  <div class="form-group">
-    <label for="destinationPlace">destination </label>
-    <input id="destinationPlace" formControlName="destinationPlace" class="form-control" placeholder="Enter destination point">
+  <!-- Nơi đến -->
+  <div class="form-group full-height">
+
+    <div class="input-group">
+      <span class="input-group-text">
+        <i class="fa-solid fa-right-from-bracket"></i>
+      </span>
+      <input id="destinationPlace" formControlName="destinationPlace" class="form-control" placeholder="Destination">
+    </div>
   </div>
 
-  <div class="form-group">
-    <label for="departureDateTime">departure date</label>
-    <input id="departureDateTime" formControlName="departureDateTime" type="date" class="form-control">
+  <!-- Ngày đi -->
+  <div class="form-group full-height">
+    <div class="input-group">
+      <span class="input-group-text">
+        <i class="fa-solid fa-calendar-days"></i>
+      </span>
+      <input id="departureDateTime" formControlName="departureDateTime" type="date" class="form-control">
+    </div>
   </div>
 
-  <button type="submit" class="btn btn-danger" [disabled]="searchForm.invalid">
+  <!-- Nút tìm kiếm -->
+  <button type="submit" class="btn search-btn full-height" [disabled]="searchForm.invalid">
+    <i class="fa-solid fa-magnifying-glass"></i>
     Search
   </button>
 </form>
+
+
 <div class="header">
   <h1 >MY BUS - CHẤT LƯỢNG LÀ DANH DỰ</h1>
   <p>Được khách hàng tin tưởng và lựa chọn</p>

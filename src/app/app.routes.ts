@@ -1,3 +1,4 @@
+import { AuthGuard } from './../service/authguard.service';
 
 import { BookingdetailComponent } from './admin/bookingdetail/bookingdetail.component';
 import { AddbusComponent } from './admin/addbus/addbus.component';
@@ -34,10 +35,10 @@ import { TripdetailComponent } from './user/tripdetail/tripdetail.component';
 import { ConfirmationComponent } from './user/confirmation/confirmation.component';
 
 import { LayoutstaffComponent } from './staff/layoutstaff/layoutstaff.component';
-import { StaffService } from '../service/staff.service';
 import { ListmanagentComponent } from './staff/listmanagent/listmanagent.component';
 import { LayoutuserComponent } from './user/layoutuser/layoutuser.component';
 import { AuthService } from '../service/auth.service';
+
 import { userInfo } from 'os';
 import { UserinforComponent } from './user/userinfor/userinfor.component';
 
@@ -46,6 +47,9 @@ import { EditcancelComponent } from './admin/editcancel/editcancel.component';
 import { CanceldetailComponent } from './admin/canceldetail/canceldetail.component';
 import { ContactComponent } from './user/contact/contact.component';
 import { TripTodayComponent } from './user/triptoday/triptoday.component';
+import { LoginstaffComponent } from './staff/loginstaff/loginstaff.component';
+
+
 
 
 
@@ -93,11 +97,20 @@ export const routes: Routes = [
 
     {
       path: 'staff',
-      component: LayoutstaffComponent,canActivate:[StaffService],
+      component: LayoutstaffComponent,
+      canActivate: [AuthGuard],  // Kiểm tra xem token có hợp lệ không
       children: [
-        { path: '', component: ListmanagentComponent, pathMatch: 'full' },
+        { path: '', redirectTo: 'listmanagent', pathMatch: 'full' },
+        { path: 'listmanagent', component: ListmanagentComponent },
       ]
     },
+
+
+
+    { path: 'loginstaff', component: LoginstaffComponent },
+
+
+
 
     {
       path: 'user',

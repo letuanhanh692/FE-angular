@@ -64,7 +64,7 @@
   justify-content: space-between;
   border: 1px solid #ddd;
   border-radius: 8px;
-  padding: 15px;
+  padding: 5px 15px;
   background-color: #fff;
   transition: box-shadow 0.2s ease-in-out;
   position: relative;
@@ -83,8 +83,8 @@
 }
 
 .bus-image {
-  width: 140px;
-  height: 90px;
+  width: 130px;
+  height: 160px;
   object-fit: cover;
   border-radius: 5px;
 }
@@ -99,14 +99,16 @@
 }
 
 .trip-title {
+  margin-top: 20px;
   font-weight: bold;
   font-size: 16px;
+  padding: 0px;
 }
 
 .trip-meta {
   display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
+  justify-content: space-between; /* Đẩy time-location sang trái và seat-info sang phải */
+  width: 100%;
   font-size: 16px;
 }
 
@@ -115,7 +117,7 @@
 }
 
 .trip-meta p strong {
-  font-size: 18px;
+  font-size: 28px;
   font-weight: bold;
 }
 
@@ -169,4 +171,24 @@
 
 .btn-book:hover {
   background-color: #c82333;
+}
+.time-location {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+}
+
+.time-location p {
+  margin: 0;
+  font-size: 16px;
+}
+.seat-info {
+  text-align: left;
+  min-width: 150px;
+}
+
+.seat-info p {
+  margin: 0;
+  font-size: 16px;
+
 }

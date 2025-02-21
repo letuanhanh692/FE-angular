@@ -56,17 +56,25 @@
       </div>
 
       <div class="trip-info">
-        <p class="trip-title">{{ trip.busNumber }} ({{ trip.busType }})</p>
+        <p class="trip-title">
+          <i class="fa-solid fa-bus-simple"></i> {{ trip.busNumber }} ({{ trip.busType }})
+        </p>
+
         <div class="trip-meta">
-          <p><strong>🕒 {{ trip.departureTime | date:'shortTime' }}</strong> {{ trip.startingPlace }}</p>
-          <p><strong>⏳ {{ trip.duration }}</strong></p>
-          <p><strong>📍 {{ trip.arrivalTime | date:'shortTime' }}</strong> {{ trip.destinationPlace }}</p>
+          <div class="time-location">
+            <p><i class="fa-solid fa-genderless" style="font-size: 20px;"></i> <strong style="margin-left: 5px;">{{ trip.departureTime | date:'shortTime' }}</strong> - {{ trip.startingPlace }}</p>
+            <i class="fa-solid fa-ellipsis-vertical" style="margin-left: 3px;font-size: 20px;"></i>
+            <p><i class="fa-solid fa-location-dot" style="font-size: 20px;"></i> <strong style="margin-left: 5px;">{{ trip.arrivalTime | date:'shortTime' }}</strong> - {{ trip.destinationPlace }}</p>
+          </div>
+
+          <div class="seat-info">
+            <p>Total Seats: {{ trip.totalSeats }}</p>
+            <p>Available: {{ trip.availableSeats }}</p>
+          </div>
         </div>
-        <br>
-        <div>
-          <p class="trip-totalseat"> Total Seats:{{ trip.totalSeats }}  </p>
-          <p class="trip-seats">Available: {{ trip.availableSeats }} </p>
-        </div>
+
+
+
       </div>
 
       <div class="trip-actions">

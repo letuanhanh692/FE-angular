@@ -11,7 +11,7 @@ describe('TriptodayComponent', () => {
       imports: [TriptodayComponent]
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(TriptodayComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

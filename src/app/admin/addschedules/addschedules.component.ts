@@ -39,7 +39,7 @@ export class AddschedulesComponent implements OnInit {
   
     this.http.get<any>('https://localhost:44311/api/Routes').subscribe(
       (response) => {
-        console.log('Routes:', response);  // Kiểm tra dữ liệu trả về
+        console.log('Routes:', response); 
         this.routes = response;  
       },
       (error) => {

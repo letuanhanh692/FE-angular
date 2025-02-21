@@ -1,7 +1,7 @@
 <div class="card">
   <div class="user-greeting">
-    <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="User Icon" class="user-icon" />
-    <span class="greeting-text">Hi ! {{ userForm.get('name')?.value }}</span>
+    <i class="fa-solid fa-circle-user" style="font-size: 75px;"></i>
+    <span class="greeting-text" style="margin-left: 10px; font-size:35px;">Hi ! {{ userForm.get('name')?.value }}</span>
   </div>
   <div *ngIf="successMessage" class="alert alert-success">
     {{ successMessage }}

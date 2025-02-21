@@ -1,0 +1,89 @@
+.staff-routes-container {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+  }
+  
+  .route-card {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .route-header {
+    border-bottom: 2px solid #eee;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+  }
+  
+  .route-title {
+    font-size: 1.5em;
+    color: #007bff;
+  }
+  
+  .route-distance {
+    font-size: 1.1em;
+    color: #555;
+  }
+  
+  .schedule-card {
+    background-color: #f8f8f8;
+    padding: 15px;
+    border-radius: 6px;
+    margin-top: 15px;
+  }
+  
+  .schedule-header {
+    margin-bottom: 10px;
+  }
+  
+  .schedule-header h4 {
+    font-size: 1.3em;
+    margin-bottom: 5px;
+  }
+  
+  .schedule-header p {
+    font-size: 1.1em;
+    color: #555;
+  }
+  
+  .bookings-list {
+    margin-top: 15px;
+  }
+  
+  .booking-item {
+    padding: 10px;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .booking-item strong {
+    color: #333;
+  }
+  
+  .booking-item span {
+    color: #666;
+  }
+  
+  .alert {
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+  
+  .alert-info {
+    background-color: #d1ecf1;
+    color: #0c5460;
+  }
+  
+  .alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+  }
+  
