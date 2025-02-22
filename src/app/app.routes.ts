@@ -1,3 +1,4 @@
+import { AuthGuard } from './../service/authguard.service';
 
 import { BookingdetailComponent } from './admin/bookingdetail/bookingdetail.component';
 import { AddbusComponent } from './admin/addbus/addbus.component';
@@ -43,7 +44,6 @@ import { CanceldetailComponent } from './admin/canceldetail/canceldetail.compone
 import { UserinforComponent } from './user/userinfor/userinfor.component';
 import { TripTodayComponent } from './user/triptoday/triptoday.component';
 import { LoginstaffComponent } from './staff/loginstaff/loginstaff.component';
-import { AuthGuard } from '../service/authguard.service';
 import { ContactComponent } from './user/contact/contact.component';
 import { userInfo } from 'os';
 import { RouteschedulesComponent } from './staff/routeschedules/routeschedules.component';

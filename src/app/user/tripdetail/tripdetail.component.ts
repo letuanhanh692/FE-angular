@@ -75,7 +75,6 @@ export class TripdetailComponent implements OnInit {
     });
   }
 
-  // ✅ Hàm kiểm tra email đã tồn tại hay chưa
   checkEmailExists(email: string): void {
     if (!email || email === this.loggedInUserEmail) {
       this.emailError = ''; // Email trùng với tài khoản đang đăng nhập thì không báo lỗi
@@ -92,7 +91,6 @@ export class TripdetailComponent implements OnInit {
     );
   }
 
-  // ✅ Cập nhật hàm đặt vé để kiểm tra email trước khi gửi
   bookTrip(): void {
     if (this.customerForm.invalid || this.emailError) {
       alert(this.emailError || 'Vui lòng điền đầy đủ thông tin!');
@@ -112,9 +110,9 @@ export class TripdetailComponent implements OnInit {
       scheduleId: this.tripId,
       ...this.customerForm.value
     };
-
     this.bookingService.createBooking(bookingData).subscribe(
       (response) => {
+        console.log(response);
         this.router.navigate(['/user/confirmation'], { state: response });
       },
       (error) => {

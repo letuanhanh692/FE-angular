@@ -1,44 +1,108 @@
+/* ===== Search Form ===== */
 .search-form {
   display: flex;
-  gap: 15px;
   align-items: center;
-  justify-content: center; /* Căn giữa theo chiều ngang */
-  background: #fafafa;
-  padding: 20px; /* Tăng padding cho đẹp hơn */
-  border-radius: 20px; /* Bo tròn 4 góc */
+  background: #ffffff;
+  padding: 0;
+  border-radius: 50px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  max-width: 1000px; /* Giới hạn chiều rộng của form */
-  margin: 50px auto; /* Căn giữa theo chiều dọc */
+  max-width: 1000px;
+  margin: 50px auto;
+  overflow: hidden;
 }
 
+/* ===== Form Group (Input + Icon) ===== */
 .form-group {
   display: flex;
   flex-direction: column;
-  text-align: center; /* Căn giữa chữ */
+  flex: 1;
+  border-right: 1px solid #ccc;
 }
 
-.form-control {
-  width: 250px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 10px; /* Bo tròn góc input */
-  text-align: center;
+.form-group label {
+  font-size: 12px;
+  color: #888;
+  margin: 5px 0 0 10px;
 }
 
-button {
-  padding: 12px 20px;
-  font-size: 20px;
-  border-radius: 20px; /* Bo tròn góc nút */
-  background-color: #dc3545; /* Màu đỏ giống nút trong ảnh */
-  color: white;
+/* ===== Input Group ===== */
+.input-group {
+  display: flex;
+  align-items: center;
+  height: 60px;
+}
+
+.input-group-text {
+  background-color: transparent;
   border: none;
-  cursor: pointer;
-  transition: 0.3s;
+  padding: 0 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Căn icon giữa */
 }
 
-button:hover {
-  background-color: #c82333; /* Hiệu ứng hover */
+.input-group-text i {
+  font-size: 20px;
+  color: #555;
+  margin-left: 5px;
 }
+
+/* ===== Input ===== */
+.form-control {
+  border: none;
+  outline: none;
+  padding: 0 10px;
+  font-size: 20px;
+  flex: 1;
+  text-align: left; /* Căn giữa nội dung */
+}
+
+/* ===== Bỏ viền xanh lam khi focus ===== */
+.form-control:focus {
+  box-shadow: none;
+  border: none;
+}
+
+/* ===== Nút tìm kiếm ===== */
+.search-btn {
+  background-color: #dc3545; /* Màu đỏ */
+  color: white;
+  padding: 0 30px;
+  border: none;
+  font-weight: bold;
+  height: 80px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+}
+
+.search-btn:hover {
+  background-color: #c82333;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .search-form {
+    flex-direction: column;
+    border-radius: 20px;
+  }
+
+  .search-btn {
+    width: 100%;
+    border-radius: 0 0 20px 20px;
+  }
+
+  .form-group {
+    border-right: none;
+    border-bottom: 1px solid #ccc;
+  }
+}
+
+
+
+
+/* phần dưới */
 .section {
   padding: 20px 100px;
   max-width: auto;

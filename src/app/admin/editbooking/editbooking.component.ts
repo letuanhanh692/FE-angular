@@ -7,27 +7,27 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 @Component({
   selector: 'app-editbooking',
   standalone: true,
-  imports: [HttpClientModule,CommonModule,FormsModule,RouterModule],
+  imports: [HttpClientModule, CommonModule, FormsModule, RouterModule],
   templateUrl: './editbooking.component.html',
   styleUrl: './editbooking.component.css'
 })
 export class EditbookingComponent implements OnInit {
-  booking = {
-    id: 0,
+  booking: any = {
+    bookingId: 0,
     userId: 0,
     scheduleId: 0,
     name: '',
     age: 0,
     phone: '',
     email: '',
-    status:'',
+    status: '',
     seatNumber: 0
   };
 
   usersList: any[] = [];  
   schedulesList: any[] = []; 
-
   errorMessage: string | null = null;
+  isEdit: boolean = false;
 
   constructor(
     private router: Router,
@@ -36,20 +36,18 @@ export class EditbookingComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Lấy danh sách người dùng và lịch trình
     this.loadUsers();
     this.loadSchedules();
 
-    // Lấy ID từ URL để lấy thông tin đặt chỗ cần chỉnh sửa
     const bookingId = this.activatedRoute.snapshot.paramMap.get('id');
     if (bookingId) {
+      this.isEdit = true;
       this.loadBookingData(bookingId);
     }
   }
 
-  // Lấy danh sách người dùng
   loadUsers() {
-    this.http.get<any>('https://localhost:44311/api/UserDTO').subscribe(
+    this.http.get<any>('https://localhost:44311/api/UserDTO?page=0&limit=0').subscribe(
       (response) => {
         this.usersList = response;
       },
@@ -59,44 +57,74 @@ export class EditbookingComponent implements OnInit {
     );
   }
 
-  // Lấy danh sách lịch trình
   loadSchedules() {
-    this.http.get<any>('https://localhost:44311/api/Schedules').subscribe(
+    this.http.get<any>('https://localhost:44311/api/Schedules?page=0&pageSize=0').subscribe(
       (response) => {
-        this.schedulesList = response.schedules;
+        this.schedulesList = response.schedules;  
+  
+        const routeIds = this.schedulesList.map((schedule: any) => schedule.routeId);
+  
+        const uniqueRouteIds = Array.from(new Set(routeIds));
+  
+        const routeDetails: any = {};
+  
+        uniqueRouteIds.forEach((routeId: number) => {
+          this.http.get<any>(`https://localhost:44311/api/Routes/${routeId}`).subscribe(
+            (route) => {
+              routeDetails[routeId] = {
+                startingPlace: route.startingPlace,
+                destinationPlace: route.destinationPlace
+              };
+  
+              this.schedulesList.forEach((schedule: any) => {
+                if (schedule.routeId === routeId) {
+                  schedule.routeName = `${route.startingPlace} - ${route.destinationPlace}`;
+                }
+              });
+            },
+            (error) => {
+              console.error('Không thể tải thông tin Route', error);
+            }
+          );
+        });
       },
       (error) => {
-        this.errorMessage = 'Unable to load schedule list';
+        this.errorMessage = 'Không thể tải danh sách lịch trình';
       }
     );
   }
 
-  // Lấy thông tin đặt chỗ cần chỉnh sửa
   loadBookingData(id: string) {
     this.http.get<any>(`https://localhost:44311/api/Bookings/${id}`).subscribe(
       (response) => {
-        this.booking = response;  
+        this.booking = response;
       },
       (error) => {
-        this.errorMessage = 'Unable to load booking informations';
+        this.errorMessage = 'Unable to load booking information';
       }
     );
   }
 
   onSubmit() {
-    if (this.isValid()) {
-      this.http.put<any>(`https://localhost:44311/api/Bookings/${this.booking.id}`, this.booking).subscribe(
-        (response) => {
-          alert('Booking updated successfully!');
-          this.router.navigate(['/admin/listbooking']);  // Điều hướng về danh sách đặt chỗ
-        },
-        (error) => {
-          this.errorMessage = 'An error occurred while updating the reservation.';
-        }
-      );
-    } else {
-      this.errorMessage = 'Please fill in all information';
+    if (!this.isValid()) {
+      this.errorMessage = 'Please fill all required fields correctly';
+      return;
     }
+    const bookingId = this.booking?.bookingId;
+    if (!bookingId) {
+      this.errorMessage = 'Booking ID is missing!';
+      return;
+    }
+
+    this.http.put(`https://localhost:44311/api/Bookings/${this.booking.bookingId}`, this.booking).subscribe(
+      () => {
+        alert('Cập nhật đặt chỗ thành công!');
+        this.router.navigate(['/admin/listbooking']);
+      },
+      (error) => {
+        this.errorMessage = 'Lỗi khi cập nhật đặt chỗ!';
+      }
+    );
   }
 
   onCancel() {
