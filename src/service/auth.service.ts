@@ -64,4 +64,23 @@ export class AuthService {
 
     this.router.navigate(['/src/app/user/searchtrip']);
   }
+  /** 🟢 Lấy email từ token */
+getUserEmail(): string | null {
+  const token = this.getToken();
+  if (!token) {
+    console.log("Không tìm thấy token!");
+    return null;
+  }
+
+  try {
+    const decodedToken: any = jwtDecode(token);
+    console.log("Token decoded:", decodedToken);
+    return decodedToken?.email || null;
+  } catch (error) {
+    console.error('Lỗi giải mã token:', error);
+    return null;
+  }
+}
+
+
 }

@@ -1,62 +1,80 @@
-<div class="trip-container">
-  <!-- Thông tin chuyến đi -->
-  <div class="trip-details">
-    <h2>Chi tiết chuyến đi</h2>
-    <p><strong>Bus Number:</strong> {{ tripDetails.busNumber }}</p>
-    <p><strong>Bus Type:</strong> {{ tripDetails.busType }}</p>
-    <p><strong>Departure Time:</strong> {{ tripDetails.departureTime | date: 'short' }}</p>
-    <p><strong>Arrival Time:</strong> {{ tripDetails.arrivalTime | date: 'short' }}</p>
-    <p><strong>Starting Place:</strong> {{ tripDetails.startingPlace }}</p>
-    <p><strong>Destination Place:</strong> {{ tripDetails.destinationPlace }}</p>
-    <p><strong>Distance:</strong> {{ tripDetails.distance }} km</p>
-    <p><strong>Giá vé 1 ghế:</strong> {{ price | currency: 'VND' }}</p>
+<div class="booking-page">
+
+  <!-- Cột bên trái: Khối đăng nhập + Form thông tin liên hệ -->
+  <div class="left-column">
+   <h2 style="float: left;margin-bottom:20px">Reservation</h2>
+   <br>
+    <!-- Khối đăng nhập/đăng ký ưu đãi -->
+    <div class="login-box">
+      <p>
+        Please enter your information correctly
+        <a href="#">Đăng nhập</a> hoặc <a href="#">Đăng ký</a>
+      </p>
+    </div>
+
+    <!-- Khối form thông tin liên hệ -->
+    <div class="contact-box">
+      <form [formGroup]="customerForm" (ngSubmit)="bookTrip()" class="search-form">
+        <div class="form-group">
+          <label for="name">Full Name *</label>
+          <input id="name" formControlName="name" type="text" placeholder="Full Name">
+        </div>
+
+        <!-- Phone Number & Email cùng hàng -->
+        <div class="form-row">
+          <div class="form-group half-width">
+            <label for="phone">Phone Number *</label>
+            <input id="phone" formControlName="phone" type="text" placeholder="0123456789">
+          </div>
+
+          <div class="form-group half-width">
+            <label for="email">Email *</label>
+            <input id="email" formControlName="email" type="email" placeholder="email@example.com">
+          </div>
+        </div>
+
+        <!-- Age & Seat Number cùng hàng -->
+        <div class="form-row">
+          <div class="form-group half-width">
+            <label for="age">Age *</label>
+            <input id="age" formControlName="age" type="number" placeholder="">
+          </div>
+
+          <div class="form-group half-width">
+            <label for="seatNumber">Seats Number</label>
+            <input id="seatNumber" formControlName="seatNumber" type="number" min="1" value="1">
+          </div>
+        </div>
+
+        <div class="submit-button">
+          <button type="submit" [disabled]="customerForm.invalid">Continue</button>
+        </div>
+      </form>
+    </div>
+
   </div>
 
-  <!-- Form nhập thông tin -->
-  <div class="booking-form">
-    <h3>Đặt Vé</h3>
-    <form [formGroup]="customerForm" (ngSubmit)="bookTrip()">
-      <div>
-        <label for="name">Tên:</label>
-        <input id="name" formControlName="name" type="text" required />
-        <div *ngIf="customerForm.get('name')?.invalid && customerForm.get('name')?.touched">
-          <small class="error">Tên là bắt buộc.</small>
-        </div>
-      </div>
+  <!-- Cột bên phải: Khối thông tin chuyến đi -->
+  <div class="right-column">
+    <div class="trip-box">
+      <p> <i class="fa-solid fa-bus-simple" style="font-size: 20px;color:blue"></i><strong>Route:</strong> <span style="font-weight: bold;"> {{ tripDetails.startingPlace }} </span><i class="fa-solid fa-right-long" style="color: blue;"></i><span style="font-weight: bold;"> {{ tripDetails.destinationPlace }} </span></p>
+      <br>
+      <p><i class="fa-solid fa-genderless" style="font-size: 20px;color:rgb(200, 21, 21)"></i><strong>Departure Time:</strong><span> {{ tripDetails.departureTime | date: 'short' }}</span></p>
+      <p> <i class="fa-solid fa-ellipsis-vertical" style="margin-left:5px;font-size: 20px;color:rgb(0, 0, 0)"></i> <strong style="margin-left: 15px;">{{ tripDetails.distance }} km </strong></p>
+      <p><i class="fa-solid fa-location-dot" style="font-size: 20px;color:rgb(200, 21, 21)"></i><strong>Arrival Time:</strong><span> {{ tripDetails.arrivalTime | date: 'short' }}</span></p>
+      <br>
+      <p><strong>Bus Number:</strong><span> {{ tripDetails.busNumber }}</span></p>
+      <p><strong>Bus Type:</strong> <span>{{ tripDetails.busType }}</span></p>
+      <br>
+      <p><strong>Price/seat:</strong> <span style="color: green;font-weight: bold;font-size:20px">{{ price | currency }}</span></p>
 
+      <hr>
       <div>
-        <label for="age">Tuổi:</label>
-        <input id="age" formControlName="age" type="number" required min="0" />
-        <div *ngIf="customerForm.get('age')?.invalid && customerForm.get('age')?.touched">
-          <small class="error">Tuổi phải là số dương.</small>
-        </div>
+        <p><strong>Không đổi lịch</strong></p>
+        <p>Không thể đổi lịch sau khi đặt chỗ.</p>
+        <p><strong>Không hoàn lại</strong></p>
+        <p>Khung thời gian để đổi chuyến đã kết thúc vào ngày Chủ Nhật, 16 thg 2 2025 11:15</p>
       </div>
-
-      <div>
-        <label for="email">Email:</label>
-        <input id="email" formControlName="email" type="email" required />
-        <div *ngIf="customerForm.get('email')?.invalid && customerForm.get('email')?.touched">
-          <small class="error">Email không hợp lệ.</small>
-        </div>
-      </div>
-
-      <div>
-        <label for="phone">Số điện thoại:</label>
-        <input id="phone" formControlName="phone" type="text" required />
-        <div *ngIf="customerForm.get('phone')?.invalid && customerForm.get('phone')?.touched">
-          <small class="error">Số điện thoại là bắt buộc.</small>
-        </div>
-      </div>
-
-      <div>
-        <label for="seatNumber">Số lượng ghế:</label>
-        <input id="seatNumber" formControlName="seatNumber" type="number" required min="1" />
-        <div *ngIf="customerForm.get('seatNumber')?.invalid && customerForm.get('seatNumber')?.touched">
-          <small class="error">Số ghế phải là số dương và lớn hơn 0.</small>
-        </div>
-      </div>
-
-      <button type="submit" [disabled]="customerForm.invalid">Đặt Vé</button>
-    </form>
+    </div>
   </div>
 </div>

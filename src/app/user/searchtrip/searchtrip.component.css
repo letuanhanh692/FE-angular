@@ -2,16 +2,9 @@
 .search-form {
   display: flex;
   align-items: center;
-<<<<<<< HEAD
   background: #ffffff;
   padding: 0;
   border-radius: 50px;
-=======
-  justify-content: center; /* Căn giữa theo chiều ngang */
-  background: #fff;
-  padding: 20px; /* Tăng padding cho đẹp hơn */
-  border-radius: 20px; /* Bo tròn 4 góc */
->>>>>>> main
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   max-width: 1000px;
   margin: 50px auto;
@@ -32,7 +25,6 @@
   margin: 5px 0 0 10px;
 }
 
-<<<<<<< HEAD
 /* ===== Input Group ===== */
 .input-group {
   display: flex;
@@ -42,14 +34,6 @@
 
 .input-group-text {
   background-color: transparent;
-=======
-button {
-  padding: 12px 20px;
-  font-size: 16px;
-  border-radius: 20px; /* Bo tròn góc nút */
-  background-color: #dc3545; /* Màu đỏ giống nút trong ảnh */
-  color: white;
->>>>>>> main
   border: none;
   padding: 0 15px;
   display: flex;
@@ -62,7 +46,6 @@ button {
   color: #555;
   margin-left: 5px;
 }
-<<<<<<< HEAD
 
 /* ===== Input ===== */
 .form-control {
@@ -71,13 +54,16 @@ button {
   padding: 0 10px;
   font-size: 20px;
   flex: 1;
-  text-align: left; /* Căn giữa nội dung */
+  text-align: left;
+  background-color: #fff; 
+  color: #333;
 }
 
-/* ===== Bỏ viền xanh lam khi focus ===== */
+
 .form-control:focus {
   box-shadow: none;
   border: none;
+  background-color: #fff; /* Đảm bảo nền trắng khi focus */
 }
 
 /* ===== Nút tìm kiếm ===== */
@@ -186,5 +172,3 @@ button {
   border-radius: 8px;
   cursor: pointer;
 }
-=======
->>>>>>> main

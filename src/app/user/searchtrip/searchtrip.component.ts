@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TripService } from '../../../service/trip.service';
@@ -10,8 +10,9 @@ import { TripService } from '../../../service/trip.service';
   templateUrl: './searchtrip.component.html',
   styleUrls: ['./searchtrip.component.css']
 })
-export class SearchtripComponent {
+export class SearchtripComponent implements OnInit {
   searchForm: FormGroup;
+  minDate: string = ''; // ✅ Khai báo minDate
 
   constructor(
     private fb: FormBuilder,
@@ -23,6 +24,12 @@ export class SearchtripComponent {
       destinationPlace: ['', Validators.required],
       departureDateTime: ['']
     });
+  }
+
+  ngOnInit(): void {
+    // ✅ Đặt minDate thành ngày hiện tại theo định dạng YYYY-MM-DD
+    const today = new Date();
+    this.minDate = today.toISOString().split('T')[0];
   }
 
   // Hàm chuẩn hóa dữ liệu: bỏ dấu, chữ thường và bỏ khoảng trắng thừa
@@ -45,8 +52,20 @@ export class SearchtripComponent {
       };
 
       this.tripService.searchTrips(searchData).subscribe(
-        (response) => {
-          this.router.navigate(['user/triplist'], { queryParams: searchData });
+        (response: any[]) => {
+          const currentTime = new Date();
+
+          // Lọc các chuyến có thời gian khởi hành từ hiện tại trở đi
+          const filteredTrips = response.filter(trip => {
+            const tripDepartureTime = new Date(trip.departureDateTime);
+            return tripDepartureTime >= currentTime;
+          });
+
+          // Điều hướng đến trang danh sách chuyến đi với dữ liệu đã lọc
+          this.router.navigate(['user/triplist'], {
+            queryParams: searchData,
+            state: { trips: filteredTrips }
+          });
         },
         (error) => {
           console.error('Error fetching trips', error);

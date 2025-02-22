@@ -2,10 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TripService } from '../../../service/trip.service';
 import { BookingService } from '../../../service/booking.service';
-import { AuthService } from '../../../service/auth.service';  // ✅ Thêm AuthService
+import { AuthService } from '../../../service/auth.service';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormGroup, FormBuilder, Validators, FormsModule } from '@angular/forms';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, debounceTime } from 'rxjs/operators';
+import { UserService } from '../../../service/user.service'; // ✅ Import UserService
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-tripdetail',
@@ -20,14 +22,17 @@ export class TripdetailComponent implements OnInit {
   price: number = 0;
   loading: boolean = false;
   error: string = '';
+  loggedInUserEmail: string = ''; // ✅ Lưu email người đang đăng nhập
 
   customerForm: FormGroup;
+  emailError: string = ''; // ✅ Biến lưu lỗi email
 
   constructor(
     private route: ActivatedRoute,
     private tripService: TripService,
     private bookingService: BookingService,
-    private authService: AuthService, // ✅ Inject AuthService
+    private authService: AuthService,
+    private userService: UserService, // ✅ Inject UserService
     private router: Router,
     private fb: FormBuilder
   ) {
@@ -58,21 +63,45 @@ export class TripdetailComponent implements OnInit {
         this.error = 'Không thể tải thông tin chuyến đi.';
       }
     );
+
+    // ✅ Lấy email người dùng đang đăng nhập
+    this.loggedInUserEmail = this.authService.getUserEmail() || '';
+
+
+
+    // ✅ Kiểm tra email khi nhập vào form
+    this.customerForm.get('email')?.valueChanges.pipe(debounceTime(300)).subscribe(email => {
+      this.checkEmailExists(email);
+    });
   }
 
+  // ✅ Hàm kiểm tra email đã tồn tại hay chưa
+  checkEmailExists(email: string): void {
+    if (!email || email === this.loggedInUserEmail) {
+      this.emailError = ''; // Email trùng với tài khoản đang đăng nhập thì không báo lỗi
+      return;
+    }
 
-  // ✅ Cập nhật hàm đặt vé để tự động lấy userId
+    this.userService.checkEmailExists(email).subscribe(
+      (exists) => {
+        this.emailError = exists ? 'Email này đã được sử dụng!' : '';
+      },
+      (error) => {
+        console.error('Lỗi kiểm tra email:', error);
+      }
+    );
+  }
+
+  // ✅ Cập nhật hàm đặt vé để kiểm tra email trước khi gửi
   bookTrip(): void {
-    if (this.customerForm.invalid) {
-      alert('Vui lòng điền đầy đủ thông tin!');
+    if (this.customerForm.invalid || this.emailError) {
+      alert(this.emailError || 'Vui lòng điền đầy đủ thông tin!');
       return;
     }
 
     const userId = this.authService.getUserId();
     if (!userId) {
       alert('Bạn chưa đăng nhập! Vui lòng đăng nhập để tiếp tục.');
-
-      // ✅ Lưu lại ID chuyến đi trước khi chuyển hướng đến trang đăng nhập
       localStorage.setItem('redirectAfterLogin', this.tripId.toString());
       this.router.navigate(['/user/loginuser']);
       return;
@@ -94,5 +123,4 @@ export class TripdetailComponent implements OnInit {
       }
     );
   }
-
 }

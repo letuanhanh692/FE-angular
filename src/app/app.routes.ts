@@ -38,37 +38,21 @@ import { LayoutstaffComponent } from './staff/layoutstaff/layoutstaff.component'
 import { ListmanagentComponent } from './staff/listmanagent/listmanagent.component';
 import { LayoutuserComponent } from './user/layoutuser/layoutuser.component';
 import { AuthService } from '../service/auth.service';
-<<<<<<< HEAD
-
-import { userInfo } from 'os';
-import { UserinforComponent } from './user/userinfor/userinfor.component';
-
-import { CancelComponent } from './admin/cancel/cancel.component';
-import { EditcancelComponent } from './admin/editcancel/editcancel.component';
-import { CanceldetailComponent } from './admin/canceldetail/canceldetail.component';
-import { ContactComponent } from './user/contact/contact.component';
-import { TripTodayComponent } from './user/triptoday/triptoday.component';
-import { LoginstaffComponent } from './staff/loginstaff/loginstaff.component';
-
-
-
-
-
-
-
-=======
 import { CancelComponent } from './admin/cancel/cancel.component';
 import { EditcancelComponent } from './admin/editcancel/editcancel.component';
 import { CanceldetailComponent } from './admin/canceldetail/canceldetail.component';
 import { UserinforComponent } from './user/userinfor/userinfor.component';
 import { TripTodayComponent } from './user/triptoday/triptoday.component';
 import { LoginstaffComponent } from './staff/loginstaff/loginstaff.component';
-import { AuthGuard } from '../service/authguard.service';
+
 import { ContactComponent } from './user/contact/contact.component';
 import { userInfo } from 'os';
 import { RouteschedulesComponent } from './staff/routeschedules/routeschedules.component';
 import { SchedulebookingsComponent } from './staff/schedulebookings/schedulebookings.component';
->>>>>>> main
+import { OrderListComponent } from './user/orderlist/orderlist.component';
+
+
+
 
 
 export const routes: Routes = [
@@ -112,7 +96,7 @@ export const routes: Routes = [
     {
       path: 'staff',
       component: LayoutstaffComponent,
-      canActivate: [AuthGuard],  
+      canActivate: [AuthGuard],
       children: [
         { path: '', component: ListmanagentComponent, pathMatch: 'full' },
         { path: 'listmanagent', component: ListmanagentComponent },
@@ -120,20 +104,9 @@ export const routes: Routes = [
         { path: 'schedules/bookings/:scheduleId', component: SchedulebookingsComponent },
       ]
     },
-<<<<<<< HEAD
-
-
-
     { path: 'loginstaff', component: LoginstaffComponent },
 
 
-
-
-=======
-    { path: 'loginstaff', component: LoginstaffComponent },
-  
-  
->>>>>>> main
     {
       path: 'user',
       component: LayoutuserComponent,
@@ -147,6 +120,7 @@ export const routes: Routes = [
         {path:  'userinfor', component: UserinforComponent},
         {path:  'triptoday',component: TripTodayComponent},
         {path:  'contact', component: ContactComponent},
+        {path:  'orderlist', component: OrderListComponent},
         { path: '', redirectTo: 'searchtrip', pathMatch: 'full' }
       ]
     }

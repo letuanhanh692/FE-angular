@@ -1,0 +1,67 @@
+/* Tổng thể thẻ booking */
+.booking-card {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background-color: #fff;
+  padding: 16px;
+  position: relative;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  max-width: 700px;
+  margin: auto;
+}
+
+
+
+
+/* Cột Thông Tin Bổ Sung */
+.extra-info {
+  width: 60%;
+  margin-top: 55px;
+}
+
+/* Trạng thái vé */
+.status-label {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.status-cancelled {
+  background-color: #9ca3af;
+  color: white;
+}
+
+.status-booked {
+  background-color: #facc15;
+  color: white;
+}
+
+.status-completed {
+  background-color: #7fe922;
+  color: black;
+}
+
+/* Hiển thị tên và dữ liệu trên cùng 1 hàng */
+.info-row {
+  display: flex;
+  gap: 0px;
+  font-size: 0.9rem;
+}
+
+.info-row .label {
+  font-weight: 600;
+  min-width: 80px; /* Đảm bảo khoảng cách giữa label và value */
+}
+
+.info-row .value {
+  color: #374151; /* text-gray-700 */
+}
+
+.text-green-600 {
+  color: #16a34a; /* Màu xanh cho tổng tiền */
+}

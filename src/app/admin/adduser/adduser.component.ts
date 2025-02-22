@@ -40,9 +40,9 @@ export class AdduserComponent {
     if (this.user.username && this.user.address && this.user.email && this.user.phone && this.user.dateOfBirth && this.user.idCard && this.user.password && this.user.roleId) {
       this.userService.addUser(this.user).subscribe({
         next: () => {
-          console.log('User added successfully!');
-          this.onCancel();
+          alert('User added successfully!');
           this.router.navigate(['/admin/listuser']);
+          this.onCancel();
         },
         error: (err) => {
           console.error('Error adding user:', err);

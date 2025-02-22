@@ -1,0 +1,60 @@
+<div class="p-4 space-y-4">
+  <h2 class="text-2xl font-bold mb-4">Lịch sử Đặt Vé</h2>
+
+  <div *ngFor="let booking of bookings" class="booking-card">
+
+    <!-- Trạng thái (góc phải trên) -->
+    <div class="status-label" [ngClass]="{
+      'status-cancelled': booking.status === 'Cancelled',
+      'status-booked': booking.status === 'Booked',
+      'status-completed': booking.status === 'Completed'
+    }">
+      {{ booking.status }}
+    </div>
+
+    <!-- Bố cục chia 2 cột -->
+    <div class="grid grid-cols-2 gap-4">
+
+      <!-- Cột Thông Tin Chính -->
+      <div class="main-info space-y-2">
+        <!-- Ngày + Giờ -->
+        <div class="text-sm font-semibold text-gray-500 uppercase">
+          {{ booking.departTime | date: 'EEE, dd/MM/yyyy' }}
+        </div>
+        <div class="text-4xl font-bold text-blue-600 leading-tight">
+          {{ booking.departTime | date: 'HH:mm' }}
+        </div>
+
+        <!-- Nhà xe & Biển số -->
+        <div *ngIf="booking.busNumber" class="text-gray-700">
+          <strong>{{ booking.busNumber }} - {{ booking.busType }}</strong>
+        </div>
+
+        <!-- Hành trình -->
+        <div class="text-gray-700">
+          {{ booking.startingPlace }} - {{ booking.destinationPlace }}
+        </div>
+      </div>
+
+      <!-- Cột Thông Tin Bổ Sung -->
+      <div class="extra-info space-y-2 text-left">
+        <div class="info-row">
+          <span class="label">Ngày đặt:</span>
+          <span class="value">{{ booking.bookingDate | date: 'dd/MM/yyyy HH:mm' }}</span>
+        </div>
+
+        <div class="info-row">
+          <span class="label">Số ghế:</span>
+          <span class="value">{{ booking.seatNumber }}</span>
+        </div>
+
+        <div class="info-row">
+          <span class="label">Tổng tiền:</span>
+          <span class="value text-green-600">{{ booking.totalAmount | currency:'VND' }}</span>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
