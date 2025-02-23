@@ -2,28 +2,28 @@
   <p>{{ error }}</p>
 </div>
 
-<div *ngIf="!error">
-  <h2>Xác Nhận Đặt Vé</h2>
+<div *ngIf="!error" class="container">
+  <h2 class="title">Xác Nhận Đặt Vé</h2>
 
-  <div class="flex-container">
-    <div class="flex-left">
-      <h3>Thông Tin Chuyến Đi:</h3>
-      <p><strong>Bus Number:</strong> {{ bookingData.busNumber }}</p>
-      <p><strong>Bus Type:</strong> {{ bookingData.busType }}</p>
-      <p><strong>Departure Time:</strong> {{ bookingData.departureTime | date: 'short' }}</p>
-      <p><strong>Arrival Time:</strong> {{ bookingData.arrivalTime | date: 'short' }}</p>
-      <p><strong>Starting Place:</strong> {{ bookingData.startingPlace }}</p>
-      <p><strong>Destination Place:</strong> {{ bookingData.destinationPlace }}</p>
-      <p><strong>Distance:</strong> {{ bookingData.distance }} km</p>
+  <div class="info-container">
+    <div class="info-box">
+      <h3>Thông Tin Chuyến Đi</h3>
+      <p><strong>Bus Number:</strong> <span>{{ bookingData.busNumber }}</span></p>
+      <p><strong>Bus Type:</strong> <span>{{ bookingData.busType }}</span></p>
+      <p><strong>Departure Time:</strong> <span>{{ bookingData.departTime | date: 'short' }}</span></p>
+      <p><strong>Arrival Time:</strong> <span>{{ bookingData.arrivalTime | date: 'short' }}</span></p>
+      <p><strong>Starting Place:</strong> <span>{{ bookingData.startingPlace }}</span></p>
+      <p><strong>Destination Place:</strong> <span>{{ bookingData.destinationPlace }}</span></p>
+      <p><strong>Distance:</strong> <span>{{ bookingData.distance }} km</span></p>
     </div>
 
-    <div class="flex-right">
-      <h3>Thông Tin Khách Hàng:</h3>
-      <p><strong>Tên:</strong> {{ bookingData.name }}</p>
-      <p><strong>Tuổi:</strong> {{ bookingData.age }}</p>
-      <p><strong>Email:</strong> {{ bookingData.email }}</p>
-      <p><strong>Số Điện Thoại:</strong> {{ bookingData.phone }}</p>
-      <p><strong>Số ghế:</strong> {{ bookingData.seatNumber }}</p>
+    <div class="info-box">
+      <h3>Thông Tin Khách Hàng</h3>
+      <p><strong>Tên:</strong> <span>{{ bookingData.name }}</span></p>
+      <p><strong>Tuổi:</strong> <span>{{ bookingData.age }}</span></p>
+      <p><strong>Email:</strong> <span>{{ bookingData.email }}</span></p>
+      <p><strong>Số Điện Thoại:</strong> <span>{{ bookingData.phone }}</span></p>
+      <p><strong>Số ghế:</strong> <span>{{ bookingData.seatNumber }}</span></p>
     </div>
   </div>
 
@@ -31,6 +31,18 @@
     <h3>Tổng Số Tiền Cần Trả:</h3>
     <p class="currency">{{ bookingData.totalAmount | currency }}</p>
   </div>
-  <button (click)="goBack()">Quay lại</button>
 
+  <!-- Chọn phương thức thanh toán -->
+  <div class="payment-method">
+    <label>
+      <input type="radio" name="paymentMethod" value="transfer" [(ngModel)]="selectedPaymentMethod" />
+      Thanh Toán VNPay
+    </label>
+  </div>
+
+  <div class="button-group">
+    <button class="payment-button" [disabled]="!selectedPaymentMethod" (click)="handlePayment()">
+      Thanh Toán
+    </button>
+  </div>
 </div>
