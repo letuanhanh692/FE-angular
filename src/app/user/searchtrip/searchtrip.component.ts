@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TripService } from '../../../service/trip.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-searchtrip',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule],
+  imports: [FormsModule, ReactiveFormsModule,CommonModule],
   templateUrl: './searchtrip.component.html',
   styleUrls: ['./searchtrip.component.css']
 })

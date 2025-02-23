@@ -36,6 +36,6 @@ export class UserdetailComponent {
     
   }
   onCancel(): void {
-    this.router.navigate(['/admin/route']);
+    this.router.navigate(['/admin/listuser']);
   }
 }

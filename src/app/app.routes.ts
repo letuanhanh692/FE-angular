@@ -44,7 +44,6 @@ import { CanceldetailComponent } from './admin/canceldetail/canceldetail.compone
 import { UserinforComponent } from './user/userinfor/userinfor.component';
 import { TripTodayComponent } from './user/triptoday/triptoday.component';
 import { LoginstaffComponent } from './staff/loginstaff/loginstaff.component';
-
 import { ContactComponent } from './user/contact/contact.component';
 import { userInfo } from 'os';
 import { RouteschedulesComponent } from './staff/routeschedules/routeschedules.component';

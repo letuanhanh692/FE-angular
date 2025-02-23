@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class TripService {
-  private apiUrl = 'https://localhost:44311/api/Schedules/search';  // URL của API
+  private apiUrl = 'https://localhost:44311/api/Schedules';  // URL của API
 
   constructor(private http: HttpClient) {}
 
@@ -19,10 +19,10 @@ export class TripService {
       params = params.set('departureDateTime', searchData.departureDateTime);
     }
 
-    return this.http.get<any>(this.apiUrl, { params });
+    return this.http.get<any>('https://localhost:44311/api/Schedules/search', { params });
   }
   getTripDetails(id: number) {
-    return this.http.get(`https://localhost:44311/api/Schedules/${id}`);  // Đảm bảo URL API chính xác
+    return this.http.get(`https://localhost:44311/api/Schedules/${id}`);  
   }
   getTripForToday(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/today`);
