@@ -118,12 +118,12 @@ export class EditbookingComponent implements OnInit {
 
     this.http.put(`https://localhost:44311/api/Bookings/${this.booking.bookingId}`, this.booking).subscribe(
       () => {
-        alert('Cập nhật đặt chỗ thành công!');
+        alert('Booking update successful!');
         this.router.navigate(['/admin/listbooking']);
       },
       (error) => {
         this.errorMessage = 'Lỗi khi cập nhật đặt chỗ!';
-      }
+      } 
     );
   }
 
