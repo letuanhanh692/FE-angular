@@ -44,10 +44,18 @@ export class TripListComponent {
         (response) => {
           console.log('Dữ liệu chuyến đi:', response);
           if (Array.isArray(response) && response.length > 0) {
-            this.trips = response.map(trip => ({
+            const currentTime = new Date(); // Lấy thời gian hiện tại
+
+            // Lọc chỉ lấy các chuyến có thời gian khởi hành từ hiện tại trở về sau
+            this.trips = response
+            .filter(trip => new Date(trip.departureTime) >= currentTime)
+            .map(trip => ({
               ...trip,
-              imageBus: trip.imageBus || 'assets/default-bus.jpg' // Ảnh mặc định nếu không có
+              departureTime: new Date(trip.departureTime), // 👉 Chuyển sang Date object
+              imageBus: trip.imageBus || 'assets/default-bus.jpg'
             }));
+
+
             this.filteredTrips = [...this.trips];
             this.applyFilters();
           } else {
@@ -61,6 +69,7 @@ export class TripListComponent {
       );
     }
   }
+
 
   applyFilters(): void {
     this.filteredTrips = this.trips.filter(trip =>
@@ -85,6 +94,7 @@ export class TripListComponent {
       }
     });
   }
+
 
   viewTripDetail(tripId: number) {
     this.router.navigate([`/user/tripdetail/${tripId}`]);

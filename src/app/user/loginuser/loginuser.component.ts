@@ -40,38 +40,39 @@ export class LoginuserComponent {
       .subscribe({
         next: (response) => {
           console.log("Phản hồi từ API:", response);
-          localStorage.setItem('token', response.token);
+          localStorage.setItem('token', response.token); // Lưu token
 
           const token = response.token;
           const decodedToken = this.decodeToken(token);
-          const userId = decodedToken?.userId;
+          const userId = decodedToken?.userId; // Lấy userId từ token
 
           if (userId) {
+            localStorage.setItem('userId', userId); // ✅ Lưu userId vào localStorage
+
             this.userService.getUserById(userId).subscribe({
               next: (userInfo) => {
                 console.log("Thông tin người dùng:", userInfo);
-                localStorage.setItem('userInfor', JSON.stringify(userInfo));
-                this.router.navigate(['/user/searchtrip']);
+                localStorage.setItem('userInfor', JSON.stringify(userInfo)); // Lưu thông tin user
+                this.router.navigate(['/user/searchtrip']); // Điều hướng đến trang tìm kiếm chuyến đi
               },
               error: (err) => {
                 console.error("Lỗi khi lấy thông tin người dùng:", err);
                 this.errorMessage = 'Không thể lấy thông tin người dùng.';
-                window.alert(this.errorMessage); // Hiển thị alert lỗi
+                window.alert(this.errorMessage);
               }
             });
           } else {
             this.errorMessage = 'ID người dùng không hợp lệ.';
-            window.alert(this.errorMessage); // Hiển thị alert lỗi
+            window.alert(this.errorMessage);
           }
         },
         error: (err) => {
           console.error("Lỗi đăng nhập:", err);
           this.errorMessage = err.error?.message || 'Tên đăng nhập hoặc mật khẩu không đúng!';
-          window.alert(this.errorMessage); // Hiển thị alert lỗi
+          window.alert(this.errorMessage);
         }
       });
   }
-
 
   // Giải mã JWT để lấy thông tin từ token
   private decodeToken(token: string): any {
@@ -83,4 +84,11 @@ export class LoginuserComponent {
       return null;
     }
   }
+  logout() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('userId');
+    localStorage.removeItem('userInfor');
+    this.router.navigate(['/login']); // Chuyển về trang đăng nhập
+  }
+
 }

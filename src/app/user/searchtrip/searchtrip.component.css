@@ -54,13 +54,16 @@
   padding: 0 10px;
   font-size: 20px;
   flex: 1;
-  text-align: left; /* Căn giữa nội dung */
+  text-align: left;
+  background-color: #fff; 
+  color: #333;
 }
 
-/* ===== Bỏ viền xanh lam khi focus ===== */
+
 .form-control:focus {
   box-shadow: none;
   border: none;
+  background-color: #fff; /* Đảm bảo nền trắng khi focus */
 }
 
 /* ===== Nút tìm kiếm ===== */

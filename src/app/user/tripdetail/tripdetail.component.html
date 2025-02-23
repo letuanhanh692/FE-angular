@@ -1,13 +1,13 @@
 <div class="booking-page">
+
   <!-- Cột bên trái: Khối đăng nhập + Form thông tin liên hệ -->
   <div class="left-column">
-
+   <h2 style="float: left;margin-bottom:20px;border-radius:20px;">Reservation</h2>
+   <br>
     <!-- Khối đăng nhập/đăng ký ưu đãi -->
     <div class="login-box">
-      <p>
-        Please enter your information correctly
-        <a href="#">Đăng nhập</a> hoặc <a href="#">Đăng ký</a>
-      </p>
+      <h4 style="font-weight: bolder;">Contact Information</h4>
+
     </div>
 
     <!-- Khối form thông tin liên hệ -->
@@ -15,27 +15,33 @@
       <form [formGroup]="customerForm" (ngSubmit)="bookTrip()" class="search-form">
         <div class="form-group">
           <label for="name">Full Name *</label>
-          <input id="name" formControlName="name" type="text" placeholder="VD: Nguyễn Văn A">
+          <input id="name" formControlName="name" type="text" placeholder="Full Name">
         </div>
 
-        <div class="form-group">
-          <label for="phone">Phone Number *</label>
-          <input id="phone" formControlName="phone" type="text" placeholder="VD: 0123456789">
+        <!-- Phone Number & Email cùng hàng -->
+        <div class="form-row">
+          <div class="form-group half-width">
+            <label for="phone">Phone Number *</label>
+            <input id="phone" formControlName="phone" type="text" placeholder="0123456789">
+          </div>
+
+          <div class="form-group half-width">
+            <label for="email">Email *</label>
+            <input id="email" formControlName="email" type="email" placeholder="email@example.com">
+          </div>
         </div>
 
-        <div class="form-group">
-          <label for="email">Email *</label>
-          <input id="email" formControlName="email" type="email" placeholder="email@example.com">
-        </div>
+        <!-- Age & Seat Number cùng hàng -->
+        <div class="form-row">
+          <div class="form-group half-width">
+            <label for="age">Age *</label>
+            <input id="age" formControlName="age" type="number" placeholder="">
+          </div>
 
-        <div class="form-group">
-          <label for="age">Age *</label>
-          <input id="age" formControlName="age" type="number" placeholder="12">
-        </div>
-
-        <div class="form-group">
-          <label for="seatNumber">Seats Number</label>
-          <input id="seatNumber" formControlName="seatNumber" type="number" min="1" value="1">
+          <div class="form-group half-width">
+            <label for="seatNumber">Seats Number</label>
+            <input id="seatNumber" formControlName="seatNumber" type="number" min="1" value="1">
+          </div>
         </div>
 
         <div class="submit-button">
@@ -43,20 +49,23 @@
         </div>
       </form>
     </div>
+
   </div>
 
   <!-- Cột bên phải: Khối thông tin chuyến đi -->
   <div class="right-column">
     <div class="trip-box">
-      <h4>Trip Detail</h4>
-      <p><strong>Bus Number:</strong> {{ tripDetails.busNumber }}</p>
-      <p><strong>Bus Type:</strong> {{ tripDetails.busType }}</p>
-      <p><strong>Departure Time:</strong> {{ tripDetails.departureTime | date: 'short' }}</p>
-      <p><strong>Arrival Time:</strong> {{ tripDetails.arrivalTime | date: 'short' }}</p>
-      <p><strong>Starting Place:</strong> {{ tripDetails.startingPlace }}</p>
-      <p><strong>Destination Place:</strong> {{ tripDetails.destinationPlace }}</p>
-      <p><strong>Distance:</strong> {{ tripDetails.distance }} km</p>
-      <p><strong>Price/seat:</strong> {{ price | currency }}</p>
+      <p> <i class="fa-solid fa-bus-simple" style="font-size: 20px;color:blue"></i><strong>Route:</strong> <span style="font-weight: bold;"> {{ tripDetails.startingPlace }} </span><i class="fa-solid fa-right-long" style="color: blue;"></i><span style="font-weight: bold;"> {{ tripDetails.destinationPlace }} </span></p>
+      <br>
+      <p><i class="fa-solid fa-genderless" style="font-size: 20px;color:rgb(200, 21, 21)"></i><strong>Departure Time:</strong><span> {{ tripDetails.departureTime | date: 'short' }}</span></p>
+      <p> <i class="fa-solid fa-ellipsis-vertical" style="margin-left:5px;font-size: 20px;color:rgb(0, 0, 0)"></i> <strong style="margin-left: 15px;">{{ tripDetails.distance }} km </strong></p>
+      <p><i class="fa-solid fa-location-dot" style="font-size: 20px;color:rgb(200, 21, 21)"></i><strong>Arrival Time:</strong><span> {{ tripDetails.arrivalTime | date: 'short' }}</span></p>
+      <br>
+      <p><strong>Bus Number:</strong><span> {{ tripDetails.busNumber }}</span></p>
+      <p><strong>Bus Type:</strong> <span>{{ tripDetails.busType }}</span></p>
+      <br>
+      <p><strong>Price/seat:</strong> <span style="color: green;font-weight: bold;font-size:20px">{{ price | currency }}</span></p>
+
       <hr>
       <div>
         <p><strong>Không đổi lịch</strong></p>

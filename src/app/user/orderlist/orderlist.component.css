@@ -1,0 +1,122 @@
+/* Thẻ booking */
+.booking-card {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background-color: #fff;
+  padding: 16px;
+  position: relative;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Trạng thái vé */
+.status-label {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.status-cancelled {
+  background-color: #9ca3af;
+  color: white;
+}
+
+.status-booked {
+  background-color: #facc15;
+  color: white;
+}
+
+.status-completed {
+  background-color: #7fe922;
+  color: black;
+}
+
+/* Bố cục 2 cột */
+.main-info, .extra-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Thông tin bổ sung */
+.info-row {
+  display: flex;
+  margin-top: 20px;
+  font-size: 0.9rem;
+}
+
+.info-row .label {
+  font-weight: 600;
+  min-width: 80px;
+}
+
+.info-row .value {
+  color: #374151;
+}
+
+.text-green-600 {
+  color: #16a34a;
+}
+
+/* Responsive Grid */
+@media (min-width: 768px) {
+  .booking-card {
+    height: 100%;
+  }
+}
+/* Thẻ lọc */
+.filter-card {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background-color: #fff;
+  padding: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Trạng thái vé */
+.status-label {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.status-cancelled {
+  background-color: #9ca3af;
+  color: white;
+}
+
+.status-booked {
+  background-color: #facc15;
+  color: white;
+}
+
+.status-completed {
+  background-color: #7fe922;
+  color: black;
+}
+
+/* Thẻ đơn hàng */
+.booking-card {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background-color: #fff;
+  padding: 16px;
+  position: relative;
+  transition: transform 0.2s ease;
+}
+
+.booking-card:hover {
+  transform: scale(1.02);
+}
+

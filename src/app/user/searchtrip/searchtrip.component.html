@@ -17,6 +17,7 @@
 
 
 <form [formGroup]="searchForm" (ngSubmit)="onSubmit()" class="search-form">
+
   <!-- Nơi đi -->
   <div class="form-group full-height">
 
@@ -39,15 +40,20 @@
     </div>
   </div>
 
-  <!-- Ngày đi -->
   <div class="form-group full-height">
     <div class="input-group">
       <span class="input-group-text">
         <i class="fa-solid fa-calendar-days"></i>
       </span>
-      <input id="departureDateTime" formControlName="departureDateTime" type="date" class="form-control">
+      <input id="departureDateTime"
+             formControlName="departureDateTime"
+             type="date"
+             class="form-control"
+             [min]="minDate">
     </div>
   </div>
+
+
 
   <!-- Nút tìm kiếm -->
   <button type="submit" class="btn search-btn full-height" [disabled]="searchForm.invalid">
@@ -58,52 +64,134 @@
 
 
 <div class="header">
-  <h1 >MY BUS - CHẤT LƯỢNG LÀ DANH DỰ</h1>
-  <p>Được khách hàng tin tưởng và lựa chọn</p>
+  <h1 >MY BUS - QUALITY IS HONOR</h1>
+  <p>Trusted and chosen by customers</p>
 </div>
 
 <!-- Features cũ -->
 <div class="section features">
   <div class="feature">
-    <h3>Tiện Lợi</h3>
-    <p>Mua vé xe mọi lúc, mọi nơi mà không còn tốn nhiều thời gian đến nhà xe hoặc văn phòng đại lý. Giúp bạn mua vé thoải mái.</p>
+    <h3>CONVENIENT</h3>
+    <p>Buy bus tickets anytime, anywhere without spending a lot of time going to the bus station or agency office. Helps you buy tickets comfortably.</p>
   </div>
   <div class="feature">
-    <h3>Hỗ Trợ 24/7</h3>
-    <p>Luôn hỗ trợ khi bạn cần.</p>
+    <h3>24/7 Support</h3>
+    <p>Always there when you need it.</p>
   </div>
   <div class="feature">
     <h3>Thông tin đầy đủ</h3>
-    <p>Chi tiết về chuyến đi.</p>
+    <p>Trip details.</p>
   </div>
   <div class="feature">
-    <h3>Thanh toán dễ dàng</h3>
-    <p>Đơn giản và tiện lợi.</p>
+    <h3>Easy Payment</h3>
+    <p>Simple and convenient.</p>
   </div>
 </div>
 
 <div class="section">
-  <h2>TUYẾN PHỔ BIẾN</h2>
-  <div class="routes">
-      <a href="datve.html?route=CanTho-SaiGon" class="route-card">
-          <img src="https://media.vneconomy.vn/w900/images/upload/2021/04/19/vinbus-10-16178592995771634838613.jpg" alt="Cần Thơ - Sài Gòn">
-          <p>Cần Thơ → Sài Gòn</p>
-          <p>150,000đ</p>
-      </a>
-      <a href="datve.html?route=SaiGon-CanTho" class="route-card">
-          <img src="https://laodongthudo.vn/stores/news_dataimages/khanhly/122016/18/08/4114_images1846872_2.jpg" alt="Sài Gòn - Cần Thơ">
-          <p>Sài Gòn → Cần Thơ</p>
-          <p>150,000đ</p>
-      </a>
-      <a href="datve.html?route=CanTho-CaMau" class="route-card">
-          <img src="https://www.hatuba.com.vn/wp-content/uploads/2019/12/4-5.jpg" alt="Cần Thơ - Cà Mau">
-          <p>Cần Thơ → Cà Mau</p>
-          <p>140,000đ</p>
-      </a>
-      <a href="datve.html?route=SaiGon-KienGiang" class="route-card">
-          <img src="https://nld.mediacdn.vn/291774122806476800/2021/4/8/dsc6499-16178612360861251827594.jpg" alt="Sài Gòn - Kiên Giang">
-          <p>Sài Gòn → Kiên Giang</p>
-          <p>130,000đ</p>
-      </a>
+  <h2 class="text-2xl font-bold mb-6">COMMON ROUTES</h2>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+  <div class="bg-white rounded shadow p-4">
+  <img
+  src="https://media.vneconomy.vn/w900/images/upload/2021/04/19/vinbus-10-16178592995771634838613.jpg"
+  alt="Ho Chi Minh City"
+  class="w-full h-40 object-cover rounded mb-4"
+  />
+  <h3 class="text-sm text-gray-500">Route from</h3>
+  <p class="text-xl font-semibold mb-4">Tp. Ho Chi Minh</p>
+  <ul class="space-y-3 text-sm">
+
+  <li class="flex justify-between items-center">
+  <div>
+  <div class="font-medium">Da Lat</div>
+
   </div>
-</div>
+  <div class="font-semibold text-gray-800">290</div>
+  </li>
+  <li class="flex justify-between items-center">
+  <div>
+  <div class="font-medium">Can Tho</div>
+
+  </div>
+  <div class="font-semibold text-gray-800">200</div>
+  </li>
+  <li class="flex justify-between items-center">
+  <div>
+  <div class="font-medium">Long Xuyen</div>
+
+  </div>
+  <div class="font-semibold text-gray-800">210</div>
+  </li>
+  </ul>
+  </div>
+
+
+  <div class="bg-white rounded shadow p-4">
+  <img
+  src="https://laodongthudo.vn/stores/news_dataimages/khanhly/122016/18/08/4114_images1846872_2.jpg"
+  alt="Da Lat"
+  class="w-full h-40 object-cover rounded mb-4"
+  />
+  <h3 class="text-sm text-gray-500">Route from</h3>
+  <p class="text-xl font-semibold mb-4">Da Lat</p>
+  <ul class="space-y-3 text-sm">
+  <li class="flex justify-between items-center">
+  <div>
+  <div class="font-medium">TP. Ho Chi Minh</div>
+
+  </div>
+  <div class="font-semibold text-gray-800">290</div>
+  </li>
+  <li class="flex justify-between items-center">
+  <div>
+  <div class="font-medium">Da Nang</div>
+
+  </div>
+  <div class="font-semibold text-gray-800">350</div>
+  </li>
+  <li class="flex justify-between items-center">
+  <div>
+  <div class="font-medium">Can Tho</div>
+
+  </div>
+  <div class="font-semibold text-gray-800">435</div>
+  </li>
+  </ul>
+  </div>
+
+
+  <div class="bg-white rounded shadow p-4">
+  <img
+  src="https://nld.mediacdn.vn/291774122806476800/2021/4/8/dsc6499-16178612360861251827594.jpg"
+  alt="Da Nang"
+  class="w-full h-40 object-cover rounded mb-4"
+  />
+  <h3 class="text-sm text-gray-500">Route from</h3>
+  <p class="text-xl font-semibold mb-4">Da Nang</p>
+  <ul class="space-y-3 text-sm">
+  <li class="flex justify-between items-center">
+  <div>
+  <div class="font-medium">Da Lat</div>
+
+  </div>
+  <div class="font-semibold text-gray-800">410</div>
+  </li>
+  <li class="flex justify-between items-center">
+  <div>
+  <div class="font-medium">An Suong BX</div>
+
+  </div>
+  <div class="font-semibold text-gray-800">270</div>
+  </li>
+  <li class="flex justify-between items-center">
+  <div>
+  <div class="font-medium">Nha Trang</div>
+
+  </div>
+  <div class="font-semibold text-gray-800">320</div>
+  </li>
+  </ul>
+  </div>
+  </div>
+  </div>

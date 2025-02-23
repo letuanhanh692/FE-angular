@@ -50,4 +50,7 @@ export class BookingService {
 
     return this.http.get<any>(`https://localhost:44311/api/Bookings/search`, { params, headers: this.getAuthHeaders() });
   }
+  getBookingsByUserId(userId: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/user/${userId}`);
+  }
 }

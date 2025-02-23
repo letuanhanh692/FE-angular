@@ -48,6 +48,10 @@ import { ContactComponent } from './user/contact/contact.component';
 import { userInfo } from 'os';
 import { RouteschedulesComponent } from './staff/routeschedules/routeschedules.component';
 import { SchedulebookingsComponent } from './staff/schedulebookings/schedulebookings.component';
+import { OrderListComponent } from './user/orderlist/orderlist.component';
+
+
+
 
 
 export const routes: Routes = [
@@ -91,7 +95,7 @@ export const routes: Routes = [
     {
       path: 'staff',
       component: LayoutstaffComponent,
-      canActivate: [AuthGuard],  
+      canActivate: [AuthGuard],
       children: [
         { path: '', component: ListmanagentComponent, pathMatch: 'full' },
         { path: 'listmanagent', component: ListmanagentComponent },
@@ -100,8 +104,8 @@ export const routes: Routes = [
       ]
     },
     { path: 'loginstaff', component: LoginstaffComponent },
-  
-  
+
+
     {
       path: 'user',
       component: LayoutuserComponent,
@@ -115,6 +119,7 @@ export const routes: Routes = [
         {path:  'userinfor', component: UserinforComponent},
         {path:  'triptoday',component: TripTodayComponent},
         {path:  'contact', component: ContactComponent},
+        {path:  'orderlist', component: OrderListComponent},
         { path: '', redirectTo: 'searchtrip', pathMatch: 'full' }
       ]
     }

@@ -1,0 +1,81 @@
+<div class="p-4 space-y-4 w-[80%] mx-auto" style="margin-top: 50px;">
+
+  <!-- Thanh lọc theo trạng thái -->
+  <div class="flex justify-center space-x-6 border rounded-lg p-2">
+    <button
+      class="px-4 py-2 rounded-lg focus:outline-none"
+      [ngClass]="{'text-blue-600 border-b-2 border-blue-600': selectedStatus === 'All'}"
+      (click)="filterBookings('All')">All</button>
+
+    <button
+      class="px-4 py-2 rounded-lg focus:outline-none"
+      [ngClass]="{'text-blue-600 border-b-2 border-blue-600': selectedStatus === 'Booked'}"
+      (click)="filterBookings('Booked')">Booked</button>
+
+    <button
+      class="px-4 py-2 rounded-lg focus:outline-none"
+      [ngClass]="{'text-blue-600 border-b-2 border-blue-600': selectedStatus === 'Completed'}"
+      (click)="filterBookings('Completed')">Completed</button>
+
+    <button
+      class="px-4 py-2 rounded-lg focus:outline-none"
+      [ngClass]="{'text-blue-600 border-b-2 border-blue-600': selectedStatus === 'Cancelled'}"
+      (click)="filterBookings('Cancelled')">Cancelled</button>
+  </div>
+
+  <!-- Danh sách đặt vé -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-4">
+    <div *ngFor="let booking of filteredBookings" class="booking-card border p-4 rounded-lg shadow">
+
+      <!-- Trạng thái (góc phải trên) -->
+      <div class="status-label text-right" [ngClass]="{
+        'text-red-500': booking.status === 'Cancelled',
+        'text-green-500': booking.status === 'Completed',
+        'text-yellow-500': booking.status === 'Booked'
+      }">
+        {{ booking.status }}
+      </div>
+
+      <div class="grid grid-cols-2 gap-4">
+
+        <!-- Thông Tin Chính -->
+        <div class="main-info space-y-2">
+          <div class="text-sm font-semibold text-gray-500 uppercase">
+            {{ booking.departTime | date: 'EEE, dd/MM/yyyy' }}
+          </div>
+
+          <div class="text-3xl font-bold text-blue-600 leading-tight">
+            {{ booking.departTime | date: 'HH:mm' }}
+          </div>
+
+          <div *ngIf="booking.busNumber" class="text-gray-700">
+            <strong>{{ booking.busNumber }} - {{ booking.busType }}</strong>
+          </div>
+
+          <div class="text-gray-700">
+            {{ booking.startingPlace }} - {{ booking.destinationPlace }}
+          </div>
+        </div>
+
+        <!-- Thông Tin Bổ Sung -->
+        <div class="extra-info space-y-2">
+          <div class="info-row">
+            <span class="label">Booking Date:</span>
+            <span class="value">{{ booking.bookingDate | date: 'dd/MM/yyyy HH:mm' }}</span>
+          </div>
+
+          <div class="info-row">
+            <span class="label">SeatNumber:</span>
+            <span class="value">{{ booking.seatNumber }}</span>
+          </div>
+
+          <div class="info-row">
+            <span class="label">Totalamount: </span>
+            <span class="value text-green-600">{{ booking.totalAmount | currency }}</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

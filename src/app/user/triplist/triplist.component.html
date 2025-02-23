@@ -1,3 +1,5 @@
+
+
 <div class="container">
   <!-- Bộ lọc & Sắp xếp bên trái -->
   <div class="filter-sort-container">
@@ -7,7 +9,7 @@
       <div class="filter-options">
         <label>
           <input type="radio" name="busType" value="" [(ngModel)]="selectedBusType" (change)="applyFilters()">
-          Tất cả
+          All
         </label>
         <label *ngFor="let type of busTypes">
           <input type="radio" name="busType" [value]="type.typeName" [(ngModel)]="selectedBusType" (change)="applyFilters()">
@@ -57,33 +59,47 @@
 
       <div class="trip-info">
         <p class="trip-title">
-          <i class="fa-solid fa-bus-simple"></i> {{ trip.busNumber }} ({{ trip.busType }})
+          <i class="fa-solid fa-bus-simple" style="font-size: 20px;"></i> {{ trip.busNumber }} ({{ trip.busType }})
         </p>
+
+        <!-- ✅ Hiển thị ngày đi -->
+        <p><i class="fa-solid fa-calendar-days" style="font-size: 20px;"></i><strong style="font-weight: bold;margin-left:5px">Date:</strong> {{ trip.departureTime | date:'dd/MM/yyyy' }}</p>
+
 
         <div class="trip-meta">
           <div class="time-location">
-            <p><i class="fa-solid fa-genderless" style="font-size: 20px;"></i> <strong style="margin-left: 5px;">{{ trip.departureTime | date:'shortTime' }}</strong> - {{ trip.startingPlace }}</p>
-            <i class="fa-solid fa-ellipsis-vertical" style="margin-left: 3px;font-size: 20px;"></i>
-            <p><i class="fa-solid fa-location-dot" style="font-size: 20px;"></i> <strong style="margin-left: 5px;">{{ trip.arrivalTime | date:'shortTime' }}</strong> - {{ trip.destinationPlace }}</p>
+            <p><i class="fa-solid fa-genderless" style="font-size: 20px;"></i>
+              <strong style="margin-left: 5px; color: rgb(95, 95, 220);">
+                {{ trip.departureTime | date:'shortTime' }}
+              </strong> - <span>{{ trip.startingPlace }}</span>
+            </p>
+
+            <i class="fa-solid fa-ellipsis-vertical" style="margin-left: 5px; font-size: 20px;"></i>
+
+            <p><i class="fa-solid fa-location-dot" style="font-size: 20px;"></i>
+              <strong style="margin-left: 5px; color: rgb(95, 95, 220);">
+                {{ trip.arrivalTime | date:'shortTime' }}
+              </strong> - <span>{{ trip.destinationPlace }}</span>
+            </p>
           </div>
 
-          <div class="seat-info">
-            <p>Total Seats: {{ trip.totalSeats }}</p>
-            <p>Available: {{ trip.availableSeats }}</p>
-          </div>
+
         </div>
-
-
-
       </div>
 
       <div class="trip-actions">
         <p class="trip-price">{{ trip.price | currency }}</p>
+
+        <div class="seat-info">
+          <p>Total Seats: {{ trip.totalSeats }}</p>
+          <p>Available: {{ trip.availableSeats }}</p>
+        </div>
         <p class="trip-discount" *ngIf="trip.oldPrice">
           {{ trip.oldPrice | currency }} <span class="discount-label">-{{ trip.discountPercent }}%</span>
         </p>
         <button class="btn-book" (click)="viewTripDetail(trip.id)">Select</button>
       </div>
     </div>
+
   </div>
 </div>
