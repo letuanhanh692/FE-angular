@@ -1,5 +1,4 @@
 import { AuthGuard } from './../service/authguard.service';
-
 import { BookingdetailComponent } from './admin/bookingdetail/bookingdetail.component';
 import { AddbusComponent } from './admin/addbus/addbus.component';
 import { ListbusComponent } from './admin/listbus/listbus.component';

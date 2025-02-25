@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
    export interface Cancellation {
     id:number;
     bookingId :number;
-    cancellationId?: number;  
+    cancellationId?: number;
   startingPlace: string;
   destinationPlace: string;
   cancellationDate: string;
@@ -35,7 +35,7 @@ export class CancellationService {
     const params = new HttpParams()
       .set('page', page.toString())
       .set('pageSize', pageSize.toString());
-    
+
     return this.http.get<any>(this.apiUrl, { params });
   }
 
@@ -54,11 +54,15 @@ export class CancellationService {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.put(url, cancellation, { headers });
   }
-  
-  
+
+
 
   deleteCancellation(id: number): Observable<void> {
     const url = `${this.apiUrl}/${id}`;
     return this.http.delete<void>(url);
   }
+  createCancellation(bookingId: number): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/${bookingId}`, {});
+  }
+
 }

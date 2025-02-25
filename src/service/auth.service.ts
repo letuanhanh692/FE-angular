@@ -58,12 +58,17 @@ export class AuthService {
   }
 
   logout(): void {
+    // Xóa token và dữ liệu người dùng trong localStorage
     localStorage.removeItem('token');
+    localStorage.removeItem('userInfo'); // ✅ Xóa dữ liệu user cũ
 
+    // Cập nhật trạng thái đăng xuất
     this.isLoggedInSubject.next(false);
 
+    // Chuyển hướng về trang login hoặc trang chủ
     this.router.navigate(['/src/app/user/searchtrip']);
   }
+
   /** 🟢 Lấy email từ token */
 getUserEmail(): string | null {
   const token = this.getToken();
