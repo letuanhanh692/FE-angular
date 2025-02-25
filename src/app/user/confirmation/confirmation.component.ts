@@ -20,6 +20,10 @@ export class ConfirmationComponent implements OnInit {
   constructor(private router: Router, private paymentService: PaymentService) {}
 
   ngOnInit(): void {
+    if (typeof (window as any).timer === "undefined") {
+      (window as any).timer = null;
+    }
+
     const navigation = this.router.getCurrentNavigation();
     console.log('Navigation state:', navigation?.extras.state); 
 
@@ -75,13 +79,13 @@ export class ConfirmationComponent implements OnInit {
     const requestData = this.prepareBookingData();
     if (!requestData) return;
 
-    console.log('Dữ liệu gửi đi:', requestData); // Debug dữ liệu gửi đi
+    console.log('Dữ liệu gửi đi:', requestData); 
 
     this.paymentService.createPayment(requestData).subscribe({
       next: (response: any) => {
         console.log('Phản hồi từ API:', response);
         if (response.paymentUrl) {
-          window.location.href = response.paymentUrl; // Chuyển hướng VNPay
+          window.location.href = response.paymentUrl; 
         } else {
           alert('Không thể tạo thanh toán, vui lòng thử lại.');
         }
