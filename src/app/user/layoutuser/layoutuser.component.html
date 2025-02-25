@@ -13,12 +13,12 @@
     <li class="dropdown">
       <a href="user/userinfor"><i class="fa-solid fa-user" style="font-size: 25px;color:brown"></i></a>
       <div class="dropdown-content" *ngIf="!(isLoggedIn$ | async)">
-        <a routerLink="/user/register">Đăng ký</a>
-        <a routerLink="/user/loginuser">Đăng nhập</a>
+        <a routerLink="/user/register">Register</a>
+        <a routerLink="/user/loginuser">Login</a>
       </div>
       <div class="dropdown-content" *ngIf="isLoggedIn$ | async">
-        <a routerLink="/user/userinfor">Thông tin tài khoản</a>
-        <a href="/user/loginuser" (click)="logout()">Đăng xuất</a>
+        <a routerLink="/user/userinfor">Account</a>
+        <a href="/user/searchtrip" (click)="logout()">Logout</a>
       </div>
     </li>
   </ul>
@@ -51,12 +51,7 @@
    <li><a href="login.html">Login</a></li>
    </ul>
    </div>
-   <div class="download-app">
-   <h4>Download MyBus app</h4>
-   <img src="https://229a2c9fe669f7b.cmccloud.com.vn/images/landingpagetet2023/download_app_qr.png" alt="QR Code" class="qr-code">
-   <a href="#"><img src="https://logos-download.com/wp-content/uploads/2016/06/Download_on_the_App_Store_logo.png" alt="Download on the App Store" class="store-btn"></a>
-   <a href="#"><img src="https://vectorified.com/image/app-store-logo-vector-1.png" alt="Get it on Google Play" class="store-btn"></a>
-   </div>
+   
    </div>
 
    </footer>

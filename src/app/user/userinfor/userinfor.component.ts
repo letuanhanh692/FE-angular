@@ -114,4 +114,6 @@ export class UserinforComponent implements OnInit {
     this.isEditing = false;
     this.userForm.patchValue(this.originalData);  // Khôi phục dữ liệu ban đầu
   }
+  
+
 }

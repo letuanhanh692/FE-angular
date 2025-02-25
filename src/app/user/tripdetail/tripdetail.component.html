@@ -55,13 +55,14 @@
   <!-- Cột bên phải: Khối thông tin chuyến đi -->
   <div class="right-column">
     <div class="trip-box">
-      <p> <i class="fa-solid fa-bus-simple" style="font-size: 20px;color:blue"></i><strong>Route:</strong> <span style="font-weight: bold;"> {{ tripDetails.startingPlace }} </span><i class="fa-solid fa-right-long" style="color: blue;"></i><span style="font-weight: bold;"> {{ tripDetails.destinationPlace }} </span></p>
+      <p> <i class="fa-solid fa-bus-simple" style="font-size: 20px;color:blue"></i> <span style="font-weight: bold;margin-left:10px"> {{ tripDetails.startingPlace }} </span><i class="fa-solid fa-right-long" style="color: blue;"></i><span style="font-weight: bold;"> {{ tripDetails.destinationPlace }} </span></p>
       <br>
       <p><i class="fa-solid fa-genderless" style="font-size: 20px;color:rgb(200, 21, 21)"></i><strong>Departure Time:</strong><span> {{ tripDetails.departureTime | date: 'short' }}</span></p>
       <p> <i class="fa-solid fa-ellipsis-vertical" style="margin-left:5px;font-size: 20px;color:rgb(0, 0, 0)"></i> <strong style="margin-left: 15px;">{{ tripDetails.distance }} km </strong></p>
       <p><i class="fa-solid fa-location-dot" style="font-size: 20px;color:rgb(200, 21, 21)"></i><strong>Arrival Time:</strong><span> {{ tripDetails.arrivalTime | date: 'short' }}</span></p>
       <br>
       <p><strong>Bus Number:</strong><span> {{ tripDetails.busNumber }}</span></p>
+      <br>
       <p><strong>Bus Type:</strong> <span>{{ tripDetails.busType }}</span></p>
       <br>
       <p><strong>Price/seat:</strong> <span style="color: green;font-weight: bold;font-size:20px">{{ price | currency }}</span></p>

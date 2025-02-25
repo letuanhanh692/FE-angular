@@ -1,45 +1,34 @@
 <div class="p-4 space-y-4 w-[80%] mx-auto" style="margin-top: 50px;">
 
-  <!-- Thanh lọc theo trạng thái -->
-  <div class="flex justify-center space-x-6 border rounded-lg p-2">
-    <button
-      class="px-4 py-2 rounded-lg focus:outline-none"
-      [ngClass]="{'text-blue-600 border-b-2 border-blue-600': selectedStatus === 'All'}"
-      (click)="filterBookings('All')">All</button>
+  <!-- ✅ Thanh lọc theo trạng thái -->
+  <div class="flex justify-center space-x-6 border rounded-lg p-2 bg-gray-100">
+    <button class="filter-btn" [ngClass]="{'active': selectedStatus === 'All'}" (click)="filterBookings('All')">All</button>
 
-    <button
-      class="px-4 py-2 rounded-lg focus:outline-none"
-      [ngClass]="{'text-blue-600 border-b-2 border-blue-600': selectedStatus === 'Booked'}"
-      (click)="filterBookings('Booked')">Booked</button>
+    <button class="filter-btn" [ngClass]="{'active': selectedStatus === 'Booked'}" (click)="filterBookings('Booked')">Booked</button>
 
-    <button
-      class="px-4 py-2 rounded-lg focus:outline-none"
-      [ngClass]="{'text-blue-600 border-b-2 border-blue-600': selectedStatus === 'Completed'}"
-      (click)="filterBookings('Completed')">Completed</button>
+    <button class="filter-btn" [ngClass]="{'active': selectedStatus === 'Completed'}" (click)="filterBookings('Completed')">Completed</button>
 
-    <button
-      class="px-4 py-2 rounded-lg focus:outline-none"
-      [ngClass]="{'text-blue-600 border-b-2 border-blue-600': selectedStatus === 'Cancelled'}"
-      (click)="filterBookings('Cancelled')">Cancelled</button>
+    <button class="filter-btn" [ngClass]="{'active': selectedStatus === 'Cancelled'}" (click)="filterBookings('Cancelled')">Cancelled</button>
   </div>
 
-  <!-- Danh sách đặt vé -->
+  <!-- ✅ Danh sách đặt vé -->
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-4">
-    <div *ngFor="let booking of filteredBookings" class="booking-card border p-4 rounded-lg shadow">
+    <div *ngFor="let booking of filteredBookings" class="booking-card">
 
-      <!-- Trạng thái (góc phải trên) -->
-      <div class="status-label text-right" [ngClass]="{
-        'text-red-500': booking.status === 'Cancelled',
-        'text-green-500': booking.status === 'Completed',
-        'text-yellow-500': booking.status === 'Booked'
+      <!-- ✅ Trạng thái (Góc trên bên phải) -->
+      <div class="status-label" [ngClass]="{
+        'status-cancelled': booking.status === 'Cancelled',
+        'status-completed': booking.status === 'Completed',
+        'status-booked': booking.status === 'Booked'
       }">
         {{ booking.status }}
       </div>
 
-      <div class="grid grid-cols-2 gap-4">
+      <!-- ✅ Nội dung thẻ -->
+      <div class="grid grid-cols-2 gap-4 flex-grow">
 
         <!-- Thông Tin Chính -->
-        <div class="main-info space-y-2">
+        <div class="main-info">
           <div class="text-sm font-semibold text-gray-500 uppercase">
             {{ booking.departTime | date: 'EEE, dd/MM/yyyy' }}
           </div>
@@ -49,33 +38,55 @@
           </div>
 
           <div *ngIf="booking.busNumber" class="text-gray-700">
-            <strong>{{ booking.busNumber }} - {{ booking.busType }}</strong>
+            <strong>{{ booking.busNumber }}<br>{{ booking.busType }}</strong>
           </div>
 
-          <div class="text-gray-700">
-            {{ booking.startingPlace }} - {{ booking.destinationPlace }}
+          <div class="text-gray-700 route-info">
+            {{ booking.startingPlace }} → {{ booking.destinationPlace }}
           </div>
         </div>
 
         <!-- Thông Tin Bổ Sung -->
-        <div class="extra-info space-y-2">
+        <div class="extra-info">
           <div class="info-row">
             <span class="label">Booking Date:</span>
             <span class="value">{{ booking.bookingDate | date: 'dd/MM/yyyy HH:mm' }}</span>
           </div>
 
           <div class="info-row">
-            <span class="label">SeatNumber:</span>
+            <span class="label">Seat Number:</span>
             <span class="value">{{ booking.seatNumber }}</span>
           </div>
 
           <div class="info-row">
-            <span class="label">Totalamount: </span>
-            <span class="value text-green-600">{{ booking.totalAmount | currency }}</span>
+            <span class="label">Total Amount:</span>
+            <span class="value total-amount">{{ booking.totalAmount | currency }}</span>
+          </div>
+
+          <!-- ✅ Hiển thị RefundAmount nếu đã bị hủy -->
+          <div *ngIf="booking.status === 'Cancelled'" class="info-row">
+            <span class="label">Refund Amount:</span>
+            <span class="value refund-amount">{{ booking.refundAmount | currency }}</span>
           </div>
         </div>
-
       </div>
+
+      <!-- ✅ Nút Hủy Vé / Thông báo Hủy -->
+      <div class=" flex justify-center items-end" style="margin-top: 10px;">
+        <button *ngIf="booking.status === 'Booked' || booking.status === 'Completed'"
+          (click)="cancelBooking(booking.bookingId)" class="cancel-btn">
+          Cancel
+        </button>
+
+        <div *ngIf="booking.status === 'Cancelled'" class="text-red-500 text-sm">
+          Ticket has been cancelled
+        </div>
+      </div>
+
     </div>
   </div>
+
 </div>
+<br>
+<br>
+<br>

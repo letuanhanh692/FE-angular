@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BookingService } from '../../../service/booking.service';
+import { CancellationService } from '../../../service/cancelltion.service';
 
 @Component({
   selector: 'app-orderlist',
@@ -12,10 +13,17 @@ import { BookingService } from '../../../service/booking.service';
 export class OrderListComponent implements OnInit {
   bookings: any[] = [];
   filteredBookings: any[] = [];
-  selectedStatus: string = 'All'; // Mặc định hiển thị tất cả
+  selectedStatus: string = 'All';
   userId!: number;
 
-  constructor(private bookingService: BookingService) {}
+  // ✅ Biến lưu thông báo
+  message: string = '';
+  isSuccess: boolean = true;
+
+  constructor(
+    private bookingService: BookingService,
+    private cancellationService: CancellationService
+  ) {}
 
   ngOnInit(): void {
     const storedUserId = localStorage.getItem('userId');
@@ -29,17 +37,19 @@ export class OrderListComponent implements OnInit {
     }
   }
 
+  // ✅ Load danh sách booking
   loadBookings(): void {
     this.bookingService.getBookingsByUserId(this.userId).subscribe({
       next: (data) => {
         this.bookings = data;
-        this.filterBookings(this.selectedStatus); // Áp dụng lọc ngay sau khi tải
+        this.filterBookings(this.selectedStatus);
       },
       error: (err) => {
         if (err.status === 404) {
           console.warn('Không tìm thấy đơn hàng cho userId:', this.userId);
           this.bookings = [];
           this.filteredBookings = [];
+
         } else {
           console.error('Lỗi khi lấy đơn hàng:', err);
         }
@@ -47,12 +57,34 @@ export class OrderListComponent implements OnInit {
     });
   }
 
+  // ✅ Lọc đơn hàng theo trạng thái
   filterBookings(status: string): void {
     this.selectedStatus = status;
-    if (status === 'All') {
-      this.filteredBookings = this.bookings;
-    } else {
-      this.filteredBookings = this.bookings.filter(booking => booking.status === status);
+    this.filteredBookings = status === 'All'
+      ? this.bookings
+      : this.bookings.filter(booking => booking.status === status);
+  }
+
+  // ✅ Hủy vé
+  cancelBooking(bookingId: number): void {
+    if (confirm('Bạn có chắc chắn muốn hủy vé này không?')) {
+      this.cancellationService.createCancellation(bookingId).subscribe({
+        next: () => {
+          this.showMessage('Hủy vé thành công!', true);
+          this.loadBookings(); // Làm mới danh sách
+        },
+        error: (err) => {
+          this.showMessage('Hủy vé thất bại!', false);
+          console.error('Lỗi khi hủy vé:', err);
+        }
+      });
     }
+  }
+
+  // ✅ Hiển thị thông báo (sẽ tự tắt sau 3 giây)
+  showMessage(msg: string, success: boolean): void {
+    this.message = msg;
+    this.isSuccess = success;
+    setTimeout(() => this.message = '', 3000); // Ẩn thông báo sau 3 giây
   }
 }
