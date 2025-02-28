@@ -26,7 +26,6 @@ export class LayoutComponent implements OnInit {
     });
   }
 
-  // Hàm để toggle menu theo id
   toggleMenu(id: string): void {
     const menu = document.getElementById(id);
     if (menu) {
