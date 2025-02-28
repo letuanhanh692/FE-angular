@@ -23,8 +23,8 @@
       <div class="trip-info">
         <p>{{ trip.busNumber }}</p>
         <p>{{ trip.busType }}</p>
-        <p><strong>{{ trip.departureTime | date: 'HH:mm' }}</strong> - {{ trip.startingPlace }}</p>
-        <p><strong>{{ trip.arrivalTime | date: 'HH:mm' }}</strong> - {{ trip.destinationPlace }}</p>
+        <p><strong>{{ trip.departureTime | date: 'HH:mm' }}</strong> - <span style="color: rgb(170, 0, 0);font-weight:bold">{{ trip.startingPlace }}</span></p>
+        <p><strong>{{ trip.arrivalTime | date: 'HH:mm' }}</strong> - <span style="color: rgb(171, 0, 0);font-weight:bold">{{ trip.destinationPlace }}</span></p>
         <p>{{ trip.totalSeats }}</p>
         <p>{{ trip.availableSeats }}</p>
         <p>{{ trip.price ? (trip.price | currency) : '---' }}</p>
@@ -37,6 +37,11 @@
 <ng-template #noTrips>
   <p>{{ errorMessage }}</p>
 </ng-template>
+<br>
+<br>
+<br>
+<br>
+<br>
 <br>
 <br>
 <br>

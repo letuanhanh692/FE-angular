@@ -23,14 +23,17 @@ export class LoginuserComponent {
     private userService: UserService // Thêm service UserService vào constructor
   ) {
     this.loginForm = this.fb.group({
-      email: ['', [Validators.required]],
-      password: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],  // Thêm kiểm tra định dạng email
+      password: ['', [Validators.required, Validators.minLength(6)]], // Đặt tối thiểu 6 ký tự
     });
   }
 
   onLogin() {
     console.log("Đang thực hiện đăng nhập...");
+
+    // Nếu form không hợp lệ thì dừng lại và hiển thị lỗi
     if (this.loginForm.invalid) {
+      this.errorMessage = "Vui lòng nhập đúng email và mật khẩu.";
       return;
     }
 
@@ -58,18 +61,15 @@ export class LoginuserComponent {
               error: (err) => {
                 console.error("Lỗi khi lấy thông tin người dùng:", err);
                 this.errorMessage = 'Không thể lấy thông tin người dùng.';
-                window.alert(this.errorMessage);
               }
             });
           } else {
             this.errorMessage = 'ID người dùng không hợp lệ.';
-            window.alert(this.errorMessage);
           }
         },
         error: (err) => {
           console.error("Lỗi đăng nhập:", err);
           this.errorMessage = err.error?.message || 'Tên đăng nhập hoặc mật khẩu không đúng!';
-          window.alert(this.errorMessage);
         }
       });
   }
@@ -84,11 +84,11 @@ export class LoginuserComponent {
       return null;
     }
   }
+
   logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('userId');
     localStorage.removeItem('userInfor');
     this.router.navigate(['/login']); // Chuyển về trang đăng nhập
   }
-
 }

@@ -51,7 +51,7 @@ export class TripTodayComponent implements OnInit {
       error: (err) => {
         this.trips = [];
         this.filteredTrips = [];
-        this.errorMessage = 'Lỗi khi tải dữ liệu chuyến đi';
+        this.errorMessage = 'There are no trips today.';
         console.error(err);
       }
     });
