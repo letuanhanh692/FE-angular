@@ -20,26 +20,34 @@ export class ConfirmationComponent implements OnInit {
   constructor(private router: Router, private paymentService: PaymentService) {}
 
   ngOnInit(): void {
+    // Lấy query params khi redirect từ cổng thanh toán
+    this.router.routerState.root.queryParams.subscribe(params => {
+      if (params['transactionId']) {
+        this.handlePaymentCallback(params);
+      }
+    });
+  
     if (typeof (window as any).timer === "undefined") {
       (window as any).timer = null;
     }
-
+  
     const navigation = this.router.getCurrentNavigation();
-    console.log('Navigation state:', navigation?.extras.state); 
-
+    console.log('Navigation state:', navigation?.extras.state);
+  
     if (navigation?.extras.state) {
       this.bookingData = navigation.extras.state as any;
     } else {
       this.bookingData = history.state;
     }
-
+  
     console.log('Dữ liệu booking nhận được:', this.bookingData);
-
+  
     if (!this.bookingData || Object.keys(this.bookingData).length === 0) {
       this.error = 'Không tìm thấy thông tin booking.';
       setTimeout(() => this.router.navigate(['user/searchtrip']), 3000);
     }
   }
+  
 
   prepareBookingData(): any {
     if (!this.bookingData?.bookingId || !this.bookingData?.scheduleId || !this.bookingData?.userId) {
@@ -96,4 +104,22 @@ export class ConfirmationComponent implements OnInit {
       }
     });
   }
+  handlePaymentCallback(queryParams: any): void {
+    this.paymentService.handlePaymentCallback(queryParams).subscribe({
+      next: (response: any) => {
+        console.log('Kết quả callback:', response);
+        if (response.paymentStatus === 'Success') {
+          alert('Thanh toán thành công!');
+          this.router.navigate(['/user/success'], { state: response });
+        } else {
+          alert('Thanh toán thất bại, vui lòng thử lại.');
+        }
+      },
+      error: (error) => {
+        console.error('Lỗi callback thanh toán:', error);
+        alert('Lỗi khi xác nhận thanh toán, vui lòng thử lại.');
+      }
+    });
+  }
+  
 }

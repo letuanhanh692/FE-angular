@@ -48,6 +48,7 @@ import { userInfo } from 'os';
 import { RouteschedulesComponent } from './staff/routeschedules/routeschedules.component';
 import { SchedulebookingsComponent } from './staff/schedulebookings/schedulebookings.component';
 import { OrderListComponent } from './user/orderlist/orderlist.component';
+import { SuccessComponent } from './user/success/success.component';
 
 
 
@@ -119,6 +120,7 @@ export const routes: Routes = [
         {path:  'triptoday',component: TripTodayComponent},
         {path:  'contact', component: ContactComponent},
         {path:  'orderlist', component: OrderListComponent},
+        {path:  'success', component: SuccessComponent},
         { path: '', redirectTo: 'searchtrip', pathMatch: 'full' }
       ]
     }
