@@ -65,14 +65,14 @@
       <br>
       <p><strong>Bus Type:</strong> <span>{{ tripDetails.busType }}</span></p>
       <br>
-      <p><strong>Price/seat:</strong> <span style="color: green;font-weight: bold;font-size:25px">{{ price | currency }}</span></p>
+      <p><strong>Price/seat:</strong> <span style="color: green;font-weight: bold;font-size:25px">{{ price | currency :'VND'}}</span></p>
 
       <hr>
       <div>
-        <p><strong>Không đổi lịch</strong></p>
-        <p>Không thể đổi lịch sau khi đặt chỗ.</p>
-        <p><strong>Không hoàn lại</strong></p>
-        <p>Khung thời gian để đổi chuyến đã kết thúc vào ngày Chủ Nhật, 16 thg 2 2025 11:15</p>
+        <p><strong style="color: rgb(190, 0, 0);">Note !</strong></p>
+        <p>Reschedule is not possible after booking.</p>
+        <p>Please enter correct information</p>
+
       </div>
     </div>
   </div>

@@ -7,11 +7,11 @@
       <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" >
         <!-- Họ và Tên -->
         <div class="input-group">
-          <label for="fullName">Full Name</label>
-          <input type="text" id="fullName" formControlName="fullName" />
-          <div class="error" *ngIf="registerForm.get('fullName')?.invalid && registerForm.get('fullName')?.touched">
-            <small *ngIf="registerForm.get('fullName')?.errors?.['required']">Full name is required.</small>
-            <small *ngIf="registerForm.get('fullName')?.errors?.['minlength']">Name must be at least 3 characters.</small>
+          <label for="fullName"> Name</label>
+          <input type="text" id="fullName" formControlName="name" />
+          <div class="error" *ngIf="registerForm.get('name')?.invalid && registerForm.get('name')?.touched">
+            <small *ngIf="registerForm.get('name')?.errors?.['required']">Full name is required.</small>
+            <small *ngIf="registerForm.get('name')?.errors?.['minlength']">Name must be at least 3 characters.</small>
           </div>
         </div>
 
@@ -39,22 +39,45 @@
 
         <!-- Số điện thoại -->
         <div class="input-group">
-          <label for="phoneNumber">Phone Number</label>
-          <input type="text" id="phoneNumber" formControlName="phoneNumber" />
-          <div class="error" *ngIf="registerForm.get('phoneNumber')?.invalid && registerForm.get('phoneNumber')?.touched">
-            <small *ngIf="registerForm.get('phoneNumber')?.errors?.['required']">Phonnumber is required</small>
-            <small *ngIf="registerForm.get('phoneNumber')?.errors?.['pattern']">Invalid phone number.</small>
+          <label for="phone">Phone Number</label>
+          <input type="text" id="phone" formControlName="phone" />
+          <div class="error" *ngIf="registerForm.get('phone')?.invalid && registerForm.get('phone')?.touched">
+            <small *ngIf="registerForm.get('phone')?.errors?.['required']">Phonnumber is required</small>
+            <small *ngIf="registerForm.get('phone')?.errors?.['pattern']">Invalid phone number.</small>
           </div>
         </div>
 
-        <!-- Ngày sinh -->
         <div class="input-group">
-          <label for="dateOfBirth">Birth Of Date</label>
-          <input type="date" id="dateOfBirth" formControlName="dateOfBirth" />
-          <div class="error" *ngIf="registerForm.get('dateOfBirth')?.invalid && registerForm.get('dateOfBirth')?.touched">
-            <small *ngIf="registerForm.get('dateOfBirth')?.errors?.['required']">Date of birth is required.</small>
+          <label for="idCard">ID Card (CMND/CCCD)</label>
+          <input type="text" id="idCard" formControlName="idCard" />
+          <div class="error" *ngIf="registerForm.get('idCard')?.invalid && registerForm.get('idCard')?.touched">
+            <small *ngIf="registerForm.get('idCard')?.errors?.['required']">ID Card is required.</small>
+            <small *ngIf="registerForm.get('idCard')?.errors?.['pattern']">Invalid ID Card number (must be 9-12 digits).</small>
           </div>
         </div>
+
+        <!-- Địa chỉ -->
+        <div class="input-group-container">
+          <!-- Ngày sinh -->
+          <div class="input-group">
+            <label for="dateOfBirth">Birth Of Date</label>
+            <input type="date" id="dateOfBirth" formControlName="dateOfBirth" />
+            <div class="error" *ngIf="registerForm.get('dateOfBirth')?.invalid && registerForm.get('dateOfBirth')?.touched">
+              <small *ngIf="registerForm.get('dateOfBirth')?.errors?.['required']">Date of birth is required.</small>
+            </div>
+          </div>
+
+          <!-- Địa chỉ -->
+          <div class="input-group">
+            <label for="address">Address</label>
+            <input type="text" id="address" formControlName="address" />
+            <div class="error" *ngIf="registerForm.get('address')?.invalid && registerForm.get('address')?.touched">
+              <small *ngIf="registerForm.get('address')?.errors?.['required']">Address is required.</small>
+              <small *ngIf="registerForm.get('address')?.errors?.['minlength']">Address must be at least 5 characters.</small>
+            </div>
+          </div>
+        </div>
+
 
         <!-- Nút Submit -->
         <button type="submit" class='btn-login' [disabled]="registerForm.invalid">Register</button>

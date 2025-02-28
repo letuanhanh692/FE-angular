@@ -17,12 +17,15 @@ export class RegisterComponent {
 
   constructor(private fb: FormBuilder, private http: HttpClient, private router: Router) {
     this.registerForm = this.fb.group({
-      fullName: ['', [Validators.required, Validators.minLength(3)]],
+      name: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      phoneNumber: ['', [Validators.required, Validators.pattern('^[0-9]{10,}$')]], // Chỉ chấp nhận số, tối thiểu 10 ký tự
-      dateOfBirth: ['', [Validators.required]] // Thêm ngày sinh vào form
+      phone: ['', [Validators.required, Validators.pattern('^[0-9]{10,}$')]],
+      dateOfBirth: ['', [Validators.required]],
+      idCard: ['', [Validators.required, Validators.pattern('^[0-9]{9,12}$')]],
+      address: ['', [Validators.required, Validators.minLength(5)]],  // ✅ Thêm trường địa chỉ
     });
+
   }
 
   onSubmit() {
@@ -31,6 +34,8 @@ export class RegisterComponent {
       return;
     }
 
+    console.log("Dữ liệu gửi đi:", JSON.stringify(this.registerForm.value));
+
     const url = 'https://localhost:44311/api/Auth/register';
     this.http.post(url, this.registerForm.value).subscribe({
       next: () => {
@@ -38,9 +43,14 @@ export class RegisterComponent {
         this.router.navigate(['/user/loginuser']);
       },
       error: (error: any) => {
-        alert('Có lỗi xảy ra khi đăng ký!');
-        console.error('Error:', error);
+        console.error('Lỗi phản hồi:', error);
+        if (error.error && error.error.errors) {
+          console.error('Lỗi validation:', error.error.errors);
+        }
+        alert('Có lỗi xảy ra khi đăng ký! Kiểm tra console để biết chi tiết.');
       }
     });
   }
+
+
 }

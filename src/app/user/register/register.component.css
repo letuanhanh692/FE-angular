@@ -65,7 +65,7 @@
 .input-group label{
   text-align:left ;
   font-weight: bold;
-  
+
 }
 
 .input-group input:focus {
@@ -110,4 +110,13 @@
   color: red;
   font-size: 14px;
   margin-top: 5px;
+}
+
+.input-group-container {
+  display: flex;
+  gap: 20px; /* Khoảng cách giữa 2 ô */
+}
+
+.input-group {
+  flex: 1;
 }

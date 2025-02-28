@@ -60,13 +60,13 @@
 
           <div class="info-row">
             <span class="label">Total Amount:</span>
-            <span class="value total-amount">{{ booking.totalAmount | currency }}</span>
+            <span class="value total-amount">{{ booking.totalAmount | currency :'VND' }}</span>
           </div>
 
           <!-- ✅ Hiển thị RefundAmount nếu đã bị hủy -->
           <div *ngIf="booking.status === 'Cancelled'" class="info-row">
             <span class="label">Refund Amount:</span>
-            <span class="value refund-amount">{{ booking.refundAmount | currency }}</span>
+            <span class="value refund-amount">{{ booking.refundAmount | currency :'VND' }}</span>
           </div>
         </div>
       </div>

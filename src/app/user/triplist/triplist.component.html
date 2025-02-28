@@ -88,14 +88,14 @@
       </div>
 
       <div class="trip-actions">
-        <p class="trip-price">{{ trip.price | currency }}</p>
+        <p class="trip-price">{{ trip.price | currency :'VND' }}</p>
 
         <div class="seat-info">
           <p>Total Seats: {{ trip.totalSeats }}</p>
           <p>Available: {{ trip.availableSeats }}</p>
         </div>
         <p class="trip-discount" *ngIf="trip.oldPrice">
-          {{ trip.oldPrice | currency }} <span class="discount-label">-{{ trip.discountPercent }}%</span>
+          {{ trip.oldPrice | currency  }} <span class="discount-label">-{{ trip.discountPercent }}%</span>
         </p>
         <button class="btn-book" (click)="viewTripDetail(trip.id)">Select</button>
       </div>

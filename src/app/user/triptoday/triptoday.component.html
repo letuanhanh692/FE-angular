@@ -27,7 +27,7 @@
         <p><strong>{{ trip.arrivalTime | date: 'HH:mm' }}</strong> - <span style="color: rgb(171, 0, 0);font-weight:bold">{{ trip.destinationPlace }}</span></p>
         <p>{{ trip.totalSeats }}</p>
         <p>{{ trip.availableSeats }}</p>
-        <p>{{ trip.price ? (trip.price | currency) : '---' }}</p>
+        <p>{{ trip.price ? (trip.price | currency :'VND') : '---' }}</p>
         <button class="btn-book" (click)="viewTripDetail(trip.id)">Select</button>
       </div>
     </div>

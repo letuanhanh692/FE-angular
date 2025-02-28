@@ -1,6 +1,5 @@
-/* Tổng thể */
 .container {
-  max-width: 800px;
+  max-width: 900px;
   margin: 20px auto;
   padding: 20px;
   border-radius: 8px;
@@ -11,39 +10,44 @@
 
 .title {
   text-align: center;
-  color: #333;
+  color: #d9534f;
   margin-bottom: 20px;
-}
-
-/* Thông báo lỗi */
-.error-message {
-  text-align: center;
-  color: red;
+  font-size: 1.5em;
   font-weight: bold;
-  margin-bottom: 20px;
 }
 
-/* Box chứa thông tin */
 .info-container {
   display: flex;
   justify-content: space-between;
-  flex-wrap: wrap;
   gap: 20px;
 }
 
 .info-box {
   flex: 1;
-  min-width: 350px;
-  background: #f9f9f9;
+  background: #f8f9fa;
   padding: 15px;
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+.info-box i {
+  font-size: 25px;
+}
+.info-box span{
+  margin-left: 10px;
+  font-weight: 600;
+}
+.info-box strong{
+  margin-left: 15px;
 }
 
 .info-box h3 {
-  text-align: center;
-  color: #007bff;
+  color: #d9534f;
   margin-bottom: 10px;
+  font-size: 1.2em;
+  border-bottom: 2px solid #d9534f;
+  padding-bottom: 5px;
+  font-weight: bold;
 }
 
 .info-box p {
@@ -54,19 +58,18 @@
   color: #333;
 }
 
-/* Tổng tiền */
 .total-amount {
   text-align: center;
   margin: 20px 0;
+  font-size: 1.2em;
 }
 
 .currency {
   font-size: 1.5em;
   font-weight: bold;
-  color: #28a745;
+  color: #d9534f;
 }
 
-/* Phương thức thanh toán */
 .payment-method {
   text-align: center;
   margin: 20px 0;
@@ -75,15 +78,16 @@
 
 .payment-method label {
   cursor: pointer;
+  font-weight: bold;
+  color: #333;
 }
 
-/* Nút thanh toán */
 .button-group {
   text-align: center;
 }
 
 .payment-button {
-  background: #007bff;
+  background: #d9534f;
   color: white;
   padding: 10px 20px;
   font-size: 1.1em;
@@ -99,5 +103,5 @@
 }
 
 .payment-button:hover:not(:disabled) {
-  background: #0056b3;
+  background: #c9302c;
 }
