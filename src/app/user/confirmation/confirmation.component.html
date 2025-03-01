@@ -27,7 +27,7 @@
   </div>
 
   <div class="total-amount">
-    <h3>Total Amount:</h3>
+    <h3 >Total Amount:</h3>
     <p class="currency">{{ bookingData.totalAmount | currency :'VND' }}</p>
   </div>
 
@@ -41,6 +41,10 @@
   <div class="button-group">
     <button class="payment-button" (click)="handlePayment()">
       Payment
+    </button>
+
+    <button class="cancel-button" (click)="goHome()">
+      Cancel
     </button>
   </div>
 </div>

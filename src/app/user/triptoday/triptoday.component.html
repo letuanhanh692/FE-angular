@@ -2,7 +2,7 @@
 <div class="search-container">
   <input type="text" placeholder="Starting" [(ngModel)]="searchFrom" />
   <input type="text" placeholder="Destination" [(ngModel)]="searchTo" />
-  <button (click)="searchTrips()">Tìm kiếm</button>
+  <button (click)="searchTrips()" style="font-weight: bold;">Tìm kiếm</button>
 </div>
 
 <!-- Danh sách chuyến đi -->
@@ -27,7 +27,7 @@
         <p><strong>{{ trip.arrivalTime | date: 'HH:mm' }}</strong> - <span style="color: rgb(171, 0, 0);font-weight:bold">{{ trip.destinationPlace }}</span></p>
         <p>{{ trip.totalSeats }}</p>
         <p>{{ trip.availableSeats }}</p>
-        <p>{{ trip.price ? (trip.price | currency :'VND') : '---' }}</p>
+        <p style="color: green;font-weight:600">{{ trip.price ? (trip.price | currency :'VND') : '---' }}</p>
         <button class="btn-book" (click)="viewTripDetail(trip.id)">Select</button>
       </div>
     </div>

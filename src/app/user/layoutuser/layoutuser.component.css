@@ -54,15 +54,18 @@ nav ul li a {
 
 /* Hiệu ứng hover */
 nav ul li a:hover {
-  background-color: #c82333;
-  color: white;
+  background-color: #ffffff;
+  color: #c82333;
+  border-bottom: 1.5px solid #c82333;
+
 }
 
 /* Đánh dấu trang active */
 nav ul li a.active {
-  background-color: #c82333;
-  color: white;
+  background-color: #ffffff;
+  color: #c82333;
   font-weight: bold;
+  border-bottom: 3.5px solid #c82333;
 }
 
 /* Dropdown menu */
@@ -191,4 +194,10 @@ nav ul li a.active {
 }
 .footer-grid .phone-number {
   font-size: 2rem;
+}
+ul i {
+  font-size: 20px;
+}
+ul span {
+  margin-left: 5px;
 }

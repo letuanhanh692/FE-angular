@@ -77,6 +77,7 @@
           (click)="cancelBooking(booking.bookingId)" class="cancel-btn">
           Cancel
         </button>
+        <button *ngIf="booking.status === 'Booked'" (click)="continueBooking(booking)" class="continue-btn">Continue</button>
 
         <div *ngIf="booking.status === 'Cancelled'" class="text-red-500 text-sm">
           Ticket has been cancelled

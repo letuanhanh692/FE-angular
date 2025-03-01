@@ -161,9 +161,9 @@
 
 /* Nút chọn chuyến */
 .btn-book {
-  background-color: #de3b4b;
-  color: white;
-  border: none;
+  background-color: #ffffff;
+  color: rgb(180, 0, 0);
+  border: 1.5px solid rgb(180, 0, 0);
   padding: 8px 12px;
   border-radius: 5px;
   cursor: pointer;
@@ -171,7 +171,8 @@
 }
 
 .btn-book:hover {
-  background-color: #c82333;
+  background-color: #ca0014;
+  color: white;
 }
 .time-location {
   display: flex;

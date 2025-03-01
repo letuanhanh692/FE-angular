@@ -2,16 +2,11 @@
 
   <!-- Cột bên trái: Khối đăng nhập + Form thông tin liên hệ -->
   <div class="left-column">
-   <h2 style="float: left;margin-bottom:20px;border-radius:20px;">Reservation</h2>
-   <br>
-    <!-- Khối đăng nhập/đăng ký ưu đãi -->
-    <div class="login-box">
-      <h4 style="font-weight: bolder;">Contact Information</h4>
 
-    </div>
 
     <!-- Khối form thông tin liên hệ -->
     <div class="contact-box">
+      <h3 style="font-weight: bolder;border-bottom: 1px solid rgb(0, 0, 0);padding:13px 0;text-align:left">Contact Information</h3>
       <form [formGroup]="customerForm" (ngSubmit)="bookTrip()" class="search-form">
         <div class="form-group">
           <label for="name">Full Name *</label>
@@ -55,20 +50,21 @@
   <!-- Cột bên phải: Khối thông tin chuyến đi -->
   <div class="right-column">
     <div class="trip-box">
-      <p> <i class="fa-solid fa-bus-simple" style="font-size: 20px;color:rgb(0, 0, 124)"></i> <span style="font-weight: bold;margin-left:10px"> {{ tripDetails.startingPlace }} </span><i class="fa-solid fa-right-long" style="color: rgb(0, 0, 121);"></i><span style="font-weight: bold;"> {{ tripDetails.destinationPlace }} </span></p>
-      <br>
-      <p><i class="fa-solid fa-genderless" style="font-size: 20px;color:rgb(200, 21, 21)"></i><strong>Departure Time:</strong><span> {{ tripDetails.departureTime | date: 'short' }}</span></p>
+
+      <p style="border-bottom: 1px solid rgb(0, 0, 0);padding:15px 0;"> <i class="fa-solid fa-bus-simple" style="font-size: 20px;color:rgb(0, 0, 124)"></i> <span style="font-weight: bold;margin-left:10px"> {{ tripDetails.startingPlace }} </span><i class="fa-solid fa-right-long" style="color: rgb(0, 0, 121);"></i><span style="font-weight: bold;"> {{ tripDetails.destinationPlace }} </span></p>
+
+      <p><i class="fa-solid fa-genderless" style="font-size: 20px;color:rgb(200, 21, 21);margin-top:15px"></i><strong>Departure Time:</strong><span> {{ tripDetails.departureTime | date: 'short' }}</span></p>
       <p> <i class="fa-solid fa-ellipsis-vertical" style="margin-left:5px;font-size: 20px;color:rgb(0, 0, 0)"></i> <strong style="margin-left: 15px;">{{ tripDetails.distance }} km </strong></p>
-      <p><i class="fa-solid fa-location-dot" style="font-size: 20px;color:rgb(200, 21, 21)"></i><strong>Arrival Time:</strong><span> {{ tripDetails.arrivalTime | date: 'short' }}</span></p>
+      <p > <i class="fa-solid fa-location-dot" style="font-size: 20px;color:rgb(200, 21, 21)"></i><strong>Arrival Time:</strong><span> {{ tripDetails.arrivalTime | date: 'short' }}</span></p>
       <br>
       <p><strong>Bus Number:</strong><span> {{ tripDetails.busNumber }}</span></p>
-      <br>
-      <p><strong>Bus Type:</strong> <span>{{ tripDetails.busType }}</span></p>
-      <br>
-      <p><strong>Price/seat:</strong> <span style="color: green;font-weight: bold;font-size:25px">{{ price | currency :'VND'}}</span></p>
+
+      <p style="border-bottom: 1px solid rgb(0, 0, 0);padding:15px 0;"><strong>Bus Type:</strong> <span>{{ tripDetails.busType }}</span></p>
+
+      <p style="padding:15px 0;"><strong>Price/seat:</strong> <span style="color: green;font-weight: bold;font-size:25px;margin-left:10px">{{ price | currency :'VND'}}</span></p>
 
       <hr>
-      <div>
+      <div class="note">
         <p><strong style="color: rgb(190, 0, 0);">Note !</strong></p>
         <p>Reschedule is not possible after booking.</p>
         <p>Please enter correct information</p>

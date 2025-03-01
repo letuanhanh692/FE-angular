@@ -59,10 +59,10 @@
 }
 
 .save-btn {
-  background: #c82333;
-  color: white;
+  background: #ffffff;
+  color: rgb(175, 0, 0);
   padding: 10px 20px;
-  border: none;
+  border: 1px solid rgb(173, 0, 0);
   border-radius: 5px;
   font-size: 16px;
   cursor: pointer;
@@ -71,10 +71,10 @@
 }
 
 .cancel-btn {
-  background: #c82333;
-  color: white;
+  background: #ffffff;
+  color: rgb(173, 0, 0);
   padding: 10px 20px;
-  border: none;
+  border: 1px solid rgb(170, 0, 0);
   border-radius: 5px;
   font-size: 16px;
   cursor: pointer;
@@ -84,15 +84,24 @@
 }
 
 .save-btn:hover {
-  background: rgb(206, 22, 22);
+  background: rgb(176, 0, 0);
+  color: white;
   transform: scale(1.05); /* Tăng kích thước nút một chút khi hover */
 }
 
 .cancel-btn:hover {
-  background: rgb(206, 22, 22);
+  background: rgb(176, 0, 0);
+  color: white;
   transform: scale(1.05); /* Tăng kích thước nút một chút khi hover */
 }
 
 .save-btn:active, .cancel-btn:active {
   transform: scale(1); /* Trả về kích thước ban đầu khi nhấn */
+}
+.column label
+{
+  font-weight: bold;
+}
+h2{
+  font-weight: bold;
 }

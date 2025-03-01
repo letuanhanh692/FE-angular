@@ -87,14 +87,15 @@
 }
 
 .payment-button {
-  background: #d9534f;
-  color: white;
+  background: #ffffff;
+  color: rgb(0, 2, 130);
   padding: 10px 20px;
   font-size: 1.1em;
-  border: none;
+  border: 1px solid rgb(2, 0, 132);
   border-radius: 5px;
   cursor: pointer;
   transition: background 0.3s;
+  font-weight: bold;
 }
 
 .payment-button:disabled {
@@ -103,5 +104,37 @@
 }
 
 .payment-button:hover:not(:disabled) {
-  background: #c9302c;
+  background: #12009e;
+  color: white;
+}
+.cancel-button {
+  background: #ffffff;
+  color: rgb(167, 0, 0);
+  padding: 10px 20px;
+  font-size: 1.1em;
+  border: 1px solid rgb(151, 0, 0);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+  margin-left: 10px;
+}
+
+.cancel-button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.cancel-button:hover:not(:disabled) {
+  background: #9c0500;
+  color: #ffffff;
+}
+
+
+
+h3{
+  font-weight: bold;
+}
+.total-amount p{
+  color: green;
+
 }
