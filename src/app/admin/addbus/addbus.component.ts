@@ -61,5 +61,6 @@ export class AddbusComponent {
       totalSeats: null,
       busImage: null
     };
+    this.router.navigate(['admin/listbus'])
   }
 }

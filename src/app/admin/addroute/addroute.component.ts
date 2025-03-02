@@ -97,6 +97,7 @@ export class AddrouteComponent implements OnInit {
 
   onCancel(): void {
     this.resetForm();
+    this.router.navigate(['admin/route'])
   }
 
   private resetForm(): void {

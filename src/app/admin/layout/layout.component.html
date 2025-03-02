@@ -36,25 +36,7 @@
         </div>
       </div>
 
-      <!-- <div class="mb-2">
-          <button class="flex items-center w-full justify-between text-left focus:outline-none"
-            (click)="toggleMenu('staffMenu')">
-            <div class="flex items-center">
-              <i class="fas fa-users mr-2"></i> 
-
-              <span>
-              Staff Management</span>
-            </div>
-            <i class="fas fa-chevron-down"></i>
-          </button>
-          <div id="staffMenu" class="hidden ml-6 mt-2 space-y-2">
-            <a href="admin/liststaff" class="block text-sm text-gray-600 hover:text-purple-500">
-              List staff</a>
-            <a href="admin/addstaff" class="block text-sm text-gray-600 hover:text-purple-500">
-              Add staff</a>
-          </div>
-        </div> -->
-
+      
       <!-- Menu Quản lý Tuyến xe -->
       <div class="mb-2">
         <button class="flex items-center w-full justify-between text-left focus:outline-none"
@@ -114,14 +96,14 @@
       <!-- Menu Hóa đơn -->
       <div class="mb-2">
         <button class="flex items-center w-full justify-between text-left focus:outline-none"
-          (click)="toggleMenu('invoiceMenu')">
+          (click)="toggleMenu('bookingMenu')">
           <div class="flex items-center">
             <i class="fas fa-file-invoice mr-2"></i>
             <span>Bookings</span>
           </div>
           <i class="fas fa-chevron-down"></i>
         </button>
-        <div id="invoiceMenu" class="hidden ml-6 mt-2 space-y-2">
+        <div id="bookingMenu" class="hidden ml-6 mt-2 space-y-2">
           <a href="admin/listbooking" class="block text-sm text-gray-600 hover:text-purple-500">List Booking</a>
           <a href="admin/addbooking" class="block text-sm text-gray-600 hover:text-purple-500">Add Booking</a>
         </div>

@@ -80,5 +80,6 @@ export class AdduserComponent {
       name: ''
     };
     console.log("Form has been reset!");
+    this.router.navigate(['admin/listuser'])
   }
 }

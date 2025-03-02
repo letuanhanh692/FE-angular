@@ -105,6 +105,7 @@ export class AddbookingComponent {
       seatNumber: 0
     };
     this.errorMessage = null;
+    this.router.navigate(['admin/listbooking'])
   }
 
   private isValid() {

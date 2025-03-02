@@ -62,6 +62,6 @@ export class AddschedulesComponent implements OnInit {
   }
 
   onCancel(): void {
-    this.router.navigate(['/schedules']); 
+    this.router.navigate(['admin/schedules']); 
   }
 }
