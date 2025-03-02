@@ -4,14 +4,14 @@
   <img alt="Bus icon" class="mr-2" height="70" width="70" src="../../../assets/user/images/logo.png"  />
 
   <ul>
-    <li><a routerLink="/user/searchtrip" routerLinkActive="active">Home</a></li>
-    <li><a routerLink="/user/triptoday" routerLinkActive="active">Today</a></li>
-    <li><a routerLink="/user/orderlist" routerLinkActive="active">Oder</a></li>
-    <li><a routerLink="/user/contact" routerLinkActive="active">Contact</a></li>
+    <li><a routerLink="/user/searchtrip" routerLinkActive="active"><i class="fa-solid fa-house"></i><span>Home</span></a></li>
+    <li><a routerLink="/user/triptoday" routerLinkActive="active"><i class="fa-solid fa-calendar-days"></i><span>Today</span></a></li>
+    <li><a routerLink="/user/orderlist" routerLinkActive="active"><i class="fa-solid fa-cart-shopping"></i><span>Cart</span></a></li>
+    <li><a routerLink="/user/contact" routerLinkActive="active"><i class="fa-solid fa-address-card"></i><span>Contact</span></a></li>
 
     <!-- User Dropdown -->
     <li class="dropdown">
-      <a href="user/userinfor"><i class="fa-solid fa-user" style="font-size: 25px;color:brown"></i></a>
+      <a href="user/userinfor"><i class="fa-regular fa-circle-user" style="font-size: 30px;color:brown"></i></a>
       <div class="dropdown-content" *ngIf="!(isLoggedIn$ | async)">
         <a routerLink="/user/register">Register</a>
         <a routerLink="/user/loginuser">Login</a>
@@ -51,7 +51,7 @@
    <li><a href="login.html">Login</a></li>
    </ul>
    </div>
-   
+
    </div>
 
    </footer>

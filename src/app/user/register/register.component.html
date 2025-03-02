@@ -1,123 +1,92 @@
-<!-- <div class="form-container">
-  <h2>Đăng ký tài khoản</h2>
-  <form (ngSubmit)="onSubmit()" #registerForm="ngForm">
-      <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" [(ngModel)]="model.email" required />
-      </div>
+<div class="modal active" id="loginModal">
+  <div class="login-container" style="margin-top: 10%;height:600px">
+    <div class="login-img"></div>
+    <div class="login-form" >
+      <h2 style="font-weight: bolder;color:brown">Sign Up</h2>
 
-      <div class="form-group">
-          <label for="password">Mật khẩu</label>
-          <input type="password" id="password" name="password" [(ngModel)]="model.password" required />
-      </div>
-
-      <div class="form-group">
-          <label for="name">Họ và tên</label>
-          <input type="text" id="name" name="name" [(ngModel)]="model.name" required />
-      </div>
-
-
-
-      <div class="form-group">
-          <label for="phone">Số điện thoại</label>
-          <input type="text" id="phone" name="phone" [(ngModel)]="model.phone" required />
-      </div>
-
-      <div class="form-group">
-          <label for="address">Địa chỉ</label>
-          <input type="text" id="address" name="address" [(ngModel)]="model.address" required />
-      </div>
-
-      <div class="form-group">
-          <label for="idCard">Số chứng minh thư/căn cước</label>
-          <input type="text" id="idCard" name="idCard" [(ngModel)]="model.idCard" required />
-      </div>
-
-      <div class="form-group">
-          <label for="dateOfBirth">Ngày sinh</label>
-          <input type="date" id="dateOfBirth" name="dateOfBirth" [(ngModel)]="model.dateOfBirth" required />
-      </div>
-
-      <button type="submit" [disabled]="!registerForm.form.valid">Đăng ký</button>
-  </form>
-  <p> <a routerLink="/user/loginuser" class="loginuser-link">Đăng nhập ngay</a></p>
-</div> -->
-
-
-
-
-<body>
-  <div class="modal active" id="loginModal">
-    <div class="login-container" style="margin-top: 5%;">
-      <div class="login-img"></div>
-      <div class="login-form">
-        <!-- Đổi tiêu đề thành "Sign Up" -->
-        <h2>Sign Up</h2>
-
-        <!-- Social Login (giữ nguyên hoặc tùy chỉnh) -->
-        <div class="social-login">
-          <a href="#" title="Login with Facebook"><i class="fab fa-facebook-f"></i></a>
-          <a href="#" title="Login with Twitter"><i class="fab fa-twitter"></i></a>
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" >
+        <!-- Họ và Tên -->
+        <div class="input-group">
+          <label for="fullName"> Name</label>
+          <input type="text" id="fullName" formControlName="name" />
+          <div class="error" *ngIf="registerForm.get('name')?.invalid && registerForm.get('name')?.touched">
+            <small *ngIf="registerForm.get('name')?.errors?.['required']">Full name is required.</small>
+            <small *ngIf="registerForm.get('name')?.errors?.['minlength']">Name must be at least 3 characters.</small>
+          </div>
         </div>
 
-        <!-- Form đăng ký -->
-        <form id="loginFormContent" (ngSubmit)="onSubmit()" #registerForm="ngForm">
-          <!-- Email -->
-          <div class="input-group">
-            <label for="email">Email</label>
-          <input type="email" id="email" name="email" [(ngModel)]="model.email" required />
-          </div>
+        <!-- Email -->
+        <div class="input-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" formControlName="email" class="form-control" />
 
-          <!-- Mật khẩu -->
-          <div class="input-group">
-            <label for="password">Password</label>
-          <input type="password" id="password" name="password" [(ngModel)]="model.password" required />
+          <div class="error" *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
+            <small *ngIf="registerForm.get('email')?.errors?.['required']">Email is required.</small>
+            <small *ngIf="registerForm.get('email')?.errors?.['email']">Invalid email.</small>
           </div>
+        </div>
 
-          <!-- Họ và Tên -->
-          <div class="input-group">
-            <label for="name">Name</label>
-          <input type="text" id="name" name="name" [(ngModel)]="model.name" required />
+
+        <!-- Mật khẩu -->
+        <div class="input-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" formControlName="password" />
+          <div class="error" *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
+            <small *ngIf="registerForm.get('password')?.errors?.['required']"> Password is required.</small>
+            <small *ngIf="registerForm.get('password')?.errors?.['minlength']">Password must be at least 6 characters.</small>
           </div>
+        </div>
 
-          <!-- Số điện thoại -->
+        <!-- Số điện thoại -->
+        <div class="input-group">
+          <label for="phone">Phone Number</label>
+          <input type="text" id="phone" formControlName="phone" />
+          <div class="error" *ngIf="registerForm.get('phone')?.invalid && registerForm.get('phone')?.touched">
+            <small *ngIf="registerForm.get('phone')?.errors?.['required']">Phonnumber is required</small>
+            <small *ngIf="registerForm.get('phone')?.errors?.['pattern']">Invalid phone number.</small>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="idCard">ID Card (CMND/CCCD)</label>
+          <input type="text" id="idCard" formControlName="idCard" />
+          <div class="error" *ngIf="registerForm.get('idCard')?.invalid && registerForm.get('idCard')?.touched">
+            <small *ngIf="registerForm.get('idCard')?.errors?.['required']">ID Card is required.</small>
+            <small *ngIf="registerForm.get('idCard')?.errors?.['pattern']">Invalid ID Card number (must be 9-12 digits).</small>
+          </div>
+        </div>
+
+        <!-- Địa chỉ -->
+        <div class="input-group-container">
+          <!-- Ngày sinh -->
           <div class="input-group">
-            <label for="phone">Phone Number</label>
-            <input type="text" id="phone" name="phone" [(ngModel)]="model.phone" required />
+            <label for="dateOfBirth">Birth Of Date</label>
+            <input type="date" id="dateOfBirth" formControlName="dateOfBirth" />
+            <div class="error" *ngIf="registerForm.get('dateOfBirth')?.invalid && registerForm.get('dateOfBirth')?.touched">
+              <small *ngIf="registerForm.get('dateOfBirth')?.errors?.['required']">Date of birth is required.</small>
+            </div>
           </div>
 
           <!-- Địa chỉ -->
           <div class="input-group">
             <label for="address">Address</label>
-          <input type="text" id="address" name="address" [(ngModel)]="model.address" required />
+            <input type="text" id="address" formControlName="address" />
+            <div class="error" *ngIf="registerForm.get('address')?.invalid && registerForm.get('address')?.touched">
+              <small *ngIf="registerForm.get('address')?.errors?.['required']">Address is required.</small>
+              <small *ngIf="registerForm.get('address')?.errors?.['minlength']">Address must be at least 5 characters.</small>
+            </div>
           </div>
-
-          <!-- Số căn cước (CCCD) -->
-          <div class="input-group">
-            <label for="idCard">ID Card</label>
-            <input type="text" id="idCard" name="idCard" [(ngModel)]="model.idCard" required />
-          </div>
-
-          <!-- Ngày sinh -->
-          <div class="input-group">
-            <label for="dateOfBirth">Birth Of Date</label>
-          <input type="date" id="dateOfBirth" name="dateOfBirth" [(ngModel)]="model.dateOfBirth" required />
-          </div>
+        </div>
 
 
+        <!-- Nút Submit -->
+        <button type="submit" class='btn-login' [disabled]="registerForm.invalid">Register</button>
 
-
-          <!-- Nút Submit -->
-          <button type="submit" class='btn-login' [disabled]="!registerForm.form.valid">Đăng ký</button>
-
-          <!-- Link sang trang đăng nhập (nếu có) -->
-          <div class="signup-link">
-            Already a member? <a routerLink="/user/loginuser" class="loginuser-link">Đăng nhập ngay</a>
-          </div>
-        </form>
-      </div>
+        <!-- Link đăng nhập -->
+        <div class="signup-link">
+          Already a member? <a routerLink="/user/loginuser" class="loginuser-link">Login Now</a>
+        </div>
+      </form>
     </div>
   </div>
-
-  <script src="js/login.js"></script>
-</body>
+</div>

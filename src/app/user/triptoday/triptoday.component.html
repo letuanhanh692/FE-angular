@@ -2,7 +2,7 @@
 <div class="search-container">
   <input type="text" placeholder="Starting" [(ngModel)]="searchFrom" />
   <input type="text" placeholder="Destination" [(ngModel)]="searchTo" />
-  <button (click)="searchTrips()">Tìm kiếm</button>
+  <button (click)="searchTrips()" style="font-weight: bold;">Tìm kiếm</button>
 </div>
 
 <!-- Danh sách chuyến đi -->
@@ -23,11 +23,11 @@
       <div class="trip-info">
         <p>{{ trip.busNumber }}</p>
         <p>{{ trip.busType }}</p>
-        <p><strong>{{ trip.departureTime | date: 'HH:mm' }}</strong> - {{ trip.startingPlace }}</p>
-        <p><strong>{{ trip.arrivalTime | date: 'HH:mm' }}</strong> - {{ trip.destinationPlace }}</p>
+        <p><strong>{{ trip.departureTime | date: 'HH:mm' }}</strong> - <span style="color: rgb(170, 0, 0);font-weight:bold">{{ trip.startingPlace }}</span></p>
+        <p><strong>{{ trip.arrivalTime | date: 'HH:mm' }}</strong> - <span style="color: rgb(171, 0, 0);font-weight:bold">{{ trip.destinationPlace }}</span></p>
         <p>{{ trip.totalSeats }}</p>
         <p>{{ trip.availableSeats }}</p>
-        <p>{{ trip.price ? (trip.price | currency) : '---' }}</p>
+        <p style="color: green;font-weight:600">{{ trip.price ? (trip.price | currency :'VND') : '---' }}</p>
         <button class="btn-book" (click)="viewTripDetail(trip.id)">Select</button>
       </div>
     </div>
@@ -37,6 +37,11 @@
 <ng-template #noTrips>
   <p>{{ errorMessage }}</p>
 </ng-template>
+<br>
+<br>
+<br>
+<br>
+<br>
 <br>
 <br>
 <br>

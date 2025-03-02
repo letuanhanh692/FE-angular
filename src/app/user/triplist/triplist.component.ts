@@ -14,6 +14,7 @@ import { CommonModule } from '@angular/common';
 export class TripListComponent {
   trips: any[] = [];
   filteredTrips: any[] = [];
+  paginatedTrips: any[] = [];
   searchData: any = {};
 
   busTypes = [
@@ -24,6 +25,11 @@ export class TripListComponent {
   ];
   selectedBusType: string = '';
   sortCriteria: string = 'timeAsc';
+
+  // Thêm biến phân trang
+  currentPage: number = 1;
+  itemsPerPage: number = 5;
+  totalPages: number = 1;
 
   constructor(
     private TripService: TripService,
@@ -44,17 +50,14 @@ export class TripListComponent {
         (response) => {
           console.log('Dữ liệu chuyến đi:', response);
           if (Array.isArray(response) && response.length > 0) {
-            const currentTime = new Date(); // Lấy thời gian hiện tại
-
-            // Lọc chỉ lấy các chuyến có thời gian khởi hành từ hiện tại trở về sau
+            const currentTime = new Date();
             this.trips = response
-            .filter(trip => new Date(trip.departureTime) >= currentTime)
-            .map(trip => ({
-              ...trip,
-              departureTime: new Date(trip.departureTime), // 👉 Chuyển sang Date object
-              imageBus: trip.imageBus || 'assets/default-bus.jpg'
-            }));
-
+              .filter(trip => new Date(trip.departureTime) >= currentTime)
+              .map(trip => ({
+                ...trip,
+                departureTime: new Date(trip.departureTime),
+                imageBus: trip.imageBus || 'assets/default-bus.jpg'
+              }));
 
             this.filteredTrips = [...this.trips];
             this.applyFilters();
@@ -69,7 +72,6 @@ export class TripListComponent {
       );
     }
   }
-
 
   applyFilters(): void {
     this.filteredTrips = this.trips.filter(trip =>
@@ -93,8 +95,29 @@ export class TripListComponent {
           return 0;
       }
     });
+    this.currentPage = 1;
+    this.paginateTrips();
   }
 
+  paginateTrips(): void {
+    this.totalPages = Math.ceil(this.filteredTrips.length / this.itemsPerPage);
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    this.paginatedTrips = this.filteredTrips.slice(startIndex, startIndex + this.itemsPerPage);
+  }
+
+  prevPage(): void {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+      this.paginateTrips();
+    }
+  }
+
+  nextPage(): void {
+    if (this.currentPage < this.totalPages) {
+      this.currentPage++;
+      this.paginateTrips();
+    }
+  }
 
   viewTripDetail(tripId: number) {
     this.router.navigate([`/user/tripdetail/${tripId}`]);

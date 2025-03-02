@@ -60,13 +60,13 @@
 
           <div class="info-row">
             <span class="label">Total Amount:</span>
-            <span class="value total-amount">{{ booking.totalAmount | currency }}</span>
+            <span class="value total-amount">{{ booking.totalAmount | currency :'VND' }}</span>
           </div>
 
           <!-- ✅ Hiển thị RefundAmount nếu đã bị hủy -->
           <div *ngIf="booking.status === 'Cancelled'" class="info-row">
             <span class="label">Refund Amount:</span>
-            <span class="value refund-amount">{{ booking.refundAmount | currency }}</span>
+            <span class="value refund-amount">{{ booking.refundAmount | currency :'VND' }}</span>
           </div>
         </div>
       </div>
@@ -77,6 +77,7 @@
           (click)="cancelBooking(booking.bookingId)" class="cancel-btn">
           Cancel
         </button>
+        <button *ngIf="booking.status === 'Booked'" (click)="continueBooking(booking)" class="continue-btn">Continue</button>
 
         <div *ngIf="booking.status === 'Cancelled'" class="text-red-500 text-sm">
           Ticket has been cancelled
@@ -87,6 +88,11 @@
   </div>
 
 </div>
+<br>
+<br>
+<br>
+<br>
+<br>
 <br>
 <br>
 <br>

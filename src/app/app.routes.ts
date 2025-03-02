@@ -54,6 +54,8 @@ import { SuccessComponent } from './user/success/success.component';
 
 
 
+
+
 export const routes: Routes = [
     {
         path: 'admin',

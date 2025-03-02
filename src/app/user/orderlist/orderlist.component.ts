@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BookingService } from '../../../service/booking.service';
 import { CancellationService } from '../../../service/cancelltion.service';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-orderlist',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './orderlist.component.html',
   styleUrls: ['./orderlist.component.css']
 })
@@ -22,7 +23,8 @@ export class OrderListComponent implements OnInit {
 
   constructor(
     private bookingService: BookingService,
-    private cancellationService: CancellationService
+    private cancellationService: CancellationService,
+    private router: Router // ✅ Thêm Router vào constructor
   ) {}
 
   ngOnInit(): void {
@@ -49,7 +51,6 @@ export class OrderListComponent implements OnInit {
           console.warn('Không tìm thấy đơn hàng cho userId:', this.userId);
           this.bookings = [];
           this.filteredBookings = [];
-
         } else {
           console.error('Lỗi khi lấy đơn hàng:', err);
         }
@@ -87,4 +88,24 @@ export class OrderListComponent implements OnInit {
     this.isSuccess = success;
     setTimeout(() => this.message = '', 3000); // Ẩn thông báo sau 3 giây
   }
+
+  // ✅ Chuyển sang trang xác nhận nếu booking có trạng thái "Booked"
+    // ✅ Chuyển sang trang xác nhận nếu booking có trạng thái "Booked" và chưa quá thời gian khởi hành
+    continueBooking(booking: any): void {
+      const currentTime = new Date(); // Thời gian hiện tại
+      const departureTime = new Date(booking.departureTime); // Giả sử `departureTime` có trong booking
+
+      if (booking.status !== 'Booked') {
+        alert('Chỉ có thể tiếp tục với đơn hàng có trạng thái "Booked".');
+        return;
+      }
+
+      if (departureTime < currentTime) {
+        alert('Chuyến đi này đã khởi hành. Bạn không thể tiếp tục xác nhận.');
+        return;
+      }
+
+      this.router.navigate(['/user/confirmation'], { state: booking });
+    }
+
 }

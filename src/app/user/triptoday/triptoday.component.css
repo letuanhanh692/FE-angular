@@ -35,9 +35,9 @@
 /* Nút tìm kiếm */
 .search-container button {
   padding: 10px 15px;
-  background-color: #d54747;
-  color: white;
-  border: none;
+  background-color: #ffffff;
+  color: rgb(169, 0, 0);
+  border: 1.5px solid rgb(165, 0, 0);
   border-radius: 8px;
   font-size: 16px;
   cursor: pointer;
@@ -45,7 +45,8 @@
 }
 
 .search-container button:hover {
-  background-color: #b60707;
+  background-color: #b00000;
+  color: white;
 }
 
 /* Header danh sách chuyến đi */
@@ -83,19 +84,24 @@
   background-color: white;
   border-bottom: 1px solid #eee;
 }
+.trip-info p {
+  font-weight: 500;
+}
 
 /* Nút đặt vé */
 .btn-book {
-  background-color: #e45b5b;
-  color: white;
-  border: none;
+  background-color: #ffffff;
+  color: rgb(160, 0, 0);
+  border: 1.5px solid rgb(142, 0, 0);
   padding: 8px 12px;
   border-radius: 8px;
   cursor: pointer;
   font-size: 14px;
   transition: 0.3s;
+  font-weight: 500;
 }
 
 .btn-book:hover {
-  background-color: #b60707;
+  background-color: #a30000;
+  color: white;
 }
