@@ -28,7 +28,7 @@
                 <span>{{ booking.bookingDate | date: 'yyyy-MM-dd HH:mm' }}</span>
             </div>
             <div class="booking-field">
-                <label>Trạng thái:</label>
+                <label>Status:</label>
                 <span [ngClass]="{
                     'text-blue': booking.status === 'Booked',
                     'text-red': booking.status === 'Cancelled',
@@ -37,8 +37,8 @@
                     {{ booking.status }}
                 </span>
             </div>
-            
-            
+
+
             <div class="booking-field">
                 <label>Total Amount:</label>
                 <span>{{ booking.totalAmount }} VND</span>

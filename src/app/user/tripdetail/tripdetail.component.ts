@@ -89,7 +89,7 @@ export class TripdetailComponent implements OnInit {
         this.router.navigate(['/user/confirmation'], { state: response });
       },
       (error) => {
-        alert('Có lỗi xảy ra khi đặt vé. Vui lòng thử lại.');
+        alert('Departure time has passed, please choose another trip');
         console.error(error);
       }
     );

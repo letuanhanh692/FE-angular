@@ -69,7 +69,7 @@ export class LoginuserComponent {
         },
         error: (err) => {
           console.error("Lỗi đăng nhập:", err);
-          this.errorMessage = err.error?.message || 'Tên đăng nhập hoặc mật khẩu không đúng!';
+          this.errorMessage = err.error?.message || 'Incorrect username or password!';
         }
       });
   }

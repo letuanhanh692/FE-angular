@@ -30,7 +30,7 @@ export class RegisterComponent {
 
   onSubmit() {
     if (this.registerForm.invalid) {
-      this.errorMessage = 'Vui lòng điền đầy đủ và đúng thông tin!';
+      this.errorMessage = 'Please fill in complete and correct information!';
       return;
     }
 
@@ -39,7 +39,7 @@ export class RegisterComponent {
     const url = 'https://localhost:44311/api/Auth/register';
     this.http.post(url, this.registerForm.value).subscribe({
       next: () => {
-        alert('Đăng ký thành công!');
+        alert('Registration successful!');
         this.router.navigate(['/user/loginuser']);
       },
       error: (error: any) => {
@@ -47,7 +47,7 @@ export class RegisterComponent {
         if (error.error && error.error.errors) {
           console.error('Lỗi validation:', error.error.errors);
         }
-        alert('Có lỗi xảy ra khi đăng ký! Kiểm tra console để biết chi tiết.');
+        alert('An error occurred while registering! Check the console for details.');
       }
     });
   }

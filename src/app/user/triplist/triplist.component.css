@@ -142,13 +142,20 @@
 .trip-price {
   font-size: 28px;
   font-weight: bold;
-  color: #c82333;
+  color: #b60000;
 }
 
 .trip-discount {
   font-size: 14px;
   color: #777;
   text-decoration: line-through;
+}
+.trip-count p{
+text-align: left;
+font-size: 25px;
+font-weight: bold;
+color: rgb(0, 0, 165);
+
 }
 
 .discount-label {
@@ -199,3 +206,41 @@
   font-weight: bold;
 }
 
+/* Phân trang */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.pagination button {
+  background-color: #fff;
+  color: #b60000;
+  border: 1.5px solid #b60000;
+  padding: 6px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.pagination button:hover {
+  background-color: #ca0014;
+  color: white;
+}
+
+.pagination .active {
+  background-color: #b60000;
+  color: white;
+  border: 1.5px solid #b60000;
+}
+
+.pagination button:disabled {
+  background-color: #ddd;
+  color: #888;
+  border: 1.5px solid #ccc;
+  cursor: not-allowed;
+}

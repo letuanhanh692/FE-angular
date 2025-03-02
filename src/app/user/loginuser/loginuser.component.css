@@ -125,7 +125,7 @@
   text-decoration: underline;
 }
 .error-text {
-  color: red;
+  color: rgb(161, 0, 0);
   font-size: 12px;
   margin-top: 5px;
   display: block;
@@ -133,7 +133,7 @@
 
 .alert-danger {
   color: white;
-  background: red;
+  background: rgb(167, 0, 0);
   padding: 10px;
   border-radius: 5px;
   text-align: center;
